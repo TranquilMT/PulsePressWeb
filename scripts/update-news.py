@@ -115,7 +115,7 @@ def source_id(publisher,feed):
  if publisher.startswith('BBC'): return 'bbc.com'
  if publisher.startswith('Guardian') or publisher=='The Guardian': return 'theguardian.com'
  if publisher.startswith('France 24'): return 'france24.com'
- return {'Sky News':'news.sky.com','Times of Malta':'timesofmalta.com','Ars Technica':'arstechnica.com','IGN':'ign.com'}.get(publisher,urllib.parse.urlparse(feed).hostname.removeprefix('www.'))
+ return {'Sky News':'news.sky.com','Times of Malta':'timesofmalta.com','Ars Technica':'arstechnica.com','IGN':'ign.com','DW':'dw.com'}.get(publisher,urllib.parse.urlparse(feed).hostname.removeprefix('www.'))
 
 def fetch_source(source):
  try:
@@ -185,7 +185,7 @@ def main():
  all_rows=rank(dedupe([r for rows in buckets.values() for r in rows]))
  lookup={r['url']:r for r in all_rows}
  # Metadata enrichment is bounded; feed images remain the preferred source.
- candidates=[r for r in all_rows if not r.get('image') and not r.get('viaIndex')][:48]
+ candidates=[r for r in all_rows if (not r.get('image') or not r.get('summary')) and not r.get('viaIndex')][:60]
  with cf.ThreadPoolExecutor(max_workers=12) as pool: list(pool.map(enrich,candidates))
  for key,rows in buckets.items():
   rows=rank(dedupe([{**lookup.get(r['url'],r),'country':r.get('country',''),'countryCode':r.get('countryCode','')} for r in rows]))[:300]
@@ -210,6 +210,13 @@ def main():
  for r in weekly:
   key=r.get('sourceId',r['domain'])
   if counts.get(key,0)>=2: continue
+  terms=set(re.findall(r'[a-z]{4,}',r['title'].lower()))-set('with from this that says after have will about their news'.split())
+  duplicate=False
+  for chosen in highlights:
+   other=set(re.findall(r'[a-z]{4,}',chosen['title'].lower()))-set('with from this that says after have will about their news'.split())
+   if len(terms & other)>=3 and len(terms & other)/max(1,min(len(terms),len(other)))>=.42: duplicate=True
+   if 'xbox' in terms and 'xbox' in other and re.search(r'layoff|jobs|job cuts|cut.*staff',r['title'],re.I) and re.search(r'layoff|jobs|job cuts|cut.*staff',chosen['title'],re.I): duplicate=True
+  if duplicate:continue
   counts[key]=counts.get(key,0)+1;highlights.append(r)
   if len(highlights)==12:break
  (OUT/'weekly-gaming.json').write_text(json.dumps({'updatedAt':NOW.isoformat(),'periodStart':(NOW-dt.timedelta(days=7)).isoformat(),'periodEnd':NOW.isoformat(),'periodLabel':(NOW-dt.timedelta(days=6)).strftime('%d %b')+' – '+NOW.strftime('%d %b %Y'),'articles':highlights},ensure_ascii=False,separators=(',',':'))+'\n')

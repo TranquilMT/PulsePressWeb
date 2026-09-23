@@ -32,13 +32,14 @@
   function visibleArticles(items) {
     let rows = feedMode === 'following' ? items.filter(a => followedSources().includes(sourceKey(a))) : items;
     if (feedMode === 'updates') rows = rows.filter(a => /patch|update|hotfix|season|dlc|expansion|roadmap/i.test(a.title));
-    return sortMode === 'newest' ? PulseNews.sortNewest(rows) : PulseNews.sortTop(rows);
+    return sortMode === 'newest' ? PulseNews.sortNewest(rows) : sortMode === 'coverage' ? [...rows].sort((a,b)=>(b.coverageSources||1)-(a.coverageSources||1)||(b.topScore||0)-(a.topScore||0)) : PulseNews.sortTop(rows);
   }
   function renderBulletin(items) {
     const root = $('[data-top-bulletin]'); if (!root) return;
     const top = PulseNews.sortTop(items).slice(0,5);
     const breaking = items.filter(a => /\bbreaking\b/i.test(a.title) && /war|attack|earthquake|flood|fire|storm|evacuat|emergency|shooting|explosion/i.test(a.title+' '+a.summary) && Date.now()-Date.parse(a.publishedAt)<6*3600000).slice(0,2);
-    root.innerHTML = (breaking.length ? '<div class="breaking-list"><b>BREAKING</b>'+breaking.map(a=>'<button data-url="'+escapeHTML(a.url)+'">'+escapeHTML(a.title)+'</button>').join('')+'</div>' : '') + '<div class="bulletin-heading"><h2>'+escapeHTML(selectedCountry ? PulseNews.COUNTRIES[selectedCountry]+' headlines' : 'Top news bulletin')+'</h2><span>Ranked by coverage &amp; freshness</span></div><div class="bulletin-grid">'+top.map((a,i)=>'<button class="bulletin-item" data-url="'+escapeHTML(a.url)+'"><span class="bulletin-rank">'+String(i+1).padStart(2,'0')+'</span><span><small>'+escapeHTML(a.publisher||a.domain)+' · '+relativeTime(a.publishedAt)+'</small><strong>'+escapeHTML(a.title)+'</strong></span></button>').join('')+'</div>';
+    const developing = ['home','world','local'].includes(PAGE) ? PulseNews.sortNewest(items).filter(a=>/attack|earthquake|flood|evacuat|emergency|shooting|explosion|killed|missile|drone strike/i.test(a.title) && !/anniversary|years ago|doesn.t|disprove|\bfilm\b/i.test(a.title) && Date.now()-Date.parse(a.publishedAt)<24*3600000).slice(0,3) : [];
+    root.innerHTML = (breaking.length ? '<div class="breaking-list"><b>BREAKING</b>'+breaking.map(a=>'<button data-url="'+escapeHTML(a.url)+'">'+escapeHTML(a.title)+'</button>').join('')+'</div>' : '') + '<div class="bulletin-heading"><h2>'+escapeHTML(selectedCountry ? PulseNews.COUNTRIES[selectedCountry]+' headlines' : 'Top news bulletin')+'</h2><span>Ranked by coverage &amp; freshness</span></div><div class="bulletin-grid">'+top.map((a,i)=>'<button class="bulletin-item" data-url="'+escapeHTML(a.url)+'"><span class="bulletin-rank">'+String(i+1).padStart(2,'0')+'</span><span><small>'+escapeHTML(a.publisher||a.domain)+' · '+relativeTime(a.publishedAt)+'</small><strong>'+escapeHTML(a.title)+'</strong></span></button>').join('')+'</div>'+(developing.length?'<div class="developing-list"><b>Developing stories</b>'+developing.map(a=>'<button data-url="'+escapeHTML(a.url)+'">'+escapeHTML(a.title)+' <small>· '+escapeHTML(a.publisher||a.domain)+'</small></button>').join('')+'</div>':'');
   }
   function updateEditionStatus() {
     const meta=PulseNews.getMeta(), stamp=meta.updatedAt;
@@ -56,7 +57,7 @@
     if(nav&&!nav.querySelector('[href="sources.html"]'))nav.insertAdjacentHTML('beforeend','<a href="sources.html">Sources</a>');
     if(!['home','world','local','tech','gaming'].includes(PAGE))return;
     const main=$('main'); const box=document.createElement('section');box.className='edition-controls';
-    box.innerHTML='<div class="country-shortcuts"><a href="world.html?country=uk">United Kingdom</a><a href="world.html?country=france">France</a><a href="local.html">Malta</a><a href="world.html">All countries</a></div><div class="edition-options">'+(['home','world'].includes(PAGE)?'<label>Country<select data-country-select><option value="">All countries</option>'+Object.entries(PulseNews.COUNTRIES).map(([k,v])=>'<option value="'+k+'" '+(selectedCountry===k?'selected':'')+'>'+v+'</option>').join('')+'</select></label>':'')+'<label>Order<select data-sort-select><option value="top">Top stories</option><option value="newest">Newest first</option></select></label><label>Reading feed<select data-feed-select><option value="all">All sources</option><option value="following">Following</option>'+(PAGE==='gaming'?'<option value="updates">Game updates &amp; patches</option>':'')+'</select></label><a class="manage-sources" href="sources.html">Follow news sources →</a></div><p class="edition-note">Publisher feeds refresh throughout the day. Top stories use coverage and freshness; publisher traffic totals are not available.</p>';
+    box.innerHTML='<div class="country-shortcuts"><a href="world.html?country=uk">United Kingdom</a><a href="world.html?country=france">France</a><a href="local.html">Malta</a><a href="world.html">All countries</a></div><div class="edition-options">'+(['home','world'].includes(PAGE)?'<label>Country<select data-country-select><option value="">All countries</option>'+Object.entries(PulseNews.COUNTRIES).map(([k,v])=>'<option value="'+k+'" '+(selectedCountry===k?'selected':'')+'>'+v+'</option>').join('')+'</select></label>':'')+'<label>Order<select data-sort-select><option value="top">Top stories</option><option value="newest">Newest first</option><option value="coverage">Most covered</option></select></label><label>Reading feed<select data-feed-select><option value="all">All sources</option><option value="following">Following</option>'+(PAGE==='gaming'?'<option value="updates">Game updates &amp; patches</option>':'')+'</select></label><a class="manage-sources" href="sources.html">Follow news sources →</a></div><p class="edition-note">Publisher feeds refresh throughout the day. Top stories use coverage and freshness; publisher traffic totals are not available.</p>';
     main.prepend(box);
     box.querySelector('[data-country-select]')?.addEventListener('change',e=>{location.href='world.html'+(e.target.value?'?country='+encodeURIComponent(e.target.value):'');});
     box.querySelector('[data-sort-select]').addEventListener('change',e=>{sortMode=e.target.value;renderEdition();});
@@ -314,7 +315,7 @@
               <div class="quick-copy">
                 <div class="meta-line"><span>${escapeHTML(item.domain)}</span><span>•</span><time>${escapeHTML(relativeTime(item.publishedAt))}</time></div>
                 <h3>${escapeHTML(item.title)}</h3>
-                <p>Open the story for current context, related reporting and a clearer view of how coverage is developing.</p>
+                <p>${escapeHTML(item.summary || 'Read the latest report from '+(item.publisher || item.domain)+'.')}</p>
                 <button class="quick-open" data-url="${escapeHTML(item.url)}" type="button">Read story <span>→</span></button>
               </div>
             </article>
@@ -856,6 +857,7 @@
       if(shell) shell.innerHTML = '<div class="feed-error"><h2>Story no longer in the current edition</h2><p>Choose a story from one of the live desks.</p><a class="button-link" href="index.html">Go to latest news</a></div>';
       return;
     }
+    recordRead(article);
     articles = [article];
     const relatedTarget = $('[data-related-grid]');
     const contextTarget = $('[data-context-list]');
@@ -1082,4 +1084,3 @@
     setStatus('Please refresh to try again', 'cached');
   });
 })();
-

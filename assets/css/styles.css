@@ -630,3 +630,5 @@ html[data-theme="dark"] .pulse-action.primary small{color:rgba(0,0,0,.58)}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none!important}.reveal{opacity:1!important;transform:none!important}}
 
 .load-more{grid-column:1/-1;min-height:48px;padding:14px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);font-size:16px;font-weight:700}
+
+.developing-list{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}.developing-list>b{font-size:13px;text-transform:uppercase;color:var(--red)}.developing-list button{flex:1 1 220px;text-align:left;border:0;background:transparent;color:var(--ink);font-size:14px;line-height:1.5}.developing-list small{color:var(--muted);font-size:12px}
