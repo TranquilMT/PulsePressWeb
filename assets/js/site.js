@@ -30,6 +30,7 @@
   let libraryMode = 'saved';
   let deferredInstallPrompt = null;
   let settings = loadSettings();
+  requestAnimationFrame(() => document.body.classList.add('page-ready'));
 
   function loadSettings() {
     try {
@@ -40,7 +41,7 @@
   }
 
   function saveSettings() {
-    localStorage.setItem(STORAGE_SETTINGS, JSON.stringify(settings));
+    try { localStorage.setItem(STORAGE_SETTINGS, JSON.stringify(settings)); } catch {}
     document.documentElement.dataset.motion = settings.motion ? 'on' : 'off';
     document.documentElement.dataset.density = settings.density;
     document.documentElement.dataset.theme = settings.theme || 'system';
@@ -330,7 +331,7 @@
   }
 
   function updateInstallButtons() {
-    $('[data-install-app]').forEach(button => {
+    $$('[data-install-app]').forEach(button => {
       const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
       button.hidden = !!standalone;
       button.textContent = deferredInstallPrompt ? 'Install PulsePress' : 'Add PulsePress to device';
@@ -967,20 +968,22 @@
   }
 
   function setupGlobal() {
+    requestAnimationFrame(() => document.body.classList.add('page-ready'));
     addEventListener('beforeinstallprompt', event => {
       event.preventDefault();
       deferredInstallPrompt = event;
       updateInstallButtons();
     });
     addEventListener('appinstalled', () => { deferredInstallPrompt = null; updateInstallButtons(); toast('PulsePress installed'); });
-    initMotionEngine();
-    setupMobileUtilities();
-    bindClicks();
-    bindTilt();
-    setupSettings();
-    setupSearchForm();
-    updateClock();
-    updateSavedBadges();
+    const safe = fn => { try { fn(); } catch {} };
+    safe(initMotionEngine);
+    safe(setupMobileUtilities);
+    safe(bindClicks);
+    safe(bindTilt);
+    safe(setupSettings);
+    safe(setupSearchForm);
+    safe(updateClock);
+    safe(updateSavedBadges);
     setInterval(updateClock, 30000);
 
     $('[data-manual-refresh-global]')?.addEventListener('click', () => {
@@ -995,7 +998,6 @@
 
     addEventListener('online', () => setStatus('Internet restored', 'live'));
     addEventListener('offline', () => setStatus('Offline', 'error'));
-    requestAnimationFrame(() => document.body.classList.add('page-ready'));
   }
 
   async function init() {
