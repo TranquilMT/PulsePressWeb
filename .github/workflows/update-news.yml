@@ -16,12 +16,12 @@ permissions:
 
 concurrency:
   group: pulsepress-newsroom
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   update-news:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - name: Check out PulsePress
         uses: actions/checkout@v4
