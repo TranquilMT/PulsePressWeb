@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-23T18:25:29.129Z",
+  "updatedAt": "2026-09-23T18:26:31.119Z",
   "desk": "tech",
   "articles": [
     {
@@ -26,7 +26,7 @@
       "title": "Opinion | It’s Time to Cry Wolf Over A.I.",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBQX1FHblFBOUw2cFM2ZVkyUVBIZ1BtOHdOMXdSQkl6U1UtMU5EOHNtNlM1bERydjFVa1FWUS1RRjVhQjFQT2lfRU5VSldqbWdPZjdvWUNIdnFORGxicHlxTlBrWlgwcGV2TFQySnNQSQ?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T21:00:03.000Z",
@@ -46,7 +46,7 @@
       "title": "Opinion | AI: Ghostwriter in the Machine",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1yeVpTQVNiYS0tcjRBb19vNUdBXzJCbEwtblQ1aWxIMDNuVDBfcFBEQ2J4d01yMm5hTFJjcXZDS0F0cE5BdHg5bzdVem1KZDJUcF9SUEtoVWNVMDNtQXRfdUdjNFNIX0Fua3RDekFCNlJWeVpE?oc=5",
       "image": "",
-      "domain": "WSJ",
+      "domain": "wsj.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-18T17:27:26.000Z",
@@ -126,7 +126,7 @@
       "title": "Opinion | There Is Something We Have to Do Right Now About A.I.",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOZkJ0NGRHS01PRlVzX1lNNTFDNUdUNnJMdEkxM3hQdk1Sb3MxMXZNR1NvQUN4SnpncXBVbC1FN01hUnJDZGpfNkRsM1pRd0E4MGM5Z0lkLXVnUnJ4b3RRX1JFal9OY01aalJHVFNJUnZoZHJlYm8yZ1doZnI5UWppMGhhOGNya1Q4eEYwOHVkamNsQQ?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-20T05:00:06.000Z",
@@ -173,20 +173,10 @@
       "lane": "Tech"
     },
     {
-      "title": "Opinion | I Led A.I. Diplomacy for the U.S. The Coming Safety Talks Will Not Save Us.",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE1YaFNGM3puRnZsNHVjV19LOV91RGVTT1dXU0RNdVM3Y084alRWdUJRcGZuZXpvdWV2Qm14SzhOWEJ6T1cwSWotVE5VeWpsd0I2b0JjcFZNcUF0aVhMUVgxaHZhTDRkMDVyOVpvZGk1b1NSUjNXODVod0pvTF8?oc=5",
-      "image": "",
-      "domain": "nytimes.com",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-16T23:00:06.000Z",
-      "lane": "Tech"
-    },
-    {
       "title": "The World Is Talking About A.I.’s Dangers. Now, It’s Time to Act.",
       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPQzZzYU9jbU55SmppQ2JCcWxYWU1HMnVXaU96akdGSXVRQzlYR2FWTk01cmZDTEZqVXdqWVFRNmc0a3ZETzRSZU1ReTVSRkRxb0twdGRoY1A4UjMzSGV2VVJKR0pyWktKSXBIN2VWX1NrTHVvZWNLMTJibzhjSkxNeUtkUy1CUE15ZUw0?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-18T14:36:29.000Z",
@@ -196,7 +186,7 @@
       "title": "I Gave My Life Over to Meta’s A.I. Agent and Was Blown Away",
       "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE94MEh4Uk1LU3pMcTJtU2Jlc1hTMVVjd05Wcy1PdWxXNm5MWS1vS1hUeEM5bWd4V21ReXNqVHpXeVF0VjRjcDk4T3IyVkU1Uk5Mb1RSenlUZFdMSXMtNFQzNlpyc2doeHdwZzVQNDhoNGppYnJydVprZQ?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T15:55:03.000Z",
@@ -206,7 +196,7 @@
       "title": "Opinion | Jensen Huang Thinks A.I. Alarmism Has Gone Too Far",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOQ1BMckphRmdCWnl1cWFtMDZuR0hoVEZXMkdDZ2pHVEpqWF9uOGg3Qmc2QWFEZG1zNFRaaTBScXA3TU5EdGwxTW1NVGJWZXJ6dzA4d3MxN0Vra1pTYWV5LUVpUzd2ZmJZdUptZjZvVlJhczhsU3lLWFVMdWJSWmZYbHRWSTZfQQ?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-23T09:02:02.000Z",
@@ -216,7 +206,7 @@
       "title": "AI's imminent hacking threat is hiding in plain sight",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE9WYjVoRFY2LTEwY0loa3pURFhJWnM0bm1OYTB1cnlUb25jRWF2MVVSMHdHZkxjblJRWmc0SGV5bUR1a2pJLThYVi1OSElxek1GT0hCdGxzamtiNkpMX3pkQmRWcXQ0OENuNlI0bDhUWjJXbFQ1?oc=5",
       "image": "",
-      "domain": "Axios",
+      "domain": "axios.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T15:58:22.000Z",
@@ -226,7 +216,7 @@
       "title": "Opinion | A.I. Is a Threat, but Not in the Way You Think",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPRzJ0NUZMSVM3aTNJOTZObmJCWE9pLTFRVjRySFRsNVdueVlwTk9MX2VoRUVxY0FoWXZiRVU0MnhjT0pSNmRpeFl6eEhDcHJHVFVHT01zZ3dzNGZFZUtJbkhISUN1Vk9pcXVYdnppc0ZLQnAzZ1ppcVd1ZEZ5LXpha05RaXdWUQ?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-19T11:00:33.000Z",
@@ -236,37 +226,37 @@
       "title": "Building standards for the next phase of AI",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9Hdk5PcXZDNWxPVm9UMkJ4aVdtblM3ZjU5eDFNc3lNdkNEMDVMSi1NNzBGcTRHSFU5NWlzLWpBZWU1M1NTUjF4NzA2ZTJYaU5kbk1kclVwcHFNNmp5QWVBWUhONEt2bVROeVE?oc=5",
       "image": "",
-      "domain": "OpenAI",
+      "domain": "openai.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-21T17:23:01.000Z",
       "lane": "Tech"
     },
     {
+      "title": "Exclusive | Gemini Hacked Three Companies in First Known Breakout by Google’s AI",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWjdUWU9tYzBhcjAwR1AzWkhVczUyUG9SUThfTFNuWEl0VFdHVUFzR1pDb3l3amRZWktfRUtvOFp3a0xZellIODVSTGdJOGd0dnQ2NlNoeVE5OHNEY0swRXJPcDhxSDI5bmJlV29icV91dXYxZGNRdDA2LTV3OTlnQUp6RldkYTJKT1IydVgtTnk5QXRUVkFGdEl3WFp1OVlOMWVaeHpEcw?oc=5",
+      "image": "",
+      "domain": "wsj.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-18T22:10:00.000Z",
+      "lane": "Tech"
+    },
+    {
       "title": "Don’t be fooled by this summer of AI hype",
       "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOalMwd0FqRGVxX01sTWdkVXpUOFF1ZDN0dWpIaXNHRFlzYTVZSFdpcVlVRzY3XzV6ZWctZmk3LVM3b0o0dFJpdldJQ0l2a1ZaUldLcUo5NzV0SXpnajYtbDctYTFVenJRM2xFb0hsWm5wbG1xUzRDczNhbTJDaVVRdnQ5Z0tTNmI5MXfSAY8BQVVfeXFMT2xqNWpqRWsxS2d5b3dXTk13SFJnS0tSdDhoNmM5VlZObmpIcXd1bjNuWERhVS04TS1iM3NyWUF2czZfbjRkTXB5MkI4aU92WEI3QU5HSm4zMTZOOTdWYmJTWWhtNF93S2xndmo0MUhmUkNjSjVjVDBmMHFUT240UW84bkNNeUo2N0JSdUp2b00?oc=5",
       "image": "",
-      "domain": "MIT Technology Review",
+      "domain": "technologyreview.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T11:04:51.000Z",
       "lane": "Tech"
     },
     {
-      "title": "Exclusive | Gemini Hacked Three Companies in First Known Breakout by Google’s AI",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQWjdUWU9tYzBhcjAwR1AzWkhVczUyUG9SUThfTFNuWEl0VFdHVUFzR1pDb3l3amRZWktfRUtvOFp3a0xZellIODVSTGdJOGd0dnQ2NlNoeVE5OHNEY0swRXJPcDhxSDI5bmJlV29icV91dXYxZGNRdDA2LTV3OTlnQUp6RldkYTJKT1IydVgtTnk5QXRUVkFGdEl3WFp1OVlOMWVaeHpEcw?oc=5",
-      "image": "",
-      "domain": "WSJ",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-18T22:12:05.000Z",
-      "lane": "Tech"
-    },
-    {
       "title": "The AI kill switch, explained: 'It's not too little, but it's probably too late'",
       "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFB1T2hxSks0a0w0OWtLa1FCdTExSmZMNlJUdlRTdHZVOV9OanU5NG5WdW5xd1pwbHlQOXN4UjdzcVR0S2xoSnlLZkh2UkR2OG9ROXl1SWJtTTAxdlF3aE5EQ0Rsa19PUDJjLTBjWmRR0gFzQVVfeXFMUDFDRUpSaDdteXI0WWpHS0RIZ0hBYk1hX3AwTEhwd01pTk5ZWjUySjQ5Yl9aRE1aRDVjVmlvNlFKVmlJTlczVDdxd3l4QUNYRkhzTHA1WkUtQ1hJVmJtdWphZHlDN0kwZnVUc2VsMHNaOThPYw?oc=5",
       "image": "",
-      "domain": "cnbc.com",
+      "domain": "CNBC",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-19T12:00:01.000Z",
@@ -280,16 +270,6 @@
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T06:44:49.000Z",
-      "lane": "Tech"
-    },
-    {
-      "title": "Gemini hacked three companies in first known breakout by Google's AI",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOYjRxWW5lRUMxeVNSMGFTaFl3Um9XLXBNZzhENWpxTlBFOEYxbTJrd25DMURFaGg2ZmtWRXZhWVpMSDA0SndYOC1qY0FiQnpPeEYzOHZZblFCU1NmbFN4Vno1WlRQaEpmVV9aandkTkZvSzR3SExfMDRPNnpyd0pGN1VYVFVzMmlZd1ZBNjMtblJuRFZ5VUxOemxLRWJ2Zkkyd1ZJMXQzZ2pYWkRzdmt5bU5QUDQ0YVBDZFZOag?oc=5",
-      "image": "",
-      "domain": "Reuters",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-19T04:13:56.000Z",
       "lane": "Tech"
     },
     {
@@ -326,20 +306,10 @@
       "title": "Trump-Xi summit puts AI safety talks on the table but neither side wants to slow down",
       "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQczZ5TVhnb0JkM3VYZzhRR0MyOGNxNkY1c1JLZlNDR3pEQzJ6c0p4R1F4SVBiSkE2eDUxY3RkclhzUkpsREtpV2c4QTUyd1FlQzRmNU1rTVI4SEFoSGJ5N2ExNnpwM21lQUhLZEZzQVFnQVY5bDJDX09LaFd0NW1oa21KYTNjbVR5dTN0bzY2R3bSAZYBQVVfeXFMUEZQTV8zRk5POGkzLVdDMDFuMGpvN3dJWUhMVFNmWDRoU291VmFMOVg1QWFwbzFNazNLSnJyclItWDQxWDJwa09lSU1Xc2pGWUlKYVM1YVJkbWQwMmx0bThxRkxoUW5iWmo0MWpmYk1nTTJKQkQxTDBVTDVYNFh0YkR3c2JSSFp0bzlDa2x6WXROUmI3WWNB?oc=5",
       "image": "",
-      "domain": "cnbc.com",
+      "domain": "CNBC",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-23T07:36:47.000Z",
-      "lane": "Tech"
-    },
-    {
-      "title": "Divisions emerge in the tech industry over calls for a coordinated AI slowdown",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNcVUxMGdxcHlEQXczN3d2eFU0ZEZ0TFd0cm1zaS02NWdmTWdZazVMVTFHa2lkcjlabkRCVHpRUTY5SVhfWV84dkYwR3pTR3ljWHNSVnowUU9qekwtRmRhaFZZZHFhOVJtLU94a3Q5dXNjSTNhd0dwS3B1S0VwUUFna0M3OFFsZmZEaFdpUGdWX3J5dEhmRUhFUEttZWM2UzFZWXc?oc=5",
-      "image": "",
-      "domain": "AP News",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-16T22:04:00.000Z",
       "lane": "Tech"
     },
     {
@@ -356,17 +326,27 @@
       "title": "OpenAI's latest AI revelation is a 'serious situation,' Microsoft's Suleyman tells CNBC",
       "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxObnh4czlpREt3SjNqZkhVb01vQVVJVTBiYlRhVlJ0Z0xiRnF4YnoyOU5YWXdDa05NS051aFFOS2E3ZmlxWDNpTHVoRjN2Mm5IYmVtQVM0ekpDT0UxR0Vjb0dLNHVWMnRlU1RhWlRxeWx2ZTNRYTFCTTNtLWdFMzJTRnFMc2VsQTZwV29iSkctZ3R2Smx4bnFkWjVWeUVNOVFCbHFtQtIBqgFBVV95cUxQVjZvU293cGh2VURVdGV6eUUyTlEwbWI3QzFESFFwajZHSnpuQktpaTZWSHU3ZFhsMWxFUmdrYVJmN0lOWnd4d1A5Qjd3eFkxWnk4ZkZQRVVhaF9WN3BtVzlETE12a0VuM0dYU1lSSW00UW1JNlNFMVc0VURJd18yMjZueDlrM2xmWlk1Qk1aSHp6SXRmS3dmTXJreWJRUVlfcExPUmZzLVIzZw?oc=5",
       "image": "",
-      "domain": "cnbc.com",
+      "domain": "CNBC",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-18T13:23:58.000Z",
       "lane": "Tech"
     },
     {
+      "title": "Divisions emerge in the tech industry over calls for a coordinated AI slowdown",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxNcVUxMGdxcHlEQXczN3d2eFU0ZEZ0TFd0cm1zaS02NWdmTWdZazVMVTFHa2lkcjlabkRCVHpRUTY5SVhfWV84dkYwR3pTR3ljWHNSVnowUU9qekwtRmRhaFZZZHFhOVJtLU94a3Q5dXNjSTNhd0dwS3B1S0VwUUFna0M3OFFsZmZEaFdpUGdWX3J5dEhmRUhFUEttZWM2UzFZWXc?oc=5",
+      "image": "",
+      "domain": "apnews.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-16T22:04:00.000Z",
+      "lane": "Tech"
+    },
+    {
       "title": "Forget the AI Slowdown—the Vulnerability Explosion Is Already Happening",
       "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5pZHNLelVLTHBFdzdQMHRIaGozbDNDQWFUbDllUElYVzh0UFZzbXI0ZHlNcXd5bFZfbDk5R21sWWN3RkplOGVPWi1rclY3WFJ4N3JScmk5anV6cHVVVTRzREcwOW9DalZ2b3hnME1mbTJmNFhCNlFF?oc=5",
       "image": "",
-      "domain": "WIRED",
+      "domain": "wired.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-19T11:00:00.000Z",
@@ -376,7 +356,7 @@
       "title": "How Unions Are Confronting A.I. Threats in the Workplace",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQd0pSano3UHdiZGNha3VFUVVueXQ0dTRzY2dPc21uTEhOTkI5cEdsOVdDdG4xbWloTll4MktPTzMwaF9BYUtlMVU3M1BobENyWFVadnROTUNubWtJZzZWcWVfUDE3RkhGY20tejBaZ2ZSSlRrUjh3XzNmdERfeXNTaTJvM3Nidw?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T14:16:47.000Z",
@@ -386,7 +366,7 @@
       "title": "Why Companies Are Unlikely to Hit Pause on AI | The Morning Download for Sept. 14",
       "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOZkIwRy1pNXB4WXItZ0tJbjhpNTA4dWpYc2JobjgyU3FaOGxObi10eDZab2hFZlduS2I2SzZ6QnprRll5ZHhVck5kNDZ6NFQ1UFdrcWVHWjc2VTRjbU9PVWtPLTN3TG5ldGdKQWVUXzB1OG10bk13X1Z6M2k2RnB4blNpbXVqdUMxR1RBdExTQQ?oc=5",
       "image": "",
-      "domain": "WSJ",
+      "domain": "wsj.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-23T07:49:08.000Z",
@@ -406,10 +386,20 @@
       "title": "Here’s How an AI Slowdown Could Actually Be Enforced",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE8xeTZIWENGWVJSUWlnTjhmVS03QUR4SkR5a3ZrVV9PWWVKY0hESUJIbWpDOEk0MGoxZnVZQk9uNWJBNFVXWGduR1ZNRjA0UllpNzJKQ3dhamxsUmppRDFGNlpBc3lEUTJFSVp0RnREWmxWWF9OTEFzZ2pTSV9RZw?oc=5",
       "image": "",
-      "domain": "WIRED",
+      "domain": "wired.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-18T19:21:00.000Z",
+      "lane": "Tech"
+    },
+    {
+      "title": "When Trump and Xi meet they will discuss AI. ‘Track Two’ talks are already buzzing",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPc3g2bVNKWVNiOGNxemRhSW90a3FSWlA0VVg4ZUFBWFF6RURJbHppazlpV0VDcVUxT0FwT1hUVWk3djBkQm9NZFBtZXUxZ19uaWZGZW13ZGxKY2pfTDZPM1hqR0w2XzVNSEZ5VFNTNnVzMkI0V2NlRkFieU9sLUlNdU9Sa1FvazA?oc=5",
+      "image": "",
+      "domain": "NPR",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-18T19:14:15.000Z",
       "lane": "Tech"
     },
     {
@@ -423,10 +413,20 @@
       "lane": "Tech"
     },
     {
+      "title": "Will AI really kill everyone? How, exactly?",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBaMGFOYXpEU2g2ZUE1dVdEQmQ2Ym1CMUhBa25Lb01EZ0ROY1RLVEx4NWhWc3QtbGpCQUsxaW9xVVVMOHNkSk9jdVczY3NuUi1WTjNDb0xEUGRyX19hSklrWTlzT2NROGpEdkE0Qk9kOXp0VkFkSGVfb0ZtME4?oc=5",
+      "image": "",
+      "domain": "CNN",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T13:00:30.000Z",
+      "lane": "Tech"
+    },
+    {
       "title": "Opinion | Why A.I. Is Dangerous for Science",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOVlFwSTlmcFRQT0UwU3NlQzlraE44OHVFWERDVTlMVHlRM0R5QXNwM0tFVWNoOU1VTGNFQ0FQUmRFcEQ1QnAtaXY5a1liUkVkNkNIYkEzTGlmc3BmRm51RTEtY1ZGM080UlBXTjYtZUZJOEkwWWpRSUl2VHFTN29ibC1WS0Y3Vmlq?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T09:03:30.000Z",
@@ -440,16 +440,6 @@
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T04:43:00.000Z",
-      "lane": "Tech"
-    },
-    {
-      "title": "Ten days that changed the course of AI",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxON2xmamNtUmNHeDRtbGtQS0FQWnJSZF9uWG1MVHNQRTBkMmt0Q3dkN1A1N1ZoSWo1MHBKQVhJZFB3aEhUQ3MtYmVfaTRPZ09DZzBKVWpUMjFTVktCNGxoSEFhbnhCb3lyclgxS2RfM3BpQjVCaVBPNzBOdkxEU1JCOWhpMnVjeE1MbXhRczNDNldCeXp2?oc=5",
-      "image": "",
-      "domain": "Reuters",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-21T07:00:00.000Z",
       "lane": "Tech"
     },
     {
@@ -473,26 +463,6 @@
       "lane": "Tech"
     },
     {
-      "title": "Will AI really kill everyone? How, exactly?",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBaMGFOYXpEU2g2ZUE1dVdEQmQ2Ym1CMUhBa25Lb01EZ0ROY1RLVEx4NWhWc3QtbGpCQUsxaW9xVVVMOHNkSk9jdVczY3NuUi1WTjNDb0xEUGRyX19hSklrWTlzT2NROGpEdkE0Qk9kOXp0VkFkSGVfb0ZtME4?oc=5",
-      "image": "",
-      "domain": "cnn.com",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-17T13:00:30.000Z",
-      "lane": "Tech"
-    },
-    {
-      "title": "When Trump and Xi meet they will discuss AI. ‘Track Two’ talks are already buzzing",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPc3g2bVNKWVNiOGNxemRhSW90a3FSWlA0VVg4ZUFBWFF6RURJbHppazlpV0VDcVUxT0FwT1hUVWk3djBkQm9NZFBtZXUxZ19uaWZGZW13ZGxKY2pfTDZPM1hqR0w2XzVNSEZ5VFNTNnVzMkI0V2NlRkFieU9sLUlNdU9Sa1FvazA?oc=5",
-      "image": "",
-      "domain": "NPR",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-18T19:14:15.000Z",
-      "lane": "Tech"
-    },
-    {
       "title": "You can’t trade your way through the AI apocalypse",
       "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOTElDWHpQd0h3MXIyTWw3U015V204d0N4OVdaLVVkMzFKeXBKOEkxNFozcDZCR0x4RnpXWDhnS0VRdENwNjhaT3l5UE5Vd3BJdG1PcmRIWUxXRDBqOHc1eDdDaEVIN19EQTRFSTBibkFUVTZobVY2YWFzbkd3Y0FWQ1lsNzJXSnpOZ3RHbW56MW43bDZDMXhGdDRIeEpJSkFBcmdVYkEzZHRoRm14?oc=5",
       "image": "",
@@ -506,20 +476,20 @@
       "title": "Google Says Its A.I. Hacked Three Companies in Testing Breakout",
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1oVmRjQVgxMHR6VnBZbUIxamFSQ1lXanpuU080VEhkWFVDNHlXbDJhMHBNNWo0MFBsd2lMSTMwcjJpREJTZUozVzVQLWUzUkdUUG9RbDJtY3hjSVhnR2ZFTFlEOFc1aVNNeTFOZHdTTzNDWHFCNlE?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-19T00:04:48.000Z",
       "lane": "Tech"
     },
     {
-      "title": "Can the AI arms race be stopped?",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNVDcxY0pLdzBKVXV5TTZTT2ZIeGtvcGpKdFUzMURBdE90ZWZkdmliNjlZYXdILUhsS1dWbmVVLXlldm9BcHFGRFFqQjg4andPRU5PUlFvUjQ4NVpRdkhMVERUSm1ENVV4ZnZ4c1hRWXZ0ZmJjUG9IZFVhX09OYkdzbHF3?oc=5",
+      "title": "OpenAI Discloses Six New Incidents of ‘Concerning’ A.I. Behavior",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPanVqWlBmM21Obkh1TWdaekdGZS1CaEphcUllWFJnc1Rvdm9Ka3NHbWEtZFFWMU9vUW85ZnJpOW1fVG41djJPeEpjOFNoT0huMWtEVndLUVh2REN3VmNfRG5neXN0eW5YRktYX2w1MGR5QlFyQUlxWjFVREE4SWNkN05oMmIwbENJ?oc=5",
       "image": "",
-      "domain": "The Economist",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
-      "publishedAt": "2026-09-17T09:12:03.000Z",
+      "publishedAt": "2026-09-17T00:12:24.000Z",
       "lane": "Tech"
     },
     {
@@ -530,6 +500,16 @@
       "country": "",
       "language": "",
       "publishedAt": "2026-09-18T09:01:00.000Z",
+      "lane": "Tech"
+    },
+    {
+      "title": "Can the AI arms race be stopped?",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNVDcxY0pLdzBKVXV5TTZTT2ZIeGtvcGpKdFUzMURBdE90ZWZkdmliNjlZYXdILUhsS1dWbmVVLXlldm9BcHFGRFFqQjg4andPRU5PUlFvUjQ4NVpRdkhMVERUSm1ENVV4ZnZ4c1hRWXZ0ZmJjUG9IZFVhX09OYkdzbHF3?oc=5",
+      "image": "",
+      "domain": "The Economist",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T09:12:03.000Z",
       "lane": "Tech"
     },
     {
@@ -556,7 +536,7 @@
       "title": "Snapdragon Leads the Agentic AI Age with Two of the World’s Fastest Mobile SoCs Powering the Next Generation of Smartphones",
       "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQcDFxTE5FWmFMS0YtNi1pMnd0TWtVYlhhOHRsSzlBS280ZUx6NVhwTU5QWnU4NlpmQzRXZFNlSGdmS1ozeUlrVUM0MTNhSlllMXh3Uko1aGVaY1BvMW83bU5tZWQ3Z3lFSllzZGdwTE5KOHJUSHBTQXRiLTZVRjIzMEZLZXRhNlN6ZVIzNEJZME9NM0xUa01sXzBMalNSZkc3Q1F4ODh4ZWxReUVDenh0aw?oc=5",
       "image": "",
-      "domain": "Qualcomm",
+      "domain": "qualcomm.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T20:28:44.000Z",
@@ -566,7 +546,7 @@
       "title": "Trump Announces an ‘AI Force’ After Industry Sounded Alarm",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNMWRsVGg1Q3ZUb3VpRXNjeUlmc0M3R282MTZKTjl3c0pPWEZKclVqd0ROZFU2ZW9oY01pbk1GNWFnX1ZOOTFTSHF0VXByRW5nUGdyTXc4blVTMk83UnBzV0EwUV9CdS1WXzhDN0VhcTh4cFFfenFwWGZBTlo1QUwycFZMb0N0U3ZwS2xFNm9BOGdXRkNnM2laNQ?oc=5",
       "image": "",
-      "domain": "WSJ",
+      "domain": "wsj.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-20T14:47:53.000Z",
@@ -583,20 +563,10 @@
       "lane": "Tech"
     },
     {
-      "title": "How to connect AI usage to business value",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFA5TXotNTNJTDR6cEF0WVYwejk5RG90ZUVNbVZaNjBWYkxpVk9wVHZ3STFVWEhOclU4QWVtbEpZcUF6X09CWU9od3FhTGJLU3hCYjdINFhyWW1Ldzk3dGpia1N1RTdNUVd4Unp5ZGxDVll1VkRDNXc?oc=5",
-      "image": "",
-      "domain": "OpenAI",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-16T19:03:37.000Z",
-      "lane": "Tech"
-    },
-    {
       "title": "Trump wants a new AI czar and an \"AI Force\" modeled on Space Force",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1EVFBEUV9SLUJsSWpTWENyQ2NEbzEwYTZLM3ZvODktUnpMZ0Z1d1p2a1Yxdjh0d0dUOUpmb1Y4NzA2RUJOYUxTa2UzWjYwWWVETTZRakM4Rk1yN0F4emE3T3E1Q3BzUV9sS050MGo5VXU2d1E?oc=5",
       "image": "",
-      "domain": "Axios",
+      "domain": "axios.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-19T18:51:22.000Z",
@@ -606,7 +576,7 @@
       "title": "House heads home to campaign amid calls for urgent AI action",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBPMnVvdTAzbXZhYVU4d2gzYUpnVnZpam03MHowUjA2UGVMOFhfaUpkaVhHWng3RmZESko4aHltS3ZlMUpxOWk0RjFWUFJJZzdVX2c5T0RyOUF4dkpiSFlUckROdkRCdWlfbk1XUWVmWmJ1bXo30gF6QVVfeXFMT2tKRHdnMmxfQ2FpUzdJVWdzaEs0X2Z3QnJIekc4VWlaejc4OGpybXdaSW5yZDhmTS1FMWlUMndTMnkyZ2oxdUlzUS1jbzNCQllJUDdoU0tVelZCUGdnbXZXTWNTaXZXdDlkb0pDYkU2ZVpLbHdMem1Gd3c?oc=5",
       "image": "",
-      "domain": "cnbc.com",
+      "domain": "CNBC",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T17:42:00.000Z",
@@ -616,40 +586,20 @@
       "title": "Opinion | China Is Scared of A.l. Just in Not the Way We Are.",
       "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE9kSlpEVE5HQUJaQnZrVUFGTUo5anBPcXJLejlGRVc0c1pqZ01mVHZHRXBSbkg0c09JeXVJVVEzNGlxaTF3UjdJaFBoQkJZSXM2OUFpcnNlTWRrekM0WDY5ZFVQRnBQZjNNQ2NCUEwzVDJrYkpzdlBSMw?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T15:00:06.000Z",
       "lane": "Tech"
     },
     {
-      "title": "OpenAI Discloses Six New Incidents of ‘Concerning’ A.I. Behavior",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPanVqWlBmM21Obkh1TWdaekdGZS1CaEphcUllWFJnc1Rvdm9Ka3NHbWEtZFFWMU9vUW85ZnJpOW1fVG41djJPeEpjOFNoT0huMWtEVndLUVh2REN3VmNfRG5neXN0eW5YRktYX2w1MGR5QlFyQUlxWjFVREE4SWNkN05oMmIwbENJ?oc=5",
+      "title": "How to connect AI usage to business value",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFA5TXotNTNJTDR6cEF0WVYwejk5RG90ZUVNbVZaNjBWYkxpVk9wVHZ3STFVWEhOclU4QWVtbEpZcUF6X09CWU9od3FhTGJLU3hCYjdINFhyWW1Ldzk3dGpia1N1RTdNUVd4Unp5ZGxDVll1VkRDNXc?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "openai.com",
       "country": "",
       "language": "",
-      "publishedAt": "2026-09-17T00:12:24.000Z",
-      "lane": "Tech"
-    },
-    {
-      "title": "The AI ‘Slowdown’ Is an Antitrust Mess",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9lSVVUN0Y4OVVGa2RaWVhLMmMyMFBadzZ2SUtZRk5wQXd2aVpHV1E2dG1HZE5FMzRFSk9yek5rYXZoUTlHT1ptQkZGZENEaXRTT1BKV2hzb3VTVTZLbkxYSTJGOGxvcER2aUtObDZOdnoxNDQ?oc=5",
-      "image": "",
-      "domain": "WIRED",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-17T19:58:00.000Z",
-      "lane": "Tech"
-    },
-    {
-      "title": "Forget the AI Apocalypse—the Real Threats Are Already Here",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBhdFl5cV9RZkVnM1RyaDNwa3o5ZGtqc2R4RHRuYnZFcHBzNy1MR3FXN0t6Sy0yb2FDdGJENkt4LXhLM0dYYjBKX3N4YzFHNFRFZzZ5YXZtcGV4M21jWWRMRFRfYVhjd1FUTnRwdWRfUjVsUk1KcE54eTh5Yw?oc=5",
-      "image": "",
-      "domain": "WSJ",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-23T15:50:55.000Z",
+      "publishedAt": "2026-09-16T19:03:37.000Z",
       "lane": "Tech"
     },
     {
@@ -663,10 +613,50 @@
       "lane": "Tech"
     },
     {
+      "title": "The AI ‘Slowdown’ Is an Antitrust Mess",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9lSVVUN0Y4OVVGa2RaWVhLMmMyMFBadzZ2SUtZRk5wQXd2aVpHV1E2dG1HZE5FMzRFSk9yek5rYXZoUTlHT1ptQkZGZENEaXRTT1BKV2hzb3VTVTZLbkxYSTJGOGxvcER2aUtObDZOdnoxNDQ?oc=5",
+      "image": "",
+      "domain": "wired.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T19:58:00.000Z",
+      "lane": "Tech"
+    },
+    {
+      "title": "How to Make the U.S.-China AI Race Less Dangerous",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPbUJtY2d0M0tPZ01mMVUydC1tbW52a0VyRVFFZ0VXZ1I5ZTNUcmtZekJRcG5BTFU1bDdXWlRGaW9ZZUVOS3pmZ2Z4M3ctdGluR0hZZUM5T2xBX3dxQ1d1Z1IycmtRODFpYkNvdXRQZUlPVUdFRFl3TWNrNi1lV1JZS2IzT3I5dHc?oc=5",
+      "image": "",
+      "domain": "Time Magazine",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-18T16:30:00.000Z",
+      "lane": "Tech"
+    },
+    {
+      "title": "UN chief sounds alarm on AI risk after Trump plays it down",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdWlyTTZOc0p6bWNqWW1MdGlWMGNOU1Z0SEpkVWYxM1llUTNVX1ROWXJKMTNSYXNUSUV6VDhYTlRJcjB2SHpXa3dwUy1NN1pKSUEwLXN5bzkzVFgwZTRidjZmdUNjRnE0d3ZfcXh5T1BHM2JfVXpvYVRYdHFmNHdZVUlQNzliV29BVkM0cjdsS2Qtekg3YXJOSi05MkhaQQ?oc=5",
+      "image": "",
+      "domain": "Reuters",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-16T19:06:28.000Z",
+      "lane": "Tech"
+    },
+    {
+      "title": "Forget the AI Apocalypse—the Real Threats Are Already Here",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBhdFl5cV9RZkVnM1RyaDNwa3o5ZGtqc2R4RHRuYnZFcHBzNy1MR3FXN0t6Sy0yb2FDdGJENkt4LXhLM0dYYjBKX3N4YzFHNFRFZzZ5YXZtcGV4M21jWWRMRFRfYVhjd1FUTnRwdWRfUjVsUk1KcE54eTh5Yw?oc=5",
+      "image": "",
+      "domain": "wsj.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T15:50:55.000Z",
+      "lane": "Tech"
+    },
+    {
       "title": "A.I. Gone Rogue? Trump Proposes Not New Rules but an ‘A.I. Force.’",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE13OUxxZkIxQjFxME9XT2s3ZHNSa3NSZG9qQlA0bnFNQmVFR0JEdngtcllSQV9Tc3V6V0h6eGZrODNSel9veW8zQUt3c3JlU3o1UGF1RFkxX3N2eDBFMXgwUjl4X1hsRzlGdHVXcnpMbFlLTE5T?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-20T00:19:35.000Z",
@@ -686,7 +676,7 @@
       "title": "Alibaba shares jump as new AI chip, data center buildout plans unveiled",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBCcFVPdHlLbWVwQUxhZkFraXoza1JJNjhKTnBfb29EM0xCVUZzVU9WWVc5RGVKZGl4clhCYTR3TVZWVGExWUdDWDJYUEs4V21Pb1lUTmRiTllRLUNub1ZIcFEyVm13OFVjV1cyMndSV05ZcUlvRG5EUFR4MFVDQdIBgwFBVV95cUxPYlBPYTZDRm4tR2xtNlNmajZjQXNTWnh1R1pNMVhSNWZySmNkZldVRzc1N2lwNU40UlJKZHRTWlBPQWZqTU1JdVFIWDQzSm1XREhnQnBZUkltR1dGaVVsUDBUNnhSNjZzSWRGamdvSDJ1emhQUHpUVlIxazRJQi1GTU5NQQ?oc=5",
       "image": "",
-      "domain": "cnbc.com",
+      "domain": "CNBC",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T05:15:21.000Z",
@@ -696,10 +686,20 @@
       "title": "Creating a Kill Switch to Shut Down a Rogue A.I. Is Harder Than It Sounds",
       "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOYUd0elo5bFk0Rnh0YnZQeXZ3UFN3TTBDUE5ubkdBdG1CdjFULVJhSkRLWUNmN0MyWXpPSWV3T28xOGg0OHRWNGVqNEhMYzVkTHJ0NUpBMHduWEdrSS1YWXV3d095OS1FR2VBNjVULVktOVE4ei1jTjlqa29uUDR6cjU0OXh4R2NjREdVcndQaS0za3Y2a0RWZ3hlZTlaUUJtd1F5a00tcTlVc3BZdmFITHJvaGxId2RWc184?oc=5",
       "image": "",
-      "domain": "nytimes.com",
+      "domain": "The New York Times",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-19T09:03:05.000Z",
+      "lane": "Tech"
+    },
+    {
+      "title": "What Happens When A.I. Stops Doing What Humans Want?",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE85UFFhZzRDZVNiX3RxNTRSY3QwQlAzTDlJYkhxU1k5bW14VHVKdldfNmEyZGRsbGRmaVQycHRJNFlZNDJEcXBobzN5UGFjZXB0SUlBMlR3U2JxSWRwNWFZRUtNLUVuVmJGcDZpNnpfRnBRN2dMRzRRYnJoUWV5QQ?oc=5",
+      "image": "",
+      "domain": "The New York Times",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T18:18:22.000Z",
       "lane": "Tech"
     }
   ]

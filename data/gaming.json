@@ -1,22 +1,32 @@
 {
-  "updatedAt": "2026-09-23T18:25:37.668Z",
+  "updatedAt": "2026-09-23T18:26:39.688Z",
   "desk": "gaming",
   "articles": [
     {
       "title": "Continuing Our Reset",
       "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5HMWlyYklxcUhnOVFVOFZiOXdjaXRzTmtfbkNIdGdoWjlIUlhGQ0xzNnVSem9aNkFxRnZUVzFPMjYzTV9VOWRlYzlJQ2FZOUl1R0YtNDRhMmRJd2c1UHZ5RGowdUE3ZVhsRUNvbtIBckFVX3lxTE9Za21mZTdibncyTm9aX1VJUWRxd1p3Yy1qWnN0NEludVN6aGNxZ21lYXBZWTZ1eHFnZHpvMXJHeFEwUzdEUWpoNEg5M2lLWGVKVVRYcnRLV0pkbWtXNThBRFpsbTd4MWJMM1lHUE5mbVEzZw?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T14:03:19.000Z",
       "lane": "Gaming"
     },
     {
+      "title": "Silent Hill: Townfall Review + Steam Deck Performance",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1yMDdQb1ZETXQxdVpyT2g0OUp6ekZhQzNsRUhjLVZtQUxjR1R3ZmVQWm1zMnZzSVp0N3dISy00WHZjTkZRS2xPamROOE03VVdDWUY1elc1dUhRTFRFVWVwcFQ3eVVGVHhWbmc?oc=5",
+      "image": "",
+      "domain": "Steam Deck HQ",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T07:01:19.000Z",
+      "lane": "Gaming"
+    },
+    {
       "title": "Fire Emblem: Fortune's Weave is out now! Take on the apocalypse in an RPG epic",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQSUJVNjlPd1dJODFXNXlmV2Q2dUhYeTN6UWZfTUZzT2N0WTJMcE5uUmNYVTkxLWVUZzFpblN0QVE4dE9EM1ZnUVJMWXBCeDdRWjNKcmdadlRpR2lDdE40aUczbmFVa0ppOExuX250ZmptS1BKRk5wMlpDRVZneTVBLXo1NlUycF8tZ05DOHNYWVNZR0R2YURBanhfS0VmX2dkbV80LURNSlRNaklqTGFDN1ZMMA?oc=5",
       "image": "",
-      "domain": "Nintendo",
+      "domain": "nintendo.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T16:52:21.000Z",
@@ -36,7 +46,7 @@
       "title": "Xbox Continues \"Reset\" With Additional Layoffs And Restructuring",
       "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPQjU5YXJiRGtiNVRSX3RJRTZSdW9ZYlNyU0I4LVVsa0xRbEp2SUxPQmQ3S2hYRkFLZWdDdkZtNUk2UllFZlgyUnJsS1lIalR0NXR5ODVlYllKTGRSQUgwSXFwRjB2X3BIOWtMRy1Mc0Q4NXNQcElwVzk2cjZjQmJiX1pWcWs5a2x3UlFtSmZ5V2tTUQ?oc=5",
       "image": "",
-      "domain": "deadline.com",
+      "domain": "Deadline",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T15:36:00.000Z",
@@ -50,6 +60,16 @@
       "country": "",
       "language": "",
       "publishedAt": "2026-09-21T11:50:04.000Z",
+      "lane": "Gaming"
+    },
+    {
+      "title": "It only took a short time with the Asus ROG Xbox Ally X20 to turn me into a PC gaming handheld convert",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQN1BfbUZObG9hUEdOeXlNdjY1ZEpUazdGZ3N4bEwweF9FMWgxdHJFdTBQQkhPa05XVFQydFZtdVAyYjRKeWtwMDUxZEtYQlFSYmdoVXBVY3NQdjBYdkRncGVSelhkemJUNWxMYTZrUTI2QWJBcjA3ZXlkb04xcl9CSUZfZmhfZlg4Q3NsTkE0dDVvNmN3Tm5uSHR3TkdRNUFtanBrWmEzTWNQLUlpamJGRUkwOGxDcWNOVF8zMFhZZmNFamJhQURYZVBEb18zY3lf?oc=5",
+      "image": "",
+      "domain": "TechRadar",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T09:28:11.000Z",
       "lane": "Gaming"
     },
     {
@@ -73,6 +93,16 @@
       "lane": "Gaming"
     },
     {
+      "title": "Gears of War: E-Day Has Gone Gold, Pre-Install Begins September 29, Full PC Specifications Revealed",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNZjR3WVVKZGpvMThyVkNtNjNvU0pmRWpvd3pnUGlNSVIyMnZscl9oYXFkTU4tV3NCQnduVXBlMTREUVYyb3JnQmdBMVlQZFhyUjg0c2VhV3JyNDI2N2VLQUJKMDFUR0xBQms1NHRUVGFOMWRjSTJETGp2QWNEY2NFTUdYQUFyVEE3SFByRENfRTU5ZVnSAZgBQVVfeXFMUGNPTjR3WnJyczhia28tVlJObU5LLXdwZlZ4bTVST0tMa1hwNHlTVUJZcUlLVG5vWndjRk1xWW9kcDRsUEhkZWVOVWRqRnBHcFBMRnhMS05LSXoybjVqME9VT29EeFJrcGtidGhtWmN3YUNFZDZpVnJ2MTNCYTh3RHhGWHNhc2Npem9KRldhYmlXYXVzM3J1RVo?oc=5",
+      "image": "",
+      "domain": "XBOX Wire",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T16:03:44.000Z",
+      "lane": "Gaming"
+    },
+    {
       "title": "Control Resonant Runs Quite Well on the Steam Machine",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBTcFV2RlFscU51TDYzVHZxb0VGdi04b1dwb0sydTQzWUdIdnJKWlNZTDhHS0Vad1JvNU1jZ2MtY0t5eHFkeDJVNFRKSHNyRjc5SEMya2R6SEFKWGo4WERJMGplZ2lNNnZmejRwYU56ZndLX2Y4dnVqOUJqWXZYZw?oc=5",
       "image": "",
@@ -80,26 +110,6 @@
       "country": "",
       "language": "",
       "publishedAt": "2026-09-21T14:52:05.000Z",
-      "lane": "Gaming"
-    },
-    {
-      "title": "Nintendo America President on Switch 2, Zelda Anniversary Plans",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOaFBxcERVamJJaDBsejZ4eUxZenRVLUZHcW1TVTlNb0ZTYUxsYi1kNG5mVGpiX0Z0SmM1VFRfV1M1b0NuTmF5Tl9IY1FuMnBvbHVfbHl4V1ZqalA4aE16ZWFwNVVJTjNSUnZDRDFBekxPN1BzZUlNbHRQYm1wcEoyUDZ4ZTdEc29SaFZpU3VidDZHdGN5cVM1aWxtbHBuZlN0QXNVTw?oc=5",
-      "image": "",
-      "domain": "Variety",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-17T20:36:00.000Z",
-      "lane": "Gaming"
-    },
-    {
-      "title": "Gears of War: E-Day Has Gone Gold, Pre-Install Begins September 29, Full PC Specifications Revealed",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNZjR3WVVKZGpvMThyVkNtNjNvU0pmRWpvd3pnUGlNSVIyMnZscl9oYXFkTU4tV3NCQnduVXBlMTREUVYyb3JnQmdBMVlQZFhyUjg0c2VhV3JyNDI2N2VLQUJKMDFUR0xBQms1NHRUVGFOMWRjSTJETGp2QWNEY2NFTUdYQUFyVEE3SFByRENfRTU5ZVnSAZgBQVVfeXFMUGNPTjR3WnJyczhia28tVlJObU5LLXdwZlZ4bTVST0tMa1hwNHlTVUJZcUlLVG5vWndjRk1xWW9kcDRsUEhkZWVOVWRqRnBHcFBMRnhMS05LSXoybjVqME9VT29EeFJrcGtidGhtWmN3YUNFZDZpVnJ2MTNCYTh3RHhGWHNhc2Npem9KRldhYmlXYXVzM3J1RVo?oc=5",
-      "image": "",
-      "domain": "news.xbox.com",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-17T16:03:44.000Z",
       "lane": "Gaming"
     },
     {
@@ -116,27 +126,17 @@
       "title": "Try the latest Game Trial, Prince of Persia The Lost Crown",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNd0ExQ1E1WE9rX3NqSFpnVzVFSDBHRG1lX1hySU9aTzBReFpLNGxEanowTmxTTzJXS3NqZXRiOG1kREtuMEM5enY4c0ZFZjEwMnlZVjhTTzZ0SzByMl9YbjBnOENCWDBhZFJSUEs2dVBzcGJxZ0RXaEExalhEX1RpWEV4R01vbXRzbGk5bGdCVS1ZbWFob0xqSXl4WQ?oc=5",
       "image": "",
-      "domain": "Nintendo",
+      "domain": "nintendo.com",
       "country": "",
       "language": "",
-      "publishedAt": "2026-09-23T17:08:08.000Z",
-      "lane": "Gaming"
-    },
-    {
-      "title": "Silent Hill: Townfall Review + Steam Deck Performance",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1yMDdQb1ZETXQxdVpyT2g0OUp6ekZhQzNsRUhjLVZtQUxjR1R3ZmVQWm1zMnZzSVp0N3dISy00WHZjTkZRS2xPamROOE03VVdDWUY1elc1dUhRTFRFVWVwcFQ3eVVGVHhWbmc?oc=5",
-      "image": "",
-      "domain": "Steam Deck HQ",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-21T07:01:19.000Z",
+      "publishedAt": "2026-09-23T17:07:41.000Z",
       "lane": "Gaming"
     },
     {
       "title": "Next Week on XBOX: New Games for September 21 to 25",
       "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNTE1TQ0pYNWoybXlRbENNUV9XZl9BdVVYajhOOW1nQ2N1dGRXS1E4eVpZLWpoUmRtMFoxcVNWSG1CcW5BMTRWcXpxOVoxWEpDYzk0VlI5OGUxcFplUXUwVDdEOG5jZVc4Zl85Rld5aXROeWp5RDMyck1ZN1EyVkozYUY3ZmRpcGxxYl9PenduSTFFRDk20gGaAUFVX3lxTE9IYlM3ZDFxSjAyMjU0XzlKTUpZYmJOMVJPRWpsZ3ZwSWtvQjRvODJwT1JfS29rWlhHd3dGX1Bic2VqMEEwdG1vZFVsYjlBOHBxWkU1UWdicS13djdJMk10S3dLYmYwMF94Q3hWUVpfVk92ZVhaNlZkQ2l0eXA4LXM5TlotaDlETkRKZkt2eW1QUVdlaHdKWEF2VkE?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-18T14:00:19.000Z",
@@ -146,7 +146,7 @@
       "title": "XBOX @ Tokyo Game Show 2026: All the Announcements, Including an Appearance by Hideo Kojima",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9mUnhMd2xhcE5XcFF3QndQb1cxSmZzTDV0UzR5NzlzWGh6aWg3ZnptMGVHaFVTMlBYejVoOGVsVjZSQ05pYnBSdWY4S2xaNFRZRmZtU1pUamxpdVFMOWJkdHJQaHR6WTU0cmhKSlljOXZ3WHVyZ1FXN28wONIBgAFBVV95cUxORFlJQlBSNEl4SjIwaW9uSjhiUFRZQ2xxMkJybTRMTWxMSkJrZGpzN0tIbGR0VVpMQTRQblFwTkZrS08xVkVUSllHd1NjbGl2cGZIaEkwZTdCcXdvTTJGaWVrS1o0RVlpLXJqelFuaHhPMHhjNlpVNjQyUXg2aWRTVQ?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T14:10:05.000Z",
@@ -156,7 +156,7 @@
       "title": "Bloomwalker: Healing a Broken World, One Bloom at a Time",
       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPQmowQmlqR0Npb2t0WUhHSUt6aXV3bWtrUy1mTTVtU2hNWlUwSFZpMXZtSGFtYzFLREJhVTFsdzVZN2dMOHlhNnZraS1sZlBQd0xITHdtVGRfT2F0MUh4bV96Qk1XNWdHanpQX0ZDeGxCWEwweXJrYkczZlZoZ1hpRGpOa9IBiAFBVV95cUxQcmRGYlB2aG02YklVMWlDdFZqM0FCMmhrQXJsTzlZVHhmSHJPSldfWVU0UEhiOUNrbnlldzQ3WlpzbXhJZ05McHNheWRwUE9QaTFaRTUzNkNHaVd1X0Y5bDdZZXIzMzRSMjJoa0daN2EyODd6RU5HaUlSM1NxVExKak5JSkVpWWcx?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T10:21:44.000Z",
@@ -164,9 +164,9 @@
     },
     {
       "title": "Tokyo Game Show 2026: Bill Skarsgård Cast as Lead Role in PHYSINT",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPOGpfa2FuLWEwNVNjX2dibElyOUpBckhHNHdRTkQtVHNYek5GTTJLWmxKb0JFVW5WQWJxVHF6a2wtdW05bWdKM2c0QjdidHBWTU5jdnZSSVd1dVVHd09WU2puVjZQdzN6b0ltMUhfeUlneG5HMjBEdG9jdVFjRl9mdWg0a3A0THotYTFZRUFBVU8taXRsQXZSamFkQVE?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPOGpfa2FuLWEwNVNjX2dibElyOUpBckhHNHdRTkQtVHNYek5GTTJLWmxKb0JFVW5WQWJxVHF6a2wtdW05bWdKM2c0QjdidHBWTU5jdnZSSVd1dVVHd09WU2puVjZQdzN6b0ltMUhfeUlneG5HMjBEdG9jdVFjRl9mdWg0a3A0THotYTFZRUFBVU8taXRsQXZSamFkQVHSAaIBQVVfeXFMTW5VYUxfd0xEa09mZjduVGF3Z0JvVlRhN2ZHRlVBc21URklIRnhMTGExZy1GOHR5cW1aa2RKckphS1FuUDB6a0p0VC1jaWxpTjkwRFZ2UFRILVVzN0lHUHVud1pfdlQ1NDc2T0FPVmpmT1lQd3FPb2w2NURlQ0dZNVdBOHV2VFlONlV2RWhlTkhrUzJGd2pBWG1DMlJoSnhYdVBn?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T10:46:44.000Z",
@@ -176,7 +176,7 @@
       "title": "Free Play Days – Sea of Thieves and Hell Let Loose Vietnam",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBuSXAtd01xNHNkMWs0RExIemE3bWhINTRhVjNPbTZSZ0lxaTM2Mk5lRHdSLUtWZ0RrenpTUk5GZG00YU1lZnBkczlBWF9BYVRVN3VFc0x0OTJlc3Vya2xjVFYtemxTMnFoLU5UUW5aaC1fWjDSAXhBVV95cUxPdzFCWWMweTdqbEx4c1pjaVl6aDhXMWZyOGw1ekMxZEZIRHNjUWd5Y3ExRlBKdVRIalN1TnVVVk1pZ3d0dDE4WC1la21IU2dzNEpRZ21ORHh5dF9GRWI0NDd0MTBFRWozenlSODg3VTdDTVRKTHF1eUY?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T15:01:45.000Z",
@@ -186,7 +186,7 @@
       "title": "Dune: Awakening Arrives on XBOX With New Ways to Play",
       "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5zZWFyVEg4ckgzVnl1Q0JHd2F2Z2hPS0p2TEU2VHZpbXpBNXJJWGVfSFFVMkZsOHF5Ql93Zl9CbjhLTmpfZlFMMG1VSFU5b3JtbS1zdGpPWVQxS0NTbDh3cmIzZDFDMGxYT1VpSlVvb1o2c1do0gF6QVVfeXFMTlkzWlBEREtGb0MyXy01NFZRNDFoTzVFWnRXM3NqZXdEcUlZd2NLb2hBdGNiZGlJTm03cEluS0RyNmVQZFJHTnYzczdzUGNCVWQ5c3BZbFRDcG5kZElYaEp2U1lOdjdWMmNkMF94dTU0ZjhGLURQQWd6M3c?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T13:03:13.000Z",
@@ -196,27 +196,37 @@
       "title": "Action Roguelite Shape of Dreams Launches on XBOX Today With its Biggest Update Yet",
       "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNUEZQS2puTUZxMXVyal8ydy1LQmdqV1ZaTmFUSUFYcFRmREp6NUx3Qks3dGJVN1JDM0lPZ19qQmF3MWhoM29KUGNFYjNFbGNZQ2dkbU9kZ3B6TDZKZENtd1JDMGVLbTNQVnMwVW9kU3ZWNVpTNWxfV0ZKX2Zqbm52eWdCNVpPeFlG0gGOAUFVX3lxTE94MWI1MUNzZVVJU0I5alFIdVpwU3NpSURmMnhTMGZ4REQ2WGZiY0szWTFiNG9tZTFNYlJqYmRXUHV3aGRHRDZUM3B6aXNXQWJzMEk2M3JSdTE3VS1IWjV0enE4NHlCVmpMTTlXQU9BS2cwR3pkbzhlWDJHZVZtZmZFWm93aEt6RnJGSFRVRXc?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T10:21:44.000Z",
       "lane": "Gaming"
     },
     {
-      "title": "It only took a short time with the Asus ROG Xbox Ally X20 to turn me into a PC gaming handheld convert",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQN1BfbUZObG9hUEdOeXlNdjY1ZEpUazdGZ3N4bEwweF9FMWgxdHJFdTBQQkhPa05XVFQydFZtdVAyYjRKeWtwMDUxZEtYQlFSYmdoVXBVY3NQdjBYdkRncGVSelhkemJUNWxMYTZrUTI2QWJBcjA3ZXlkb04xcl9CSUZfZmhfZlg4Q3NsTkE0dDVvNmN3Tm5uSHR3TkdRNUFtanBrWmEzTWNQLUlpamJGRUkwOGxDcWNOVF8zMFhZZmNFamJhQURYZVBEb18zY3lf?oc=5",
+      "title": "Nintendo America President on Switch 2, Zelda Anniversary Plans",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOaFBxcERVamJJaDBsejZ4eUxZenRVLUZHcW1TVTlNb0ZTYUxsYi1kNG5mVGpiX0Z0SmM1VFRfV1M1b0NuTmF5Tl9IY1FuMnBvbHVfbHl4V1ZqalA4aE16ZWFwNVVJTjNSUnZDRDFBekxPN1BzZUlNbHRQYm1wcEoyUDZ4ZTdEc29SaFZpU3VidDZHdGN5cVM1aWxtbHBuZlN0QXNVTw?oc=5",
       "image": "",
-      "domain": "TechRadar",
+      "domain": "Variety",
       "country": "",
       "language": "",
-      "publishedAt": "2026-09-22T09:28:11.000Z",
+      "publishedAt": "2026-09-17T20:36:00.000Z",
+      "lane": "Gaming"
+    },
+    {
+      "title": "More Xbox Layoffs Hit as Massive Reorg Continues; Activision to Make Next ‘Halo’ Game",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTFFfOFNjWVo1Z01sZ1NUbWFCV3lMNWVBaEZBb2d1N2Q0Z25OUTE4SVl1VHVESTdZSXRQYWZzWTNNamR3UGJSdWRIdUFJSElyUzlnRzM1QzZ5T0o1UUFObnJLdGZzaHVPRENENGNTWXdEbTN2dlA1THYzM1JBVWlXYXlBd2tNWnhMN1o2cjRLR0dWWGlRSDJuUThWU0tvTmt3VlZ1dC11STZ2TTVvZVZ3VEdEajdLLXJMXzB3WA?oc=5",
+      "image": "",
+      "domain": "The Hollywood Reporter",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T15:43:19.000Z",
       "lane": "Gaming"
     },
     {
       "title": "Small but mighty! Remembering the GameCube, Nintendo’s purple box of delights",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOQ1JUREk2Nm5CWm9WOUFhNk9yUXBfLXlyMHBFZlVnalVqbVpmMVpuWW5rcTYyRUQ3bTNqY1pHYkhWRTFJUlhQa1djNG5EallvZk1ta0NGakk0T1BjMGc4cHdFUGZSUkVPZ2c3TUdhdUNOdzE2Z1lEYU1SeWRpTW9xc1VacDlrZFd6UmlLT2Z4SVRTZEJQVEVtZG05X25BZ1NyWTRuMnBR?oc=5",
       "image": "",
-      "domain": "The Guardian",
+      "domain": "theguardian.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T10:36:00.000Z",
@@ -233,16 +243,6 @@
       "lane": "Gaming"
     },
     {
-      "title": "More Xbox Layoffs Hit as Massive Reorg Continues; Activision to Make Next ‘Halo’ Game",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTFFfOFNjWVo1Z01sZ1NUbWFCV3lMNWVBaEZBb2d1N2Q0Z25OUTE4SVl1VHVESTdZSXRQYWZzWTNNamR3UGJSdWRIdUFJSElyUzlnRzM1QzZ5T0o1UUFObnJLdGZzaHVPRENENGNTWXdEbTN2dlA1THYzM1JBVWlXYXlBd2tNWnhMN1o2cjRLR0dWWGlRSDJuUThWU0tvTmt3VlZ1dC11STZ2TTVvZVZ3VEdEajdLLXJMXzB3WA?oc=5",
-      "image": "",
-      "domain": "The Hollywood Reporter",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-22T15:43:19.000Z",
-      "lane": "Gaming"
-    },
-    {
       "title": "Microsoft cuts hundreds more jobs, shifts next ‘Halo’ game to Activision in Xbox overhaul",
       "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxObTdDT1h1UHp5eUk2a3YtUzNsUWx6bEE5a1R2RzNEd3JLV1RXVXRMMkNzb0trbm9IOWo2OWs1QVhrN1BjZGpycmpKSFMzTy1CdlowYjBWMVVkbXZuVnBXQkhMLUFsMW9hMXVJOGhvU2pPNlJTOEwta3dFQ2laNDZycGY0NE9nRDI4dWNHdENHMnRwTTB6TlBDRTdRRnI2eklMUk9QbVVQc2NoUjc5TUg3Z3IxMVptSWo1?oc=5",
       "image": "",
@@ -256,7 +256,7 @@
       "title": "Welcome to The World’s Game: EA Sports FC 27 Early Access Trial with EA Play Available Today",
       "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPR1JpUGU3dWY0STEwcUh4LW9ucElTMFN6Qnd0d3BDZkhFbUJJeDVSRUZ2b3Q2YU1PS2I5b0U5YU1fRmNfeWVjMEZzZFpaUmZzRlNhVGdRR2VqSXZBeFIxUUdQQWdNMjRTb05pXzVJS0xWMDh5NGpkSkIxMWtWMXlYal9ETGJ5Q1ljSGJaRWVEcDhLcEgyMFdIRkxON2lUY1NUQmJ1d2tB0gGrAUFVX3lxTE93WU9ETDctTUM1UjBVMWpDRUtmOFZxX1E2bGFja2FEZmlnZnZEc2hOVHBKeWE5bUNjcEdqcERqSHpzeEF1ZUtTU2N4V053YkRJVnpzd18wRmxlcEdaM01YUWxCQUdfQ3cyZ1pOdGdyZ3loSmhuZEpPRk83SXpvOEdET2FXUGV1bW9IbGJJemtFc051b3p4VklkY0tXRWVGYldZT0NRcGRoWFFfUQ?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-19T03:29:04.000Z",
@@ -276,7 +276,7 @@
       "title": "Faraday Blues: Rewrite Your Family’s Fate Across Three Shattered Realities",
       "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQVG51R0Yxb051UFlzRXIybEV6Y0l2R09GNEdqRVZ0MTEwLU5rV3JSdWVlTHk5WlRHUE5Ed1BOSlN0TEl0b0cxOW5wcXpaRzFydU9CWG5rTDVhUnJTOWNsWmlYOE11a2VFMEpKQUsxRlNPbzhqMnJUTUp6TkM2dDdaa3pfOWZyZ9IBiwFBVV95cUxQbEM4RGxrbTlnb1JiWWF2ZGZiYURfS0gwTHBqSGdjeXRBaEFfQmhaYWo1elRXN1lka1dQbGpFVk9aODh0Sl9OY0U3NTlhbi1RMzJ5NW42NEJKWEFnQ3JIQmtSNVR0WUE4cnF1eGY4Y1NZYTBMUDRvT05WRlQyN1BnWWhXT3JDODdHMk1n?oc=5",
       "image": "",
-      "domain": "news.xbox.com",
+      "domain": "XBOX Wire",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-17T11:30:15.000Z",
@@ -306,7 +306,7 @@
       "title": "Is The Original Nintendo Switch Still Worth Buying In 2026?",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPZzlCZ0dpMVlNajM0V1dVOGpfM1lFdHBDNFh0YXlLZFVlX0N6RFRnTVFuVzNYeVAzTWtyN050TWExS2NLNy1kOFoxTHZmTTRFckVGV2xKZ0ppZ0J6MzRaeHlRMVNUSGYyN01fZDE0R0wyekpwRnE2YXlBeVVxcF9mQXNfOTNyVTg?oc=5",
       "image": "",
-      "domain": "Engadget",
+      "domain": "engadget.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-20T14:00:00.000Z",
@@ -316,7 +316,7 @@
       "title": "How To Use Xbox Mode On Your Windows PC",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE8zb0FxVUNfZUx3Y0ZuYU9RVmt5NnVHcHdPMXZVeFREWHdkSHViTU1jRDEyNi1NbXE0SHc0YVdYNVNRZjVMOVhDejFmdFlHU0lUaTMyVnNOdjBsaGs4NlI2X2hBa1J3T2hCUHpkNkVWakNWOWs?oc=5",
       "image": "",
-      "domain": "Engadget",
+      "domain": "engadget.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-20T22:30:00.000Z",
@@ -376,20 +376,40 @@
       "title": "Wilderness Bound game drop for Minecraft on Nintendo Switch - News",
       "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQZEVWY0p4OW52cmNmbHBxY2RhVzl3WEgwV3BxZ0xpSHNvZDhNNXR4aHc2NlRnbzNUbjd0Tkd6cDVNZUpNckdvTXp5SnBZYzJReXdCaVItdTNEb282SnFBTDRxOWdQSGZkZlltRlUxTUd4VUl1UFd2NVoxQmNOWmd3U0ZiYzAwd2RDVk8tRkh4eVZxZXQ4c25GVzRJVko5NllLbzFVMnA4QWx1NjRrMGl1ZXA5TnQ?oc=5",
       "image": "",
-      "domain": "Nintendo",
+      "domain": "nintendo.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-21T22:46:28.000Z",
       "lane": "Gaming"
     },
     {
+      "title": "The reverse acquisition of Xbox",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5YVEtaZXlOWjFOcFFtZ0Rrcy13ZkxxbW80Wm8xM0FDN1NNVU1TTnNMd3paSGJLOWx2T1U5Y0x4WUZYcS1wZUxzb1hsSGl1SmR0S3NxVGdYZzJ5SDZzM2JFc3pDNW9HeGNVTjBJVEJNUXVMUkk?oc=5",
+      "image": "",
+      "domain": "SuperJoost Playlist",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T16:33:17.000Z",
+      "lane": "Gaming"
+    },
+    {
       "title": "PlayStation Controllers May Be Used To Pay For Digital Content, As Company Doubles Down On Its All-Digital Future From 2028",
       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE52MlEzMDNPNHA5WkVjQW9xbnJDUzRlMFc3U0lieU5XZDVEQ0E3bkl2LW8yNDJRdTBEa0dzdGlWSFdObWNQb0xfS25HRndzYjMzYUFUVXJTMlVfV2h1QUFneDI5QmdSYzhGUXdmOVkzYXJEUUYtYUpseXM0bkXSAYIBQVVfeXFMT0dxQzlQR2c3M3ZXWG5ITTlHMFAta3l4ak1yTUdtYUV3MVA2bEluNGxPY1ZkU2RxdWlscGZFWXBGSlJTYUNZamVvSWo3QkY3ZVhjdnNiLXVibFhiWnRTRlFvSlMtbXVGOHhHdVlDV04zeGVrcjlsWGVfZklSVVQtLUhQQQ?oc=5",
       "image": "",
-      "domain": "wccftech.com",
+      "domain": "Wccftech",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-21T10:41:00.000Z",
+      "lane": "Gaming"
+    },
+    {
+      "title": "Every Xbox Studio’s Current Status After Multiple Rounds of Layoffs",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1LbkxQcTZVNzFQVks1ZFZaZDhYODJjYV9mZFFjRDR4Z2I2dlRpNXpQUVFkMTg1em9UTXRxRFI4d1o2NTNTVF9YWWd2TWJ1VUJzT2ExTkNxV2dfSTNFcjdSSURaR1BOb1RLRlE?oc=5",
+      "image": "",
+      "domain": "Polygon.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T16:08:14.000Z",
       "lane": "Gaming"
     },
     {
@@ -433,13 +453,13 @@
       "lane": "Gaming"
     },
     {
-      "title": "Every Xbox Studio’s Current Status After Multiple Rounds of Layoffs",
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1LbkxQcTZVNzFQVks1ZFZaZDhYODJjYV9mZFFjRDR4Z2I2dlRpNXpQUVFkMTg1em9UTXRxRFI4d1o2NTNTVF9YWWd2TWJ1VUJzT2ExTkNxV2dfSTNFcjdSSURaR1BOb1RLRlE?oc=5",
+      "title": "I turned my gaming PC into a Proxmox server and found a whole new use for its power",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNX3FNUjJ5RV9Ga0pRX2xLcXJBWktMRzFvSU9NMzRqU0ptNkxLZVZoZENXRGoyVHdtdHBFS29rSW85VkVFVG9tQTFwYTU4X3JvX0dOMjRnUm5vWWNYUjdEUkw3T3FyMEEzUEladkk5MjRpUTNXU1lYSHBUQnZiQmJfN3FSN0drWWhUMVEzdzlyTzBjbVlUVDN2STlFMV9VS19C?oc=5",
       "image": "",
-      "domain": "Polygon.com",
+      "domain": "MakeUseOf",
       "country": "",
       "language": "",
-      "publishedAt": "2026-09-22T16:08:14.000Z",
+      "publishedAt": "2026-09-22T20:00:15.000Z",
       "lane": "Gaming"
     },
     {
@@ -453,16 +473,6 @@
       "lane": "Gaming"
     },
     {
-      "title": "PlayStation 5 Pro Stock Shortage to Continue Into 2027 – Report",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPMW03VVhNRFdxOThTY2lDeXZ2N0NENmFRNGFGWUYyam92bnQzZjJodzVGVTlHTXp2cHRlUG83UlpzUnRwUF81eTBDbUpxZG4xZlNOYmhPWjFvajN6c2ZIYXZoWGgzT0s1X3U0b0NGVDk3WDBMbHgyUTFrZWxid2JrZkQ4ZUhxOUZ5dldpSlJLWjFfNUw0MjVmeNIBngFBVV95cUxNOVpETUJfdW1lXzZqeFVLQlpzRFJScE5kcTcyNWVhQWtZVXJ4LVlPcl84WTNCNkNoQ0QzMnVHTVF3ZXZ5bFluemo0eFNNU1c4dlFodjhTVG1Eb2FBNnFkYWs3LWE5eS1EV3A4cTNPOUdZMnpGWDJOZW9iNVdxXzJwZEZqWTQzamExNldLTTVibmQtb2dxMm5ic3ZuT2NqQQ?oc=5",
-      "image": "",
-      "domain": "PlayStation LifeStyle",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-18T13:52:13.000Z",
-      "lane": "Gaming"
-    },
-    {
       "title": "Nintendo Shares First Look At Zelda: Ocarina Of Time Switch 2 World Map",
       "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNMV9aeEJOWE8zOURnT0xUV0ZLM1lTS1B2TjBTcEQzMEdpSWpFSENhSFU2SGR6R0Y2T2Q4QjRUWjNxd1ZuUHhwY29tWGFQN25Dckl5TU4wSGFETXFZVGx6Z1E4UnU2RlprQ0REcjhJcmVwN29hUjAzTkdFNmZfS1dyR0F4NjNBaTlNY2IwdXV0cUp6Wl9EM19VX0xkbVFLOWdtZ0tCUnRoU1dLYVRjQ0NsYjl3?oc=5",
       "image": "",
@@ -470,16 +480,6 @@
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T00:55:00.000Z",
-      "lane": "Gaming"
-    },
-    {
-      "title": "PlayStation Plus Adds Surprise Hit 2025 PS5 Game to Catalog",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNUHRGQnN2OFEzenRuOXhNN2lneWR0eTI1WGxIQndhVE9taGxrNlE4VVlIV3BNbUJXbWllcklTa29SQWlmSmNTblowM2cwQ1VYU3JhRmFFME9icXcxV3RRaG4xMm5wVXEyRGIwcjB6NW0zT1FrQ3pvQXZ3cGphejdtVU5KS1Y5VV9CTGZ1WW1LM2tnQUsxaWtSSnFyUm93Ympw0gGmAUFVX3lxTFBSRzZZY0RDMnFSY0dVU01IV25qWUROUTA0cXp0cTBaRUhHYzNfT21zcldkNXM4SHV0UDVCbmVOUXJ0WTFEM1ZPaXNDY3pZNFJmcUtQYl9lY3VRUEwxdWtUZVhZNWlGd1ZvOHlQcWRfM29OdlZEOXZkakFoN096TVJCUXlobUFLZ0xhUXctS0tJWmxENllEdVVjZEc0WWtudHNpdUo2Qnc?oc=5",
-      "image": "",
-      "domain": "PlayStation LifeStyle",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-22T10:52:58.000Z",
       "lane": "Gaming"
     },
     {
@@ -503,13 +503,13 @@
       "lane": "Gaming"
     },
     {
-      "title": "Logitech previews new gaming gear ahead of G Play 2026",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQSTlteFg1MG91TXZCbHdZb0JQNGpWdVBhZ3drYUJFVU9RdUNNSnVOejBNcERwbVVIR1Q3TjQ3Q3VRdkNiRzB2UDI1VFBxTXk3Q1F4Vl9CTkZTa1RDN2ljUVFsc2tMNWZxQ1EwZzh2ejRPUWpZNFFBT0FCeG5Pbjd0THE4WdIBiAFBVV95cUxQVVlWTk1rR0ViZUhGOE44d2w2dXJocS1xTlFJbWFuT2NoUmFicDVvUDRZV2ZTa3VxWThOSmJqWlBrSExFcEcxQXhuYmcza1R0ckhvQmpQZkpYZ3lEdUxteUNwT0E4bHpva2xuUWM4Vk14bDBsczNON2d6bGxyXzJlb3ZRa0t0cE1G?oc=5",
+      "title": "PlayStation 5 Pro Stock Shortage to Continue Into 2027 – Report",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPMW03VVhNRFdxOThTY2lDeXZ2N0NENmFRNGFGWUYyam92bnQzZjJodzVGVTlHTXp2cHRlUG83UlpzUnRwUF81eTBDbUpxZG4xZlNOYmhPWjFvajN6c2ZIYXZoWGgzT0s1X3U0b0NGVDk3WDBMbHgyUTFrZWxid2JrZkQ4ZUhxOUZ5dldpSlJLWjFfNUw0MjVmeNIBngFBVV95cUxNOVpETUJfdW1lXzZqeFVLQlpzRFJScE5kcTcyNWVhQWtZVXJ4LVlPcl84WTNCNkNoQ0QzMnVHTVF3ZXZ5bFluemo0eFNNU1c4dlFodjhTVG1Eb2FBNnFkYWs3LWE5eS1EV3A4cTNPOUdZMnpGWDJOZW9iNVdxXzJwZEZqWTQzamExNldLTTVibmQtb2dxMm5ic3ZuT2NqQQ?oc=5",
       "image": "",
-      "domain": "ktla.com",
+      "domain": "PlayStation LifeStyle",
       "country": "",
       "language": "",
-      "publishedAt": "2026-09-21T14:31:52.000Z",
+      "publishedAt": "2026-09-18T13:52:13.000Z",
       "lane": "Gaming"
     },
     {
@@ -566,7 +566,7 @@
       "title": "All The Major Xbox Changes Microsoft Announced Today: Layoffs, Halo Goes To Activision, And Lots More",
       "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQZ21ZLXlBU09UUmVLQ3Q3MTVJSlRJYWdacnZqX1NlZVh1d3RsSnhxTk0yRVpFV2RQaldkVzZyZGF6RlNqSzh5a01ScDE3bXRIaktaNHhBQXVCZWlnMnZHbGh1dmpnazJtV2Z3Q0lYblNHMHBndE40Snp4ZnZqME5FTEQ2aFQ1TFRBbThyb1hSd0RacFRwaHJ0TFhWV2ZWamlEZFBYQzV3NDFVVGwxOVR1Z0JITU1pSER6Tkdyd3ppVk5aZw?oc=5",
       "image": "",
-      "domain": "GameSpot",
+      "domain": "gamespot.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-22T15:01:48.000Z",
@@ -613,6 +613,16 @@
       "lane": "Gaming"
     },
     {
+      "title": "Gears of War: E-Day – Prepare for Emergence Day with Us in Los Angeles",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPR0VCZXdaM0ROdHFjVXFWeWNTVDBxeFpiWl9adW9rS1BoTER2NXJEZUJTN1gxcFQtRkFoLXZldklORmRmY3Fsc0l3UHBuanFLMjMtTy1rUkEteFppNlREb1EyQ29OcmU5aWI3eERXbHVVRTRqbC1EdDB6WnBrY2lmZ3kzVdIBiAFBVV95cUxQZHRDYTl4ZktOT0I4eEk2Q2hGNEYyTjlsaE9ueVplbmRWUF9yS1Z6aXVQalNyejVOSVhTcS1Kb1VlZFN1R2I3WkNxSWE3bHJnVjdzV0VyX1FFN3RiZE9MczZoZXNmU2V4QlhUNTFxOTFCb2Q5S0NnblpPc2NOWW1IZnM5RVVxTUV5?oc=5",
+      "image": "",
+      "domain": "XBOX Wire",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T13:02:11.000Z",
+      "lane": "Gaming"
+    },
+    {
       "title": "Silent Hill: Townfall — 9 ways first-person changes the iconic horror formula",
       "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNRnZJMVhOMW1CN0FjeTVkM1c4OXJRYzdBNFJEak1ZdGsxekMyeGR6c0t3dThqZTExaVlOQW5aSDNER1JDakF6VGw2NmNaQURDNVg1TjZUM012Z2hqQ3A5V3pacGdaSFJiN0hiMFpzMTM5Vjhyam4zQ1lGNXNZVFM1YjVBTVNVdzd0WG1QZGt0Qkg3d1FSdEt1UU85SDFqLVYwNVUxTGxhSUZ0TWREVUxEVlpDdkdtdw?oc=5",
       "image": "",
@@ -620,16 +630,6 @@
       "country": "",
       "language": "",
       "publishedAt": "2026-09-21T07:00:18.000Z",
-      "lane": "Gaming"
-    },
-    {
-      "title": "Gears of War: E-Day – Prepare for Emergence Day with Us in Los Angeles",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPR0VCZXdaM0ROdHFjVXFWeWNTVDBxeFpiWl9adW9rS1BoTER2NXJEZUJTN1gxcFQtRkFoLXZldklORmRmY3Fsc0l3UHBuanFLMjMtTy1rUkEteFppNlREb1EyQ29OcmU5aWI3eERXbHVVRTRqbC1EdDB6WnBrY2lmZ3kzVdIBiAFBVV95cUxQZHRDYTl4ZktOT0I4eEk2Q2hGNEYyTjlsaE9ueVplbmRWUF9yS1Z6aXVQalNyejVOSVhTcS1Kb1VlZFN1R2I3WkNxSWE3bHJnVjdzV0VyX1FFN3RiZE9MczZoZXNmU2V4QlhUNTFxOTFCb2Q5S0NnblpPc2NOWW1IZnM5RVVxTUV5?oc=5",
-      "image": "",
-      "domain": "news.xbox.com",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-21T13:02:11.000Z",
       "lane": "Gaming"
     },
     {
@@ -673,16 +673,6 @@
       "lane": "Gaming"
     },
     {
-      "title": "Control Resonant Comparison Shows Difference Between Xbox Series X And Series S",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNb2pQWURGNGE4dmNjOTJRYUhzeVp6WGRzaDZmNnRpYUFpQ1FBMTB3OFVSdHlQMTA1OG1mMmg0RERhdEJIMExNUjc0SVJId19NTzNMNTRlR0dhYjB3bFRKMHd5ak51Sk52QXBxd1RrRTl2bUd1R2UxR0V5aGJ3UVhVdmRhQWJ1LU9RYm5qbFpxYmY4a0l0UUVEMnlBejFYM0VMQmZwQlZJTTZncUF6TkFmQXpTOGpXOXVf?oc=5",
-      "image": "",
-      "domain": "Pure Xbox",
-      "country": "",
-      "language": "",
-      "publishedAt": "2026-09-19T13:30:00.000Z",
-      "lane": "Gaming"
-    },
-    {
       "title": "Nintendo has updated the Super Mario logo, plus new Mario renders",
       "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNME5jN3owUTZ4N2pMUXBDVHAtOWk2Y294Z1NFOU1JN1RBWHRrMG15bWw1MWlJd2plOUx2S29zUkx3UnZwUGFOc3BaY0lua3pZWEJWamFsajBLSVJNRl9OYmxNUkMzV0R4b3B0MlB1X25zeThuWVlQUjc0ZHFtUzVOU3hsaVFJWlVlbloxUVp5RmpPN2IwMTVEOUFTYmE?oc=5",
       "image": "",
@@ -693,10 +683,20 @@
       "lane": "Gaming"
     },
     {
+      "title": "Control Resonant Comparison Shows Difference Between Xbox Series X And Series S",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNb2pQWURGNGE4dmNjOTJRYUhzeVp6WGRzaDZmNnRpYUFpQ1FBMTB3OFVSdHlQMTA1OG1mMmg0RERhdEJIMExNUjc0SVJId19NTzNMNTRlR0dhYjB3bFRKMHd5ak51Sk52QXBxd1RrRTl2bUd1R2UxR0V5aGJ3UVhVdmRhQWJ1LU9RYm5qbFpxYmY4a0l0UUVEMnlBejFYM0VMQmZwQlZJTTZncUF6TkFmQXpTOGpXOXVf?oc=5",
+      "image": "",
+      "domain": "Pure Xbox",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-19T13:30:00.000Z",
+      "lane": "Gaming"
+    },
+    {
       "title": "Xbox & PlayStation Are Headed in Opposite Directions (Again) - Next-Gen Console Watch",
       "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOWFJITk03dVQ5dHBsTTJPUnk3Z3M4QlozLTJZMGc1VEFjTjEzUkFyeThBb0dGRjYtdlZkSGxzOHJZQUJFSEdNdnQySjFpREhKajV5WWN3d1VIMjlXX3ktSVh3WFNtN05IcGRBcTFLeTJZOWhvOWo0U3lCRG8zZHFCZDYxVDFCbnd6Z2dqSkt0THUySnJDWEVOQmRPamhyZXhDd2hDSEhSM3VwQQ?oc=5",
       "image": "",
-      "domain": "IGN",
+      "domain": "ign.com",
       "country": "",
       "language": "",
       "publishedAt": "2026-09-18T13:00:00.000Z",
