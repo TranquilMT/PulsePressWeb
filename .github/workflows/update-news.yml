@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: pulsepress-newsroom
+  group: pulsepress-newsroom-v2
   cancel-in-progress: true
 
 jobs:
