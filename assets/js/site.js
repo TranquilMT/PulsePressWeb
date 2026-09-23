@@ -690,8 +690,46 @@
     }, settings.refresh);
   }
 
+
+  function setupMobileUtilities() {
+    if (!$('.scroll-top')) {
+      document.body.insertAdjacentHTML('beforeend', '<button class="scroll-top" type="button" aria-label="Back to top">↑</button>');
+    }
+
+    if (!$('.mobile-dock')) {
+      const items = [
+        ['home','index.html','⌂','Home'],
+        ['briefing','briefing.html','◫','Briefing'],
+        ['tech','tech.html','◇','Tech'],
+        ['gaming','gaming.html','▣','Gaming'],
+        ['saved','saved.html','☆','Saved']
+      ];
+      const activePage = PAGE === 'world' || PAGE === 'local' || PAGE === 'search' ? 'home' : PAGE;
+      const markup = items.map(([key,href,icon,label]) =>
+        '<a href="' + href + '" class="' + (activePage === key ? 'active' : '') + '"><span class="dock-icon">' + icon + '</span><span>' + label + '</span></a>'
+      ).join('');
+      document.body.insertAdjacentHTML('beforeend', '<nav class="mobile-dock" aria-label="Primary navigation">' + markup + '</nav>');
+    }
+
+    const header = $('.site-header');
+    const topButton = $('.scroll-top');
+    const update = () => {
+      const scrolled = scrollY > 26;
+      header?.classList.toggle('is-scrolled', scrolled);
+      topButton?.classList.toggle('visible', scrollY > 520);
+    };
+    addEventListener('scroll', update, { passive: true });
+    update();
+
+    topButton?.addEventListener('click', () => {
+      if (lenis?.scrollTo) lenis.scrollTo(0, { duration: 1.05 });
+      else scrollTo({ top: 0, behavior: settings.motion ? 'smooth' : 'auto' });
+    });
+  }
+
   function setupGlobal() {
     initMotionEngine();
+    setupMobileUtilities();
     bindClicks();
     bindTilt();
     setupSettings();
