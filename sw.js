@@ -1,4 +1,4 @@
-const SHELL='pulsepress-static-v5';
+const SHELL='pulsepress-static-v6';
 const FILES=['./','./index.html','./world.html','./local.html','./tech.html','./gaming.html','./briefing.html','./saved.html','./search.html','./article.html','./assets/css/styles.css','./assets/js/news.js','./assets/js/site.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(SHELL).then(c=>c.addAll(FILES)));self.skipWaiting()});
 self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));

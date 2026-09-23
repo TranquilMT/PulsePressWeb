@@ -1,9 +1,74 @@
 {
-  "name": "PulsePress World + Local News",
+  "id": "./",
+  "name": "PulsePress — Live World, Malta, Tech & Gaming News",
   "short_name": "PulsePress",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#f4efe5",
   "theme_color": "#11110f",
-  "description": "A live multi-page static news website for world, Malta, technology and gaming coverage."
+  "description": "Live world, Malta, technology and gaming coverage in a modern personalized news reader.",
+  "categories": [
+    "news",
+    "magazines"
+  ],
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Pulse Briefing",
+      "short_name": "Briefing",
+      "url": "./briefing.html",
+      "icons": [
+        {
+          "src": "assets/icons/icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Malta / Local",
+      "short_name": "Malta",
+      "url": "./local.html",
+      "icons": [
+        {
+          "src": "assets/icons/icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Technology",
+      "short_name": "Tech",
+      "url": "./tech.html",
+      "icons": [
+        {
+          "src": "assets/icons/icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    },
+    {
+      "name": "Gaming",
+      "short_name": "Gaming",
+      "url": "./gaming.html",
+      "icons": [
+        {
+          "src": "assets/icons/icon.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
 }

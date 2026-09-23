@@ -8,7 +8,17 @@
   const STORAGE_SAVED = 'pulsepress:saved';
   const STORAGE_CURRENT = 'pulsepress:current';
   const STORAGE_SETTINGS = 'pulsepress:settings';
-  const SETTINGS_DEFAULT = { refresh: 120000, motion: true, density: 'normal', readerScale: 1, readerWide: false };
+  const STORAGE_HISTORY = 'pulsepress:history';
+  const STORAGE_ACTIVITY = 'pulsepress:activity';
+  const STORAGE_FOLLOWS = 'pulsepress:follows';
+  const SETTINGS_DEFAULT = { refresh: 120000, motion: true, density: 'normal', readerScale: 1, readerWide: false, theme: 'system' };
+  const TOPICS = {
+    home: [['All',''],['World','World'],['Malta','Local'],['Tech','Tech'],['Gaming','Gaming']],
+    world: [['All',''],['Politics','election government politics president minister'],['Economy','economy business market inflation finance'],['Climate','climate weather environment energy'],['Conflict','conflict war military security']],
+    local: [['All',''],['Malta','malta maltese'],['Valletta','valletta'],['Rabat','rabat mdina'],['Gozo','gozo'],['Transport','transport traffic road bus ferry']],
+    tech: [['All',''],['AI','artificial intelligence ai openai model'],['Security','cyber security breach hack ransomware'],['Mobile','phone iphone android smartphone mobile'],['Computing','computer pc chip gpu processor laptop'],['Startups','startup funding venture']],
+    gaming: [['All',''],['PlayStation','playstation ps5 sony'],['Xbox','xbox game pass microsoft'],['Nintendo','nintendo switch'],['PC','pc steam gpu'],['Mobile','mobile android ios'],['Esports','esports tournament competitive']]
+  };
 
   let articles = [];
   let refreshTimer = 0;
@@ -16,6 +26,9 @@
   let quickSwiper = null;
   let lenis = null;
   let speechUtterance = null;
+  let activeTopic = 'All';
+  let libraryMode = 'saved';
+  let deferredInstallPrompt = null;
   let settings = loadSettings();
 
   function loadSettings() {
@@ -30,8 +43,79 @@
     localStorage.setItem(STORAGE_SETTINGS, JSON.stringify(settings));
     document.documentElement.dataset.motion = settings.motion ? 'on' : 'off';
     document.documentElement.dataset.density = settings.density;
+    document.documentElement.dataset.theme = settings.theme || 'system';
   }
 
+  function getHistory() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_HISTORY) || '[]'); }
+    catch { return []; }
+  }
+
+  function setHistory(items) {
+    localStorage.setItem(STORAGE_HISTORY, JSON.stringify(items.slice(0, 120)));
+  }
+
+  function getFollowedTopics() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_FOLLOWS) || '[]'); }
+    catch { return []; }
+  }
+
+  function toggleFollowedTopic(topic) {
+    const current = getFollowedTopics();
+    const exists = current.includes(topic);
+    const next = exists ? current.filter(item => item !== topic) : [...current, topic];
+    localStorage.setItem(STORAGE_FOLLOWS, JSON.stringify(next));
+    return !exists;
+  }
+
+  function recordRead(article) {
+    const history = getHistory().filter(item => item.url !== article.url);
+    setHistory([{ ...article, readAt: new Date().toISOString() }, ...history]);
+    try {
+      const activity = JSON.parse(localStorage.getItem(STORAGE_ACTIVITY) || '[]');
+      const today = new Date().toISOString().slice(0,10);
+      localStorage.setItem(STORAGE_ACTIVITY, JSON.stringify([...new Set([today, ...activity])].slice(0,60)));
+    } catch {}
+  }
+
+  function readingStreak() {
+    let days = [];
+    try { days = JSON.parse(localStorage.getItem(STORAGE_ACTIVITY) || '[]'); } catch {}
+    const set = new Set(days);
+    let streak = 0;
+    const cursor = new Date();
+    for (let i = 0; i < 365; i++) {
+      const key = cursor.toISOString().slice(0,10);
+      if (!set.has(key)) break;
+      streak++;
+      cursor.setDate(cursor.getDate() - 1);
+    }
+    return streak;
+  }
+
+  function articleMatchesTopic(article, topic) {
+    if (!topic || topic === 'All') return true;
+    const defs = TOPICS[PAGE] || TOPICS.home;
+    const row = defs.find(item => item[0] === topic);
+    if (!row) return true;
+    if (PAGE === 'home' && row[1]) return article.lane === row[1];
+    const terms = row[1].split(/\s+/).filter(Boolean);
+    const haystack = (article.title + ' ' + article.domain + ' ' + (article.lane || '')).toLowerCase();
+    return terms.some(term => haystack.includes(term.toLowerCase()));
+  }
+
+  function hotScore(article) {
+    const ageHours = Math.max(0, (Date.now() - new Date(article.publishedAt).getTime()) / 3600000);
+    const freshness = Math.max(0, 100 - ageHours * 4);
+    const followed = getFollowedTopics();
+    const text = (article.title + ' ' + (article.lane || '')).toLowerCase();
+    const interestBoost = followed.some(topic => text.includes(topic.toLowerCase())) ? 24 : 0;
+    return freshness + interestBoost + (article.image ? 8 : 0);
+  }
+
+  function filteredArticles(items) {
+    return activeTopic === 'All' ? items : items.filter(item => articleMatchesTopic(item, activeTopic));
+  }
   function getSaved() {
     try { return JSON.parse(localStorage.getItem(STORAGE_SAVED) || '[]'); }
     catch { return []; }
@@ -205,10 +289,58 @@
     refreshMotion(container);
   }
 
+  function renderTopicBar(items) {
+    if (!TOPICS[PAGE] || ['article','saved','search','briefing'].includes(PAGE)) return;
+    let bar = $('[data-topic-toolbar]');
+    if (!bar) {
+      const anchor = $('.section-heading');
+      if (!anchor) return;
+      bar = document.createElement('section');
+      bar.className = 'topic-toolbar reveal';
+      bar.dataset.topicToolbar = '1';
+      anchor.before(bar);
+    }
+    const followed = getFollowedTopics();
+    const defs = TOPICS[PAGE];
+    bar.innerHTML = '<div class="topic-toolbar-head"><div><span class="eyebrow">Shape your feed</span><h2>Explore topics</h2></div><span>Follow topics to personalize My Pulse</span></div><div class="topic-pills">' + defs.map(item => {
+      const name = item[0];
+      const active = activeTopic === name ? ' active' : '';
+      const followedClass = followed.includes(name) ? ' followed' : '';
+      const follow = name === 'All' ? '' : '<button class="topic-follow' + followedClass + '" type="button" data-topic-follow="' + escapeHTML(name) + '" aria-label="Follow ' + escapeHTML(name) + '">' + (followed.includes(name) ? '★' : '☆') + '</button>';
+      return '<span class="topic-pill' + active + '"><button type="button" data-topic-filter="' + escapeHTML(name) + '">' + escapeHTML(name) + '</button>' + follow + '</span>';
+    }).join('') + '</div>';
+    refreshMotion(bar);
+  }
+
+  function renderMyPulse(items) {
+    if (PAGE !== 'home') return;
+    let panel = $('[data-my-pulse]');
+    if (!panel) {
+      panel = document.createElement('section');
+      panel.className = 'my-pulse reveal';
+      panel.dataset.myPulse = '1';
+      $('.page-intro')?.after(panel);
+    }
+    const followed = getFollowedTopics();
+    const hot = [...items].sort((a,b) => hotScore(b) - hotScore(a)).slice(0,3);
+    const history = getHistory();
+    const intro = followed.length ? 'Following ' + followed.map(escapeHTML).join(', ') + '.' : 'Follow topics below and PulsePress will shape this space around what you care about.';
+    panel.innerHTML = '<div class="my-pulse-top"><div><span class="eyebrow">Personalized for you</span><h2>My Pulse</h2><p>' + intro + '</p></div><div class="pulse-stats"><span><b>' + readingStreak() + '</b> day streak</span><span><b>' + getSaved().length + '</b> saved</span><span><b>' + history.length + '</b> read</span></div></div><div class="my-pulse-grid"><div class="hot-now"><div class="mini-heading"><span>Hot now</span><b>Trending</b></div>' + hot.map((item,index) => '<button type="button" class="hot-item" data-url="' + escapeHTML(item.url) + '"><span class="hot-rank">0' + (index+1) + '</span><span><small>' + escapeHTML(item.domain) + '</small><strong>' + escapeHTML(item.title) + '</strong></span></button>').join('') + '</div><div class="pulse-actions"><button type="button" class="pulse-action primary" data-surprise><span>✦</span><b>Surprise me</b><small>Open something worth reading</small></button><button type="button" class="pulse-action" data-open-settings><span>◎</span><b>Tune My Pulse</b><small>Topics, theme and refresh</small></button></div></div>';
+    refreshMotion(panel);
+  }
+
+  function updateInstallButtons() {
+    $('[data-install-app]').forEach(button => {
+      const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+      button.hidden = !!standalone;
+      button.textContent = deferredInstallPrompt ? 'Install PulsePress' : 'Add PulsePress to device';
+    });
+  }
   function renderGrid(items) {
     const grid = $('[data-news-grid]');
     if (!grid) return;
-    grid.innerHTML = items.map((item, index) => card(item, index)).join('');
+    const visible = filteredArticles(items);
+    grid.innerHTML = visible.length ? visible.map((item, index) => card(item, index)).join('') : '<div class="empty-library"><span>◎</span><h2>No stories match this topic yet</h2><p>Try another topic or check back shortly.</p></div>';
     activateReveals();
   }
 
@@ -243,6 +375,7 @@
 
   function openArticle(article) {
     if (!article) return;
+    recordRead(article);
     localStorage.setItem(STORAGE_CURRENT, JSON.stringify(article));
     document.body.classList.add('page-leaving');
     setTimeout(() => { window.location.href = 'article.html'; }, settings.motion ? 180 : 0);
@@ -250,6 +383,49 @@
 
   function bindClicks() {
     document.addEventListener('click', event => {
+      const topicFilter = event.target.closest('[data-topic-filter]');
+      if (topicFilter) {
+        activeTopic = topicFilter.dataset.topicFilter || 'All';
+        renderTopicBar(articles);
+        renderGrid(articles.slice(PAGE === 'home' ? 4 : 1));
+        return;
+      }
+
+      const topicFollow = event.target.closest('[data-topic-follow]');
+      if (topicFollow) {
+        event.preventDefault();
+        event.stopPropagation();
+        const topic = topicFollow.dataset.topicFollow;
+        const nowFollowing = toggleFollowedTopic(topic);
+        renderTopicBar(articles);
+        renderMyPulse(articles);
+        toast(nowFollowing ? 'Following ' + topic : 'No longer following ' + topic);
+        return;
+      }
+
+      const library = event.target.closest('[data-library-mode]');
+      if (library) {
+        libraryMode = library.dataset.libraryMode || 'saved';
+        renderSavedPage();
+        return;
+      }
+
+      if (event.target.closest('[data-history-clear]')) {
+        localStorage.removeItem(STORAGE_HISTORY);
+        renderSavedPage();
+        toast('Reading history cleared');
+        return;
+      }
+
+      if (event.target.closest('[data-surprise]')) {
+        if (articles.length) openArticle(articles[Math.floor(Math.random() * articles.length)]);
+        return;
+      }
+
+      if (event.target.closest('[data-open-settings]')) {
+        $('[data-settings-panel]')?.classList.add('open');
+        return;
+      }
       const save = event.target.closest('[data-save-url]');
       if (save) {
         event.preventDefault();
@@ -429,6 +605,10 @@
     const speakButton = $('[data-reader-speak]');
     const focusButton = $('[data-reader-focus]');
     const widthButton = $('[data-reader-width]');
+    const actions = $('.reader-toolbar-actions', toolbar);
+    if (actions && !$('[data-reader-share]', actions)) actions.insertAdjacentHTML('beforeend', '<button type="button" data-reader-share>Share</button><button type="button" data-reader-copy>Copy</button>');
+    const shareButton = $('[data-reader-share]', toolbar);
+    const copyButton = $('[data-reader-copy]', toolbar);
 
     const applyReaderPreferences = () => {
       root.style.setProperty('--reader-scale', String(settings.readerScale || 1));
@@ -462,6 +642,20 @@
       focusButton.classList.toggle('active', body.classList.contains('focus-reading'));
       focusButton.textContent = body.classList.contains('focus-reading') ? 'Exit focus' : 'Focus';
       setTimeout(() => window.ScrollTrigger?.refresh(), 250);
+    });
+
+    shareButton?.addEventListener('click', async () => {
+      const shareData = { title: article.title, text: article.title, url: article.url };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch {};
+      } else {
+        try { await navigator.clipboard.writeText(article.url); toast('Story link copied'); } catch { toast('Share is not available in this browser'); }
+      }
+    });
+
+    copyButton?.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(article.url); toast('Story link copied'); }
+      catch { toast('Could not copy the link'); }
     });
 
     speakButton?.addEventListener('click', () => {
@@ -515,6 +709,8 @@
       if (!articles.length) throw new Error('No live stories returned');
       renderHero(articles);
       renderQuickPulse(articles);
+      renderMyPulse(articles);
+      renderTopicBar(articles);
       renderGrid(articles.slice(PAGE === 'home' ? 4 : 1));
       renderMetrics(articles);
       updateTicker(articles);
@@ -545,15 +741,27 @@
   }
 
   function renderSavedPage() {
-    articles = getSaved();
+    const saved = getSaved();
+    const history = getHistory();
+    articles = libraryMode === 'saved' ? saved : history;
     const grid = $('[data-news-grid]');
     if (!grid) return;
+    let tabs = $('[data-library-tabs]');
+    if (!tabs) {
+      tabs = document.createElement('div');
+      tabs.className = 'library-tabs reveal';
+      tabs.dataset.libraryTabs = '1';
+      grid.before(tabs);
+    }
+    tabs.innerHTML = '<div><button type="button" data-library-mode="saved" class="' + (libraryMode === 'saved' ? 'active' : '') + '">Saved <span>' + saved.length + '</span></button><button type="button" data-library-mode="history" class="' + (libraryMode === 'history' ? 'active' : '') + '">Recently read <span>' + history.length + '</span></button></div>' + (libraryMode === 'history' && history.length ? '<button type="button" class="clear-history" data-history-clear>Clear history</button>' : '');
     if (!articles.length) {
-      grid.innerHTML = '<div class="empty-library"><span>☆</span><h2>No saved stories yet</h2><p>Save stories from any desk and they’ll appear here.</p><a href="index.html">Browse latest news</a></div>';
+      grid.innerHTML = libraryMode === 'saved' ? '<div class="empty-library"><span>☆</span><h2>No saved stories yet</h2><p>Save stories from any desk and they’ll appear here.</p><a href="index.html">Browse latest news</a></div>' : '<div class="empty-library"><span>◷</span><h2>No reading history yet</h2><p>Stories you open will appear here so you can return to them quickly.</p><a href="index.html">Explore today’s stories</a></div>';
     } else {
-      renderGrid(articles);
+      grid.innerHTML = articles.map((item,index) => card(item,index)).join('');
+      refreshMotion(grid);
     }
     renderMetrics(articles);
+    refreshMotion(tabs);
   }
 
   async function loadSearch() {
@@ -657,6 +865,9 @@
 
   function setupSettings() {
     const panel = $('[data-settings-panel]');
+    if (panel && !$('[data-advanced-settings]', panel)) {
+      panel.insertAdjacentHTML('beforeend', '<div data-advanced-settings><div class="setting-group"><h3>Appearance</h3><p>Choose the look that feels best for reading.</p><div class="choice-row"><button data-theme-choice="system">System</button><button data-theme-choice="light">Light</button><button data-theme-choice="dark">Dark</button></div></div><div class="setting-group"><h3>Story density</h3><p>Show comfortable cards or fit more headlines on screen.</p><div class="choice-row"><button data-density-choice="normal">Comfortable</button><button data-density-choice="compact">Compact</button></div></div><div class="setting-group install-setting"><h3>Keep PulsePress close</h3><p>Add PulsePress to your device for faster access and a more app-like reading experience.</p><button class="install-button" type="button" data-install-app>Install PulsePress</button></div></div>');
+    }
     $('[data-settings-toggle]')?.addEventListener('click', () => panel?.classList.toggle('open'));
     $('[data-settings-close]')?.addEventListener('click', () => panel?.classList.remove('open'));
     $$('[data-refresh-choice]').forEach(button => {
@@ -674,7 +885,35 @@
       event.currentTarget.classList.toggle('active', settings.motion);
     });
     $('[data-motion-toggle]')?.classList.toggle('active', settings.motion);
+    $$('[data-theme-choice]').forEach(button => {
+      button.classList.toggle('active', button.dataset.themeChoice === settings.theme);
+      button.addEventListener('click', () => {
+        settings.theme = button.dataset.themeChoice || 'system';
+        saveSettings();
+        $$('[data-theme-choice]').forEach(item => item.classList.toggle('active', item === button));
+        toast(settings.theme === 'system' ? 'Theme follows your device' : settings.theme[0].toUpperCase() + settings.theme.slice(1) + ' theme enabled');
+      });
+    });
+    $$('[data-density-choice]').forEach(button => {
+      button.classList.toggle('active', button.dataset.densityChoice === settings.density);
+      button.addEventListener('click', () => {
+        settings.density = button.dataset.densityChoice || 'normal';
+        saveSettings();
+        $$('[data-density-choice]').forEach(item => item.classList.toggle('active', item === button));
+      });
+    });
+    $('[data-install-app]')?.addEventListener('click', async () => {
+      if (deferredInstallPrompt) {
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        updateInstallButtons();
+      } else {
+        toast('Use your browser menu and choose Add to Home screen');
+      }
+    });
     saveSettings();
+    updateInstallButtons();
   }
 
   function scheduleRefresh() {
@@ -728,6 +967,12 @@
   }
 
   function setupGlobal() {
+    addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      updateInstallButtons();
+    });
+    addEventListener('appinstalled', () => { deferredInstallPrompt = null; updateInstallButtons(); toast('PulsePress installed'); });
     initMotionEngine();
     setupMobileUtilities();
     bindClicks();
