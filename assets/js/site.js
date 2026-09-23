@@ -17,10 +17,72 @@
     world: [['All',''],['Politics','election government politics president minister'],['Economy','economy business market inflation finance'],['Climate','climate weather environment energy'],['Conflict','conflict war military security']],
     local: [['All',''],['Malta','malta maltese'],['Valletta','valletta'],['Rabat','rabat mdina'],['Gozo','gozo'],['Transport','transport traffic road bus ferry']],
     tech: [['All',''],['AI','artificial intelligence ai openai model'],['Security','cyber security breach hack ransomware'],['Mobile','phone iphone android smartphone mobile'],['Computing','computer pc chip gpu processor laptop'],['Startups','startup funding venture']],
-    gaming: [['All',''],['PlayStation','playstation ps5 sony'],['Xbox','xbox game pass microsoft'],['Nintendo','nintendo switch'],['PC','pc steam gpu'],['Mobile','mobile android ios'],['Esports','esports tournament competitive']]
+    gaming: [['All',''],['Updates & patches','patch update hotfix season dlc expansion roadmap'],['Reviews','review verdict'],['Releases','release launch announced reveal'],['PlayStation','playstation ps5 sony'],['Xbox','xbox game pass microsoft'],['Nintendo','nintendo switch'],['PC','pc steam gpu'],['Mobile','mobile android ios'],['Esports','esports tournament competitive']]
   };
 
   let articles = [];
+  let loading = false;
+  let sortMode = 'top';
+  let pageSize = 36;
+  let feedMode = 'all';
+  const requestedCountry = new URLSearchParams(location.search).get('country');
+  let selectedCountry = PulseNews.COUNTRIES[requestedCountry] ? requestedCountry : '';
+  function followedSources() { try { return JSON.parse(localStorage.getItem('pulsepress:sources') || '[]'); } catch { return []; } }
+  function sourceKey(article) { return article.sourceId || article.domain; }
+  function visibleArticles(items) {
+    let rows = feedMode === 'following' ? items.filter(a => followedSources().includes(sourceKey(a))) : items;
+    if (feedMode === 'updates') rows = rows.filter(a => /patch|update|hotfix|season|dlc|expansion|roadmap/i.test(a.title));
+    return sortMode === 'newest' ? PulseNews.sortNewest(rows) : PulseNews.sortTop(rows);
+  }
+  function renderBulletin(items) {
+    const root = $('[data-top-bulletin]'); if (!root) return;
+    const top = PulseNews.sortTop(items).slice(0,5);
+    const breaking = items.filter(a => /\bbreaking\b/i.test(a.title) && /war|attack|earthquake|flood|fire|storm|evacuat|emergency|shooting|explosion/i.test(a.title+' '+a.summary) && Date.now()-Date.parse(a.publishedAt)<6*3600000).slice(0,2);
+    root.innerHTML = (breaking.length ? '<div class="breaking-list"><b>BREAKING</b>'+breaking.map(a=>'<button data-url="'+escapeHTML(a.url)+'">'+escapeHTML(a.title)+'</button>').join('')+'</div>' : '') + '<div class="bulletin-heading"><h2>'+escapeHTML(selectedCountry ? PulseNews.COUNTRIES[selectedCountry]+' headlines' : 'Top news bulletin')+'</h2><span>Ranked by coverage &amp; freshness</span></div><div class="bulletin-grid">'+top.map((a,i)=>'<button class="bulletin-item" data-url="'+escapeHTML(a.url)+'"><span class="bulletin-rank">'+String(i+1).padStart(2,'0')+'</span><span><small>'+escapeHTML(a.publisher||a.domain)+' · '+relativeTime(a.publishedAt)+'</small><strong>'+escapeHTML(a.title)+'</strong></span></button>').join('')+'</div>';
+  }
+  function updateEditionStatus() {
+    const meta=PulseNews.getMeta(), stamp=meta.updatedAt;
+    const stale=meta.stale || !stamp || Date.now()-Date.parse(stamp)>45*60000;
+    setStatus(meta.offline?'Offline · saved edition':stale?'Last available edition':'Headlines updated '+relativeTime(stamp), stale?'cached':'live');
+    const el=$('[data-last-update]');if(el)el.textContent=stamp?'News refreshed '+formatDate(stamp):'Waiting for publisher updates';
+  }
+  function renderEdition() {
+    const rows=visibleArticles(articles);
+    renderBulletin(rows);renderHero(rows);renderQuickPulse(rows);renderMyPulse(rows);renderTopicBar(rows);
+    renderGrid(rows);renderMetrics(rows);updateTicker(PulseNews.sortTop(rows));refreshMotion(document);
+  }
+  function setupEditionControls() {
+    const nav=$('.section-nav');
+    if(nav&&!nav.querySelector('[href="sources.html"]'))nav.insertAdjacentHTML('beforeend','<a href="sources.html">Sources</a>');
+    if(!['home','world','local','tech','gaming'].includes(PAGE))return;
+    const main=$('main'); const box=document.createElement('section');box.className='edition-controls';
+    box.innerHTML='<div class="country-shortcuts"><a href="world.html?country=uk">United Kingdom</a><a href="world.html?country=france">France</a><a href="local.html">Malta</a><a href="world.html">All countries</a></div><div class="edition-options">'+(['home','world'].includes(PAGE)?'<label>Country<select data-country-select><option value="">All countries</option>'+Object.entries(PulseNews.COUNTRIES).map(([k,v])=>'<option value="'+k+'" '+(selectedCountry===k?'selected':'')+'>'+v+'</option>').join('')+'</select></label>':'')+'<label>Order<select data-sort-select><option value="top">Top stories</option><option value="newest">Newest first</option></select></label><label>Reading feed<select data-feed-select><option value="all">All sources</option><option value="following">Following</option>'+(PAGE==='gaming'?'<option value="updates">Game updates &amp; patches</option>':'')+'</select></label><a class="manage-sources" href="sources.html">Follow news sources →</a></div><p class="edition-note">Publisher feeds refresh throughout the day. Top stories use coverage and freshness; publisher traffic totals are not available.</p>';
+    main.prepend(box);
+    box.querySelector('[data-country-select]')?.addEventListener('change',e=>{location.href='world.html'+(e.target.value?'?country='+encodeURIComponent(e.target.value):'');});
+    box.querySelector('[data-sort-select]').addEventListener('change',e=>{sortMode=e.target.value;renderEdition();});
+    box.querySelector('[data-feed-select]').addEventListener('change',async e=>{feedMode=e.target.value;activeTopic='All';if(PAGE==='home'&&!selectedCountry){try{articles=feedMode==='following'?await PulseNews.fetchAll():await PulseNews.fetchHome();}catch{}}renderEdition();});
+    const bulletin=document.createElement('section');bulletin.className='top-bulletin';bulletin.dataset.topBulletin='';box.after(bulletin);
+    if(selectedCountry){const title=$('.page-intro h1');if(title)title.textContent=PulseNews.COUNTRIES[selectedCountry];const desc=$('.page-intro p');if(desc)desc.textContent='The latest reporting, politics and developments from '+PulseNews.COUNTRIES[selectedCountry]+'.';}
+    if(PAGE==='gaming'){const weekly=document.createElement('section');weekly.className='weekly-gaming';weekly.dataset.weeklyGaming='';bulletin.after(weekly);loadWeekly();}
+  }
+  async function loadSources() {
+    const root=$('[data-sources]');
+    try {
+      const sources=await PulseNews.fetchSources();
+      function render(){
+        const term=($('[data-source-search]')?.value||'').toLowerCase();
+        const followed=followedSources();
+        root.innerHTML=sources.filter(s=>(s.name+' '+s.category).toLowerCase().includes(term)).map(s=>'<article class="source-card"><span class="eyebrow">'+escapeHTML(s.category)+'</span><h2>'+escapeHTML(s.name)+'</h2><p>'+escapeHTML(s.description)+'</p><small>'+s.count+' current stories'+(s.available?'':' · Feed temporarily unavailable')+'</small><div><button data-follow-source="'+escapeHTML(s.id)+'" aria-pressed="'+followed.includes(s.id)+'">'+(followed.includes(s.id)?'✓ Following':'+ Follow')+'</button><a href="'+escapeHTML(s.url)+'" target="_blank" rel="noopener">Visit publisher ↗</a></div></article>').join('');
+        $('[data-follow-count]').textContent=followed.length+' sources followed';
+      }
+      render();
+      $('[data-source-search]').addEventListener('input',render);
+      root.addEventListener('click',e=>{const btn=e.target.closest('[data-follow-source]');if(!btn)return;const id=btn.dataset.followSource,current=followedSources();try{localStorage.setItem('pulsepress:sources',JSON.stringify(current.includes(id)?current.filter(x=>x!==id):[...current,id]));render();}catch{toast('Your browser could not save this preference');}});
+      setStatus('Choose your news sources','live');
+    }catch{root.innerHTML='<div class="feed-error"><h2>Sources couldn’t load</h2><p>Please refresh and try again.</p></div>';}
+  }
+  async function loadWeekly(){try{const data=await PulseNews.fetchWeekly();const root=$('[data-weekly-gaming]');root.innerHTML='<div class="bulletin-heading"><div><span class="eyebrow">The last seven days</span><h2>This week in gaming</h2></div><span>'+escapeHTML(data.periodLabel||'Weekly highlights')+'</span></div><p>Major releases, game updates and the stories making headlines. Selected by coverage and publisher prominence.</p><div class="weekly-grid">'+data.articles.slice(0,6).map(a=>'<a class="weekly-story" href="article.html?id='+encodeURIComponent(a.id)+'&edition=gaming">'+(a.image?'<img src="'+escapeHTML(a.image)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'<small>'+escapeHTML(a.publisher||a.domain)+'</small><h3>'+escapeHTML(a.title)+'</h3><p>'+escapeHTML(a.summary||'Read the publisher’s coverage.')+'</p></a>').join('')+'</div>';}catch{}}
+
   let refreshTimer = 0;
   let deckIndex = 0;
   let quickSwiper = null;
@@ -115,7 +177,7 @@
   }
 
   function filteredArticles(items) {
-    return activeTopic === 'All' ? items : items.filter(item => articleMatchesTopic(item, activeTopic));
+    return activeTopic === 'All' ? visibleArticles(items) : visibleArticles(items).filter(item => articleMatchesTopic(item, activeTopic));
   }
   function getSaved() {
     try { return JSON.parse(localStorage.getItem(STORAGE_SAVED) || '[]'); }
@@ -182,13 +244,13 @@
       <div class="news-card-body">
         <div class="meta-line">
           <span class="source-logo">${escapeHTML(sourceInitials(article.domain))}</span>
-          <span>${escapeHTML(article.domain)}</span>
+          <span>${escapeHTML(article.publisher || article.domain)}</span>
           <span>•</span>
           <time>${escapeHTML(relativeTime(article.publishedAt))}</time>
         </div>
-        <h3>${escapeHTML(article.title)}</h3>
+        <h3><a class="story-link" href="article.html?id=${encodeURIComponent(article.id || '')}&edition=${encodeURIComponent(article.countryCode ? 'country-'+article.countryCode : (article.lane || 'home').toLowerCase())}">${escapeHTML(article.title)}</a></h3>${article.summary ? `<p class="story-summary">${escapeHTML(article.summary)}</p>` : ''}
         <div class="card-footer">
-          <span class="pulse-score"><i style="--pulse:${pulse}%"></i> Pulse ${pulse}</span>
+          <span class="story-category">${escapeHTML(article.country || article.lane || 'News')}</span>
           <button class="save-button ${isSaved(article) ? 'saved' : ''}" type="button" aria-label="Save story" data-save-url="${escapeHTML(article.url)}">${isSaved(article) ? '★' : '☆'}</button>
         </div>
       </div>
@@ -216,7 +278,7 @@
   function updateTicker(items) {
     const track = $('[data-ticker-track]');
     if (!track || !items.length) return;
-    const content = items.slice(0, 10).map(item => `<button type="button" data-url="${escapeHTML(item.url)}">${escapeHTML(item.title)} <b>◆</b></button>`).join('');
+    const content = PulseNews.sortTop(items).slice(0, 10).map(item => `<button type="button" data-url="${escapeHTML(item.url)}">${escapeHTML(item.title)} <b>◆</b></button>`).join('');
     track.innerHTML = content + content;
   }
 
@@ -326,7 +388,7 @@
     const hot = [...items].sort((a,b) => hotScore(b) - hotScore(a)).slice(0,3);
     const history = getHistory();
     const intro = followed.length ? 'Following ' + followed.map(escapeHTML).join(', ') + '.' : 'Follow topics below and PulsePress will shape this space around what you care about.';
-    panel.innerHTML = '<div class="my-pulse-top"><div><span class="eyebrow">Personalized for you</span><h2>My Pulse</h2><p>' + intro + '</p></div><div class="pulse-stats"><span><b>' + readingStreak() + '</b> day streak</span><span><b>' + getSaved().length + '</b> saved</span><span><b>' + history.length + '</b> read</span></div></div><div class="my-pulse-grid"><div class="hot-now"><div class="mini-heading"><span>Hot now</span><b>Trending</b></div>' + hot.map((item,index) => '<button type="button" class="hot-item" data-url="' + escapeHTML(item.url) + '"><span class="hot-rank">0' + (index+1) + '</span><span><small>' + escapeHTML(item.domain) + '</small><strong>' + escapeHTML(item.title) + '</strong></span></button>').join('') + '</div><div class="pulse-actions"><button type="button" class="pulse-action primary" data-surprise><span>✦</span><b>Surprise me</b><small>Open something worth reading</small></button><button type="button" class="pulse-action" data-open-settings><span>◎</span><b>Tune My Pulse</b><small>Topics, theme and refresh</small></button></div></div>';
+    panel.innerHTML = '<div class="my-pulse-top"><div><span class="eyebrow">Personalized for you</span><h2>My Pulse</h2><p>' + intro + '</p></div><div class="pulse-stats"><span><b>' + readingStreak() + '</b> day streak</span><span><b>' + getSaved().length + '</b> saved</span><span><b>' + history.length + '</b> read</span></div></div><div class="my-pulse-grid"><div class="hot-now"><div class="mini-heading"><span>For you</span><b>Recent coverage</b></div>' + hot.map((item,index) => '<button type="button" class="hot-item" data-url="' + escapeHTML(item.url) + '"><span class="hot-rank">0' + (index+1) + '</span><span><small>' + escapeHTML(item.domain) + '</small><strong>' + escapeHTML(item.title) + '</strong></span></button>').join('') + '</div><div class="pulse-actions"><button type="button" class="pulse-action primary" data-surprise><span>✦</span><b>Surprise me</b><small>Open something worth reading</small></button><button type="button" class="pulse-action" data-open-settings><span>◎</span><b>Tune My Pulse</b><small>Topics, theme and refresh</small></button></div></div>';
     refreshMotion(panel);
   }
 
@@ -341,7 +403,7 @@
     const grid = $('[data-news-grid]');
     if (!grid) return;
     const visible = filteredArticles(items);
-    grid.innerHTML = visible.length ? visible.map((item, index) => card(item, index)).join('') : '<div class="empty-library"><span>◎</span><h2>No stories match this topic yet</h2><p>Try another topic or check back shortly.</p></div>';
+    grid.innerHTML = visible.length ? visible.slice(0,pageSize).map((item, index) => card(item, index)).join('') + (visible.length>pageSize?'<button class="load-more" data-load-more type="button">Show more stories ('+(visible.length-pageSize)+' remaining)</button>':'') : '<div class="empty-library"><span>◎</span><h2>No stories in this view yet</h2><p>Choose another topic or <a href="sources.html">follow more news sources</a>.</p></div>';
     activateReveals();
   }
 
@@ -379,16 +441,17 @@
     recordRead(article);
     try { localStorage.setItem(STORAGE_CURRENT, JSON.stringify(article)); } catch {}
     document.body.classList.add('page-leaving');
-    setTimeout(() => { window.location.href = 'article.html'; }, settings.motion ? 180 : 0);
+    setTimeout(() => { window.location.href = 'article.html?id='+encodeURIComponent(article.id||'')+'&edition='+encodeURIComponent(article.countryCode?'country-'+article.countryCode:(article.lane||'home').toLowerCase()); }, settings.motion ? 180 : 0);
   }
 
   function bindClicks() {
     document.addEventListener('click', event => {
+      if(event.target.closest('[data-load-more]')){pageSize+=36;renderGrid(articles);return;}
       const topicFilter = event.target.closest('[data-topic-filter]');
       if (topicFilter) {
-        activeTopic = topicFilter.dataset.topicFilter || 'All';
+        activeTopic = topicFilter.dataset.topicFilter || 'All';pageSize=36;
         renderTopicBar(articles);
-        renderGrid(articles.slice(PAGE === 'home' ? 4 : 1));
+        renderGrid(articles);
         return;
       }
 
@@ -448,6 +511,7 @@
         return;
       }
 
+      if(event.target.closest('a'))return;
       const open = event.target.closest('[data-url]');
       if (open?.dataset.url) {
         const article = findArticleByUrl(open.dataset.url);
@@ -697,33 +761,22 @@
   }
 
   async function loadStandard(force = false) {
-    renderSkeleton();
-    setStatus('Connecting…', 'loading');
+    if(loading)return;loading=true;
+    if(!articles.length){renderSkeleton();setStatus('Loading headlines…','loading');}
     try {
-      if (PAGE === 'home') articles = await PulseNews.fetchHome(force);
-      else if (PAGE === 'world') articles = await PulseNews.fetchArticles(PulseNews.QUERIES.world, { maxrecords: 48, timespan: '2d', force });
-      else if (PAGE === 'local') articles = await PulseNews.fetchArticles(PulseNews.QUERIES.local, { maxrecords: 48, timespan: '7d', force, lane: 'Local' });
-      else if (PAGE === 'tech') articles = await PulseNews.fetchArticles(PulseNews.QUERIES.tech, { maxrecords: 48, timespan: '3d', force, lane: 'Tech' });
-      else if (PAGE === 'gaming') articles = await PulseNews.fetchArticles(PulseNews.QUERIES.gaming, { maxrecords: 48, timespan: '3d', force, lane: 'Gaming' });
-      else return;
-
-      if (!articles.length) throw new Error('No live stories returned');
-      renderHero(articles);
-      renderQuickPulse(articles);
-      renderMyPulse(articles);
-      renderTopicBar(articles);
-      renderGrid(articles.slice(PAGE === 'home' ? 4 : 1));
-      renderMetrics(articles);
-      updateTicker(articles);
-      refreshMotion(document);
-      setStatus(`Live · ${relativeTime(new Date().toISOString())}`, 'live');
-      $('[data-last-update]')?.replaceChildren(document.createTextNode(`Updated ${new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date())}`));
-    } catch (error) {
-      console.warn(error);
-      setStatus('Live feed unavailable', 'error');
-      const grid = $('[data-news-grid]');
-      if (grid) grid.innerHTML = `<div class="feed-error"><h2>We couldn’t refresh the latest stories</h2><p>Check your connection and try again. Your saved stories are still available.</p><button data-manual-refresh type="button">Try again</button></div>`;
-    }
+      let next;
+      if(selectedCountry)next=await PulseNews.fetchArticles('',{country:selectedCountry,force});
+      else if(PAGE==='home')next=feedMode==='following'?await PulseNews.fetchAll(force):await PulseNews.fetchHome(force);
+      else next=await PulseNews.fetchArticles(PAGE,{force});
+      const changed=JSON.stringify(next)!==JSON.stringify(articles);
+      articles=next;
+      if(changed || !force) renderEdition();
+      updateEditionStatus();
+      if(force&&changed)toast('Fresh headlines are ready');
+    } catch {
+      setStatus(articles.length?'Showing last available stories':'Headlines unavailable','cached');
+      if(!articles.length)$('[data-news-grid]').innerHTML='<div class="feed-error"><h2>We couldn’t load this edition</h2><p>Please try again shortly.</p><button data-manual-refresh>Try again</button></div>';
+    } finally {loading=false;}
   }
 
   async function loadBriefing(force = false) {
@@ -735,7 +788,7 @@
       renderBriefing(articles);
       updateTicker(articles);
       renderMetrics(articles);
-      setStatus('Live briefing', 'live');
+      updateEditionStatus();
     } catch {
       setStatus('Briefing unavailable', 'error');
     }
@@ -785,7 +838,7 @@
       updateTicker(articles);
       refreshMotion(document);
       $('[data-search-heading]')?.replaceChildren(document.createTextNode(`Results for “${query}”`));
-      setStatus(`${articles.length} live results`, 'live');
+      setStatus(`${articles.length} matching stories`, 'live');
     } catch {
       setStatus('Search unavailable', 'error');
     }
@@ -794,9 +847,13 @@
   async function loadArticle() {
     let article = null;
     try { article = JSON.parse(localStorage.getItem(STORAGE_CURRENT) || 'null'); } catch {}
+    const params=new URLSearchParams(location.search);
+    if(params.get('id') && article?.id!==params.get('id')) {
+      try{article=await PulseNews.findArticle(params.get('id'),params.get('edition')||'home');}catch{article=null;}
+    }
     const shell = $('[data-article-shell]');
     if (!article || !shell) {
-      shell.innerHTML = '<div class="feed-error"><h2>No story selected</h2><p>Choose a story from one of the live desks.</p><a class="button-link" href="index.html">Go to latest news</a></div>';
+      if(shell) shell.innerHTML = '<div class="feed-error"><h2>Story no longer in the current edition</h2><p>Choose a story from one of the live desks.</p><a class="button-link" href="index.html">Go to latest news</a></div>';
       return;
     }
     articles = [article];
@@ -816,19 +873,19 @@
       hero.hidden = false;
       hero.onerror = () => { hero.hidden = true; };
     }
-    $('[data-article-brief]').textContent = `Coverage from ${article.domain}${article.country ? ` in ${article.country}` : ''}, expanded with related reporting so you can see the wider picture without losing your place.`;
+    $('[data-article-brief]').textContent = article.summary || 'Read the original report for the complete story.';
 
     setStatus('Expanding story context…', 'loading');
     const [related, contexts] = await Promise.all([
       PulseNews.fetchRelated(article, 18),
-      PulseNews.fetchContext(article, 8),
+      Promise.resolve([]),
     ]);
     articles = [article, ...related];
 
     if (contexts.length) {
       contextTarget.innerHTML = contexts.slice(0, 5).map(item => `<li class="context-item reveal"><p>${escapeHTML(item.snippet || item.title)}</p><span>${escapeHTML(item.domain)} · ${escapeHTML(relativeTime(item.publishedAt))}</span></li>`).join('');
     } else {
-      contextTarget.innerHTML = related.slice(0, 4).map(item => `<li class="context-item reveal"><p>${escapeHTML(item.title)}</p><span>${escapeHTML(item.domain)} · ${escapeHTML(relativeTime(item.publishedAt))}</span></li>`).join('') || '<li class="context-item"><p>No additional sentence-level context is available yet.</p></li>';
+      contextTarget.innerHTML = related.slice(0, 4).map(item => `<li class="context-item reveal"><p>${escapeHTML(item.title)}</p><span>${escapeHTML(item.domain)} · ${escapeHTML(relativeTime(item.publishedAt))}</span></li>`).join('') || '<li class="context-item"><p>Read the original publisher for the full report. More coverage appears here as it becomes available.</p></li>';
     }
 
     relatedTarget.innerHTML = related.slice(0, 12).map((item, index) => card(item,index)).join('');
@@ -919,7 +976,7 @@
 
   function scheduleRefresh() {
     clearInterval(refreshTimer);
-    if (['article','saved'].includes(PAGE)) return;
+    if (['article','saved','sources'].includes(PAGE)) return;
     refreshTimer = setInterval(() => {
       if (document.visibilityState !== 'visible') return;
       if (PAGE === 'briefing') loadBriefing(true);
@@ -982,6 +1039,7 @@
     safe(bindTilt);
     safe(setupSettings);
     safe(setupSearchForm);
+    safe(setupEditionControls);
     safe(updateClock);
     safe(updateSavedBadges);
     setInterval(updateClock, 30000);
@@ -996,13 +1054,15 @@
       }
     });
 
-    addEventListener('online', () => setStatus('Internet restored', 'live'));
+    addEventListener('online', () => {if(['home','world','local','tech','gaming'].includes(PAGE))loadStandard(true);});
+    document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&['home','world','local','tech','gaming'].includes(PAGE))loadStandard(true);});
     addEventListener('offline', () => setStatus('Offline', 'error'));
   }
 
   async function init() {
     setupGlobal();
-    if (PAGE === 'article') await loadArticle();
+    if (PAGE === 'sources') await loadSources();
+    else if (PAGE === 'article') await loadArticle();
     else if (PAGE === 'briefing') await loadBriefing();
     else if (PAGE === 'saved') renderSavedPage();
     else if (PAGE === 'search') await loadSearch();
@@ -1019,6 +1079,7 @@
 
   init().catch(() => {
     document.body.classList.add('page-ready');
-    setStatus('Ready', 'live');
+    setStatus('Please refresh to try again', 'cached');
   });
 })();
+

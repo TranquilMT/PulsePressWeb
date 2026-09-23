@@ -1,321 +1,57 @@
 (() => {
   'use strict';
-
-  const DOC_ENDPOINT = 'https://api.gdeltproject.org/api/v2/doc/doc';
-  const CONTEXT_ENDPOINT = 'https://api.gdeltproject.org/api/v2/context/context';
-  const CACHE_PREFIX = 'pulsepress:gdelt:';
-  const CACHE_TTL = 90 * 1000;
-
-  const QUERIES = {
-    world: '(election OR economy OR conflict OR diplomacy OR climate OR disaster OR government)',
-    local: '(Malta OR Maltese OR Valletta OR Mdina OR Gozo)',
-    tech: '(technology OR "artificial intelligence" OR cybersecurity OR smartphone OR computing OR startup)',
-    gaming: '("video games" OR gaming OR PlayStation OR Xbox OR Nintendo OR Steam OR esports)',
-  };
-
-  const STOP = new Set([
-    'about','after','again','against','among','because','before','being','between','could','first','from','have','into',
-    'more','most','news','over','says','said','than','that','their','there','these','they','this','through','under','what',
-    'when','where','which','while','will','with','would','your','latest','amid','report','reports','update','new'
-  ]);
-
-  function timeoutFetch(url, ms = 10000, mode = 'cors') {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), ms);
-    return fetch(url, {
-      cache: 'no-store',
-      mode,
-      headers: { Accept: 'application/json' },
-      signal: controller.signal,
-    }).finally(() => clearTimeout(timer));
-  }
-
-  function jsonp(url, ms = 9000) {
-    return new Promise((resolve, reject) => {
-      const callback = '__pulsepress_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-      const script = document.createElement('script');
-      const timer = setTimeout(() => cleanup(new Error('JSONP timeout')), ms);
-
-      function cleanup(error, value) {
-        clearTimeout(timer);
-        try { delete window[callback]; } catch {}
-        script.remove();
-        error ? reject(error) : resolve(value);
-      }
-
-      window[callback] = payload => cleanup(null, payload);
-      script.onerror = () => cleanup(new Error('JSONP request failed'));
-
-      const target = new URL(url);
-      target.searchParams.set('format', 'jsonp');
-      target.searchParams.set('callback', callback);
-      script.src = target.toString();
-      script.async = true;
-      document.head.appendChild(script);
-    });
-  }
-
-  function gdeltDate(value) {
-    if (!value) return new Date().toISOString();
-    const raw = String(value);
-    const match = raw.match(/^(\d{4})(\d{2})(\d{2})T?(\d{2})(\d{2})(\d{2})/);
-    if (match) {
-      const [, y, m, d, h, min, s] = match;
-      return `${y}-${m}-${d}T${h}:${min}:${s}Z`;
-    }
-    const parsed = new Date(raw);
-    return Number.isNaN(parsed.getTime()) ? new Date().toISOString() : parsed.toISOString();
-  }
-
-  function domainFrom(url) {
-    try {
-      return new URL(url).hostname.replace(/^www\./, '');
-    } catch {
-      return 'News source';
-    }
-  }
-
-  function normalize(item, lane = '') {
-    const url = item.url || item.link || '';
-    return {
-      id: btoa(unescape(encodeURIComponent(url || item.title || Math.random().toString()))).replace(/[^a-z0-9]/gi, '').slice(-22),
-      title: (item.title || 'Untitled story').trim(),
-      url,
-      image: item.socialimage || item.socialimageurl || item.image || item.imageurl || '',
-      domain: item.domain || domainFrom(url),
-      country: item.sourcecountry || item.sourceCountry || item.country || '',
-      language: item.language || '',
-      publishedAt: gdeltDate(item.seendate || item.date || item.published || item.publishedAt),
-      lane: lane || item.lane || '',
-    };
-  }
-
-  function rawArticles(payload) {
-    if (Array.isArray(payload?.articles)) return payload.articles;
-    if (Array.isArray(payload)) return payload;
-    return [];
-  }
-
-  function cacheGet(key) {
-    try {
-      const raw = localStorage.getItem(CACHE_PREFIX + key);
-      if (!raw) return null;
-      const parsed = JSON.parse(raw);
-      if (Date.now() - parsed.at > CACHE_TTL) return null;
-      return parsed.data;
-    } catch {
-      return null;
-    }
-  }
-
-  function cacheSet(key, data) {
-    try {
-      localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({ at: Date.now(), data }));
-    } catch {}
-  }
-
-  function snapshotName(query, lane = '') {
-    const laneKey = lane.toLowerCase();
-    if (['world','local','tech','gaming'].includes(laneKey)) return laneKey;
-    for (const [key, value] of Object.entries(QUERIES)) {
-      if (query === value) return key;
-    }
-    return 'home';
-  }
-
-  function queryTerms(query) {
-    return String(query)
-      .toLowerCase()
-      .replace(/[^a-z0-9\s]/g, ' ')
-      .split(/\s+/)
-      .filter(word => word.length > 4 && !STOP.has(word))
-      .slice(0, 5);
-  }
-
-  async function loadSnapshot(query, lane, maxrecords) {
-    const name = snapshotName(query, lane);
-    const urls = [`./data/${name}.json?v=${Date.now()}`];
-    if (name !== 'home') urls.push(`./data/home.json?v=${Date.now()}`);
-
-    for (const url of urls) {
+  const QUERIES = {world:'world', local:'local', tech:'tech', gaming:'gaming'};
+  const COUNTRIES = {uk:'United Kingdom',france:'France',malta:'Malta',usa:'United States',germany:'Germany',italy:'Italy',spain:'Spain',ireland:'Ireland',australia:'Australia',canada:'Canada',india:'India',japan:'Japan',ukraine:'Ukraine',china:'China','south-africa':'South Africa'};
+  const memory = new Map();
+  const pending = new Map();
+  let lastMeta = {};
+  const safeURL = u => {try {const p=new URL(u);return /^https?:$/.test(p.protocol)?p.href:'';}catch{return '';}};
+  function normalize(r) {return {...r,url:safeURL(r.url),image:safeURL(r.image),summary:r.summary || '',country:r.country || '',lane:r.lane || 'World'};}
+  function dedupe(items) {const seen=new Set();return items.filter(r=>{const k=r.title.toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ');if(seen.has(k))return false;seen.add(k);return true;});}
+  function sortNewest(items) {return [...items].sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt));}
+  function sortTop(items) {return [...items].sort((a,b)=>(b.topScore||0)-(a.topScore||0)||Date.parse(b.publishedAt)-Date.parse(a.publishedAt));}
+  async function snapshot(name, force=false) {
+    if (!/^(all|weekly-gaming|home|world|local|tech|gaming|country-[a-z-]+)$/.test(name)) throw new Error('Unknown edition');
+    const cached=memory.get(name);
+    if(!force && cached && Date.now()-cached.at<60000){lastMeta=cached.data;return cached.data;}
+    if(pending.has(name)) return pending.get(name);
+    const task=(async()=>{
+      const control=new AbortController(), timer=setTimeout(()=>control.abort(),12000);
       try {
-        const response = await timeoutFetch(url, 4500, 'same-origin');
-        if (!response.ok) continue;
-        const payload = await response.json();
-        let rows = rawArticles(payload).map(item => normalize(item, lane)).filter(item => item.title && item.url);
-
-        if (name === 'home') {
-          const terms = queryTerms(query);
-          if (terms.length) {
-            const filtered = rows.filter(item => {
-              const haystack = (item.title + ' ' + item.domain + ' ' + item.country).toLowerCase();
-              return terms.some(term => haystack.includes(term));
-            });
-            if (filtered.length) rows = filtered;
-          }
-        }
-
-        if (rows.length) return rows.slice(0, maxrecords);
-      } catch {}
-    }
-    return [];
+        const response=await fetch(`data/${name}.json?t=${Math.floor(Date.now()/60000)}`,{cache:'no-store',signal:control.signal});
+        if(!response.ok) throw new Error('Edition unavailable');
+        const data=await response.json();
+        if(!Array.isArray(data.articles)) throw new Error('Invalid edition');
+        data.articles=data.articles.map(normalize).filter(r=>r.url&&r.title);
+        memory.set(name,{at:Date.now(),data});lastMeta=data;
+        try{localStorage.setItem('pulsepress:edition:'+name,JSON.stringify(data));}catch{}
+        return data;
+      } catch(error) {
+        let stored=cached?.data;
+        try{stored=stored||JSON.parse(localStorage.getItem('pulsepress:edition:'+name));}catch{}
+        if(stored?.articles?.length){lastMeta={...stored,stale:true,offline:true};return lastMeta;}
+        throw error;
+      } finally {clearTimeout(timer);pending.delete(name);}
+    })();
+    pending.set(name,task);return task;
   }
-
-  async function fetchArticles(query, options = {}) {
-    const {
-      maxrecords = 35,
-      timespan = '1d',
-      sort = 'datedesc',
-      lane = '',
-      force = false,
-    } = options;
-    const cacheKey = `${query}|${maxrecords}|${timespan}|${sort}|${lane}`;
-    if (!force) {
-      const cached = cacheGet(cacheKey);
-      if (cached) return cached;
-    }
-
-    const params = new URLSearchParams({
-      query,
-      mode: 'artlist',
-      maxrecords: String(maxrecords),
-      format: 'json',
-      sort,
-      timespan,
-    });
-    const url = `${DOC_ENDPOINT}?${params.toString()}`;
-    let result = [];
-
-    try {
-      const response = await timeoutFetch(url, 8000);
-      if (response.ok) {
-        const payload = await response.json();
-        result = rawArticles(payload).map(item => normalize(item, lane)).filter(item => item.title && item.url);
-      }
-    } catch {}
-
-    if (!result.length) {
-      try {
-        const payload = await jsonp(url, 8500);
-        result = rawArticles(payload).map(item => normalize(item, lane)).filter(item => item.title && item.url);
-      } catch {}
-    }
-
-    if (!result.length) {
-      result = await loadSnapshot(query, lane, maxrecords);
-    }
-
-    if (!result.length) throw new Error('No live or snapshot stories available');
-
-    cacheSet(cacheKey, result);
-    return result.slice(0, maxrecords);
+  async function fetchArticles(query,options={}) {
+    const name=QUERIES[query] || (COUNTRIES[options.country]?'country-'+options.country:null);
+    if(name) return (await snapshot(name,options.force)).articles.slice(0,options.maxrecords||300);
+    const rows=(await snapshot('all',options.force)).articles;
+    const words=String(query).toLowerCase().split(/\s+/).filter(Boolean);
+    return rows.filter(r=>words.every(w=>(r.title+' '+r.summary+' '+r.publisher+' '+r.country).toLowerCase().includes(w))).slice(0,options.maxrecords||300);
   }
-
-  function dedupe(items) {
-    const seen = new Set();
-    return items.filter(item => {
-      const key = item.title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 120);
-      if (!key || seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
+  async function fetchHome(force=false){return (await snapshot('home',force)).articles;}
+  async function fetchBriefing(force=false){return fetchHome(force);}
+  const words = text => new Set(String(text).toLowerCase().match(/[a-z]{4,}/g)?.filter(w=>!['with','from','this','that','says','after','have','will','about','their','news'].includes(w))||[]);
+  async function fetchRelated(article,maxrecords=12){
+    try{
+      const rows=(await snapshot('all')).articles, tokens=words(article.title);
+      return rows.map(r=>({r,n:[...words(r.title)].filter(w=>tokens.has(w)).length})).filter(x=>x.r.url!==article.url&&x.n>=3).sort((a,b)=>b.n-a.n).slice(0,maxrecords).map(x=>x.r);
+    }catch{return [];}
   }
-
-  function sortNewest(items) {
-    return [...items].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-  }
-
-  async function fetchHome(force = false) {
-    const [world, local, tech, gaming] = await Promise.allSettled([
-      fetchArticles(QUERIES.world, { maxrecords: 18, timespan: '12h', lane: 'World', force }),
-      fetchArticles(QUERIES.local, { maxrecords: 14, timespan: '3d', lane: 'Local', force }),
-      fetchArticles(QUERIES.tech, { maxrecords: 16, timespan: '2d', lane: 'Tech', force }),
-      fetchArticles(QUERIES.gaming, { maxrecords: 16, timespan: '2d', lane: 'Gaming', force }),
-    ]);
-    const values = [world, local, tech, gaming].flatMap(result => result.status === 'fulfilled' ? result.value : []);
-    return sortNewest(dedupe(values)).slice(0, 46);
-  }
-
-  async function fetchBriefing(force = false) {
-    const configs = [
-      ['World', QUERIES.world, '12h'],
-      ['Local', QUERIES.local, '3d'],
-      ['Tech', QUERIES.tech, '2d'],
-      ['Gaming', QUERIES.gaming, '2d'],
-    ];
-    const results = await Promise.allSettled(configs.map(([lane, query, timespan]) =>
-      fetchArticles(query, { maxrecords: 12, timespan, lane, force })
-    ));
-    return results.flatMap(result => result.status === 'fulfilled' ? result.value : []);
-  }
-
-  function keywordQuery(title) {
-    const words = String(title)
-      .toLowerCase()
-      .replace(/[^a-z0-9\s-]/g, ' ')
-      .split(/\s+/)
-      .filter(word => word.length > 4 && !STOP.has(word));
-    const unique = [...new Set(words)].slice(0, 4);
-    if (!unique.length) return String(title).split(/\s+/).slice(0, 4).join(' ');
-    return unique.join(' ');
-  }
-
-  async function fetchRelated(article, maxrecords = 18) {
-    const query = keywordQuery(article.title);
-    try {
-      const items = await fetchArticles(query, { maxrecords, timespan: '7d', sort: 'datedesc', force: true, lane: article.lane || '' });
-      return dedupe(items.filter(item => item.url !== article.url)).slice(0, maxrecords);
-    } catch {
-      return [];
-    }
-  }
-
-  function trimWords(text, maxWords = 22) {
-    const words = String(text || '').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
-    return words.length <= maxWords ? words.join(' ') : `${words.slice(0, maxWords).join(' ')}…`;
-  }
-
-  async function fetchContext(article, maxrecords = 8) {
-    const query = keywordQuery(article.title);
-    const params = new URLSearchParams({
-      query,
-      mode: 'artlist',
-      maxrecords: String(maxrecords),
-      format: 'json',
-      sort: 'datedesc',
-      timespan: '72h',
-    });
-    const url = `${CONTEXT_ENDPOINT}?${params.toString()}`;
-    let payload = null;
-
-    try {
-      const response = await timeoutFetch(url, 7000);
-      if (response.ok) payload = await response.json();
-    } catch {}
-
-    if (!payload) {
-      try { payload = await jsonp(url, 7500); } catch {}
-    }
-
-    if (!payload) return [];
-    return rawArticles(payload).map(item => ({
-      title: item.title || '',
-      url: item.url || '',
-      domain: item.domain || domainFrom(item.url || ''),
-      publishedAt: gdeltDate(item.seendate || item.date),
-      snippet: trimWords(item.context || item.snippet || item.sentence || item.text || '', 22),
-    })).filter(item => item.title || item.snippet);
-  }
-
-  window.PulseNews = {
-    QUERIES,
-    fetchArticles,
-    fetchHome,
-    fetchBriefing,
-    fetchRelated,
-    fetchContext,
-    dedupe,
-    sortNewest,
-    keywordQuery,
-  };
+  async function fetchContext(article){return article.summary?[{title:article.title,snippet:article.summary,url:article.url,domain:article.publisher||article.domain,publishedAt:article.publishedAt}]:[];}
+  async function findArticle(id,edition='home') {const rows=(await snapshot(edition)).articles;return rows.find(r=>r.id===id) || (await snapshot('all')).articles.find(r=>r.id===id);}
+  window.PulseNews={QUERIES,COUNTRIES,fetchAll:async(force=false)=>(await snapshot('all',force)).articles,fetchWeekly:()=>snapshot('weekly-gaming'),fetchSources:async()=>{const r=await fetch('data/sources.json',{cache:'no-store'});if(!r.ok)throw new Error('Sources unavailable');return r.json();},fetchArticles,fetchHome,fetchBriefing,fetchRelated,fetchContext,findArticle,dedupe,sortNewest,sortTop,keywordQuery:t=>[...words(t)].slice(0,4).join(' '),getMeta:()=>lastMeta};
 })();
