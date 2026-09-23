@@ -19,15 +19,40 @@
     'when','where','which','while','will','with','would','your','latest','amid','report','reports','update','new'
   ]);
 
-  function timeoutFetch(url, ms = 10000) {
+  function timeoutFetch(url, ms = 10000, mode = 'cors') {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), ms);
     return fetch(url, {
       cache: 'no-store',
-      mode: 'cors',
+      mode,
       headers: { Accept: 'application/json' },
       signal: controller.signal,
     }).finally(() => clearTimeout(timer));
+  }
+
+  function jsonp(url, ms = 9000) {
+    return new Promise((resolve, reject) => {
+      const callback = '__pulsepress_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+      const script = document.createElement('script');
+      const timer = setTimeout(() => cleanup(new Error('JSONP timeout')), ms);
+
+      function cleanup(error, value) {
+        clearTimeout(timer);
+        try { delete window[callback]; } catch {}
+        script.remove();
+        error ? reject(error) : resolve(value);
+      }
+
+      window[callback] = payload => cleanup(null, payload);
+      script.onerror = () => cleanup(new Error('JSONP request failed'));
+
+      const target = new URL(url);
+      target.searchParams.set('format', 'jsonp');
+      target.searchParams.set('callback', callback);
+      script.src = target.toString();
+      script.async = true;
+      document.head.appendChild(script);
+    });
   }
 
   function gdeltDate(value) {
@@ -60,9 +85,15 @@
       domain: item.domain || domainFrom(url),
       country: item.sourcecountry || item.sourceCountry || item.country || '',
       language: item.language || '',
-      publishedAt: gdeltDate(item.seendate || item.date || item.published),
-      lane,
+      publishedAt: gdeltDate(item.seendate || item.date || item.published || item.publishedAt),
+      lane: lane || item.lane || '',
     };
+  }
+
+  function rawArticles(payload) {
+    if (Array.isArray(payload?.articles)) return payload.articles;
+    if (Array.isArray(payload)) return payload;
+    return [];
   }
 
   function cacheGet(key) {
@@ -80,9 +111,54 @@
   function cacheSet(key, data) {
     try {
       localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({ at: Date.now(), data }));
-    } catch {
-      // Storage can be unavailable in privacy modes; live fetching still works.
+    } catch {}
+  }
+
+  function snapshotName(query, lane = '') {
+    const laneKey = lane.toLowerCase();
+    if (['world','local','tech','gaming'].includes(laneKey)) return laneKey;
+    for (const [key, value] of Object.entries(QUERIES)) {
+      if (query === value) return key;
     }
+    return 'home';
+  }
+
+  function queryTerms(query) {
+    return String(query)
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, ' ')
+      .split(/\s+/)
+      .filter(word => word.length > 4 && !STOP.has(word))
+      .slice(0, 5);
+  }
+
+  async function loadSnapshot(query, lane, maxrecords) {
+    const name = snapshotName(query, lane);
+    const urls = [`./data/${name}.json?v=${Date.now()}`];
+    if (name !== 'home') urls.push(`./data/home.json?v=${Date.now()}`);
+
+    for (const url of urls) {
+      try {
+        const response = await timeoutFetch(url, 4500, 'same-origin');
+        if (!response.ok) continue;
+        const payload = await response.json();
+        let rows = rawArticles(payload).map(item => normalize(item, lane)).filter(item => item.title && item.url);
+
+        if (name === 'home') {
+          const terms = queryTerms(query);
+          if (terms.length) {
+            const filtered = rows.filter(item => {
+              const haystack = (item.title + ' ' + item.domain + ' ' + item.country).toLowerCase();
+              return terms.some(term => haystack.includes(term));
+            });
+            if (filtered.length) rows = filtered;
+          }
+        }
+
+        if (rows.length) return rows.slice(0, maxrecords);
+      } catch {}
+    }
+    return [];
   }
 
   async function fetchArticles(query, options = {}) {
@@ -107,14 +183,32 @@
       sort,
       timespan,
     });
+    const url = `${DOC_ENDPOINT}?${params.toString()}`;
+    let result = [];
 
-    const response = await timeoutFetch(`${DOC_ENDPOINT}?${params.toString()}`);
-    if (!response.ok) throw new Error(`GDELT returned ${response.status}`);
-    const payload = await response.json();
-    const raw = Array.isArray(payload.articles) ? payload.articles : Array.isArray(payload) ? payload : [];
-    const result = raw.map(item => normalize(item, lane)).filter(item => item.title && item.url);
+    try {
+      const response = await timeoutFetch(url, 8000);
+      if (response.ok) {
+        const payload = await response.json();
+        result = rawArticles(payload).map(item => normalize(item, lane)).filter(item => item.title && item.url);
+      }
+    } catch {}
+
+    if (!result.length) {
+      try {
+        const payload = await jsonp(url, 8500);
+        result = rawArticles(payload).map(item => normalize(item, lane)).filter(item => item.title && item.url);
+      } catch {}
+    }
+
+    if (!result.length) {
+      result = await loadSnapshot(query, lane, maxrecords);
+    }
+
+    if (!result.length) throw new Error('No live or snapshot stories available');
+
     cacheSet(cacheKey, result);
-    return result;
+    return result.slice(0, maxrecords);
   }
 
   function dedupe(items) {
@@ -169,7 +263,7 @@
   async function fetchRelated(article, maxrecords = 18) {
     const query = keywordQuery(article.title);
     try {
-      const items = await fetchArticles(query, { maxrecords, timespan: '7d', sort: 'datedesc', force: true });
+      const items = await fetchArticles(query, { maxrecords, timespan: '7d', sort: 'datedesc', force: true, lane: article.lane || '' });
       return dedupe(items.filter(item => item.url !== article.url)).slice(0, maxrecords);
     } catch {
       return [];
@@ -191,21 +285,26 @@
       sort: 'datedesc',
       timespan: '72h',
     });
+    const url = `${CONTEXT_ENDPOINT}?${params.toString()}`;
+    let payload = null;
+
     try {
-      const response = await timeoutFetch(`${CONTEXT_ENDPOINT}?${params.toString()}`, 9000);
-      if (!response.ok) return [];
-      const payload = await response.json();
-      const raw = Array.isArray(payload.articles) ? payload.articles : Array.isArray(payload) ? payload : [];
-      return raw.map(item => ({
-        title: item.title || '',
-        url: item.url || '',
-        domain: item.domain || domainFrom(item.url || ''),
-        publishedAt: gdeltDate(item.seendate || item.date),
-        snippet: trimWords(item.context || item.snippet || item.sentence || item.text || '', 22),
-      })).filter(item => item.title || item.snippet);
-    } catch {
-      return [];
+      const response = await timeoutFetch(url, 7000);
+      if (response.ok) payload = await response.json();
+    } catch {}
+
+    if (!payload) {
+      try { payload = await jsonp(url, 7500); } catch {}
     }
+
+    if (!payload) return [];
+    return rawArticles(payload).map(item => ({
+      title: item.title || '',
+      url: item.url || '',
+      domain: item.domain || domainFrom(item.url || ''),
+      publishedAt: gdeltDate(item.seendate || item.date),
+      snippet: trimWords(item.context || item.snippet || item.sentence || item.text || '', 22),
+    })).filter(item => item.title || item.snippet);
   }
 
   window.PulseNews = {
