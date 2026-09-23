@@ -8,11 +8,14 @@
   const STORAGE_SAVED = 'pulsepress:saved';
   const STORAGE_CURRENT = 'pulsepress:current';
   const STORAGE_SETTINGS = 'pulsepress:settings';
-  const SETTINGS_DEFAULT = { refresh: 120000, motion: true, density: 'normal' };
+  const SETTINGS_DEFAULT = { refresh: 120000, motion: true, density: 'normal', readerScale: 1, readerWide: false };
 
   let articles = [];
   let refreshTimer = 0;
   let deckIndex = 0;
+  let quickSwiper = null;
+  let lenis = null;
+  let speechUtterance = null;
   let settings = loadSettings();
 
   function loadSettings() {
@@ -153,23 +156,53 @@
   function renderQuickPulse(items) {
     const container = $('[data-quick-pulse]');
     if (!container || items.length < 2) return;
-    const pool = items.slice(0, 7);
-    deckIndex = ((deckIndex % pool.length) + pool.length) % pool.length;
-    const item = pool[deckIndex];
-    container.innerHTML = `<div class="quick-title"><div><span class="eyebrow">PulsePress mechanic</span><h2>Quick Pulse</h2></div><span>${deckIndex + 1}/${pool.length}</span></div>
-      <div class="quick-card reveal">
-        ${imageMarkup(item, 'quick-media')}
-        <div class="quick-copy">
-          <div class="meta-line"><span>${escapeHTML(item.domain)}</span><span>•</span><time>${escapeHTML(relativeTime(item.publishedAt))}</time></div>
-          <h3>${escapeHTML(item.title)}</h3>
-          <p>Scan the essential headline, then open the internal dossier for live context and related coverage.</p>
-          <div class="quick-actions">
-            <button data-deck="prev" type="button">←</button>
-            <button class="quick-open" data-url="${escapeHTML(item.url)}" type="button">Open dossier</button>
-            <button data-deck="next" type="button">→</button>
-          </div>
+    const pool = items.slice(0, 8);
+
+    container.innerHTML = `<div class="quick-title"><div><span class="eyebrow">In focus</span><h2>Quick Pulse</h2></div><span>Swipe through top stories</span></div>
+      <div class="swiper quick-swiper">
+        <div class="swiper-wrapper">
+          ${pool.map(item => `<div class="swiper-slide">
+            <article class="quick-card" data-url="${escapeHTML(item.url)}">
+              ${imageMarkup(item, 'quick-media')}
+              <div class="quick-copy">
+                <div class="meta-line"><span>${escapeHTML(item.domain)}</span><span>•</span><time>${escapeHTML(relativeTime(item.publishedAt))}</time></div>
+                <h3>${escapeHTML(item.title)}</h3>
+                <p>Open the story for current context, related reporting and a clearer view of how coverage is developing.</p>
+                <button class="quick-open" data-url="${escapeHTML(item.url)}" type="button">Read story <span>→</span></button>
+              </div>
+            </article>
+          </div>`).join('')}
+        </div>
+        <div class="quick-swiper-footer">
+          <button class="quick-swiper-prev" type="button" aria-label="Previous story">←</button>
+          <div class="quick-swiper-pagination"></div>
+          <button class="quick-swiper-next" type="button" aria-label="Next story">→</button>
         </div>
       </div>`;
+
+    if (quickSwiper?.destroy) quickSwiper.destroy(true, true);
+    const swiperEl = $('.quick-swiper', container);
+    if (window.Swiper && swiperEl) {
+      quickSwiper = new Swiper(swiperEl, {
+        slidesPerView: 1,
+        spaceBetween: 22,
+        speed: 760,
+        grabCursor: true,
+        loop: pool.length > 2,
+        effect: 'creative',
+        creativeEffect: {
+          prev: { translate: ['-12%', 0, -120], opacity: 0.35, scale: 0.94 },
+          next: { translate: ['12%', 0, -120], opacity: 0.35, scale: 0.94 }
+        },
+        autoplay: { delay: 6800, disableOnInteraction: false, pauseOnMouseEnter: true },
+        pagination: { el: $('.quick-swiper-pagination', container), clickable: true },
+        navigation: {
+          prevEl: $('.quick-swiper-prev', container),
+          nextEl: $('.quick-swiper-next', container)
+        }
+      });
+    }
+    refreshMotion(container);
   }
 
   function renderGrid(items) {
@@ -201,7 +234,7 @@
         </button>`).join('')}
       </section>`;
     }).join('');
-    activateReveals();
+    refreshMotion(lanes);
   }
 
   function findArticleByUrl(url) {
@@ -255,11 +288,35 @@
     el._timer = setTimeout(() => el.classList.remove('show'), 1800);
   }
 
-  function activateReveals() {
-    if (!settings.motion || !('IntersectionObserver' in window)) {
-      $$('.reveal').forEach(el => el.classList.add('revealed'));
+  function activateReveals(root = document) {
+    const nodes = $$('.reveal:not([data-motion-bound])', root);
+    if (!nodes.length) return;
+
+    if (!settings.motion || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      nodes.forEach(el => {
+        el.dataset.motionBound = '1';
+        el.classList.add('revealed');
+      });
       return;
     }
+
+    if (window.gsap && window.ScrollTrigger) {
+      nodes.forEach((el, index) => {
+        el.dataset.motionBound = '1';
+        gsap.fromTo(el,
+          { opacity: 0, y: 34, scale: 0.985, filter: 'blur(8px)' },
+          {
+            opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
+            duration: 0.8, delay: Math.min(index, 5) * 0.035,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+            onComplete: () => el.classList.add('revealed')
+          }
+        );
+      });
+      return;
+    }
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -268,7 +325,10 @@
         }
       });
     }, { threshold: 0.08, rootMargin: '60px' });
-    $$('.reveal:not(.revealed)').forEach(el => observer.observe(el));
+    nodes.forEach(el => {
+      el.dataset.motionBound = '1';
+      observer.observe(el);
+    });
   }
 
   function bindTilt() {
@@ -291,6 +351,156 @@
     });
   }
 
+
+  function initMotionEngine() {
+    if (!settings.motion || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+    }
+
+    if (window.Lenis && !lenis) {
+      lenis = new Lenis({ duration: 1.05, wheelMultiplier: 0.9, touchMultiplier: 1.05, anchors: true });
+      if (window.ScrollTrigger) lenis.on('scroll', ScrollTrigger.update);
+      if (window.gsap) {
+        gsap.ticker.add(time => lenis?.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+      } else {
+        const raf = time => { lenis?.raf(time); requestAnimationFrame(raf); };
+        requestAnimationFrame(raf);
+      }
+    }
+
+    if (window.gsap) {
+      gsap.from('.masthead > *', { opacity: 0, y: -14, duration: 0.65, stagger: 0.07, ease: 'power3.out' });
+      gsap.from('.section-nav a', { opacity: 0, y: -8, duration: 0.45, stagger: 0.035, ease: 'power2.out', delay: 0.15 });
+      gsap.from('.ticker', { opacity: 0, scaleX: 0.96, duration: 0.55, ease: 'power2.out', delay: 0.18 });
+    }
+    animateHeadlines(document);
+  }
+
+  function animateHeadlines(root = document) {
+    if (!settings.motion || !window.gsap || !window.SplitType) return;
+    $$('.page-intro h1:not([data-split-ready]), .briefing-hero h1:not([data-split-ready]), .search-hero h1:not([data-split-ready]), .article-hero h1:not([data-split-ready])', root).forEach(el => {
+      el.dataset.splitReady = '1';
+      const split = new SplitType(el, { types: 'words' });
+      gsap.from(split.words, {
+        opacity: 0,
+        yPercent: 110,
+        rotate: 2,
+        duration: 0.78,
+        stagger: 0.035,
+        ease: 'power4.out',
+        clearProps: 'transform'
+      });
+    });
+  }
+
+  function refreshMotion(root = document) {
+    activateReveals(root);
+    animateHeadlines(root);
+
+    if (!settings.motion || !window.gsap || !window.ScrollTrigger) return;
+    $$('.story-media img:not([data-parallax-ready]), .quick-media img:not([data-parallax-ready])', root).forEach(img => {
+      img.dataset.parallaxReady = '1';
+      gsap.fromTo(img, { yPercent: -3, scale: 1.04 }, {
+        yPercent: 3,
+        scale: 1.08,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img.closest('.news-card, .quick-card') || img,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.7
+        }
+      });
+    });
+  }
+
+  function setupReaderExperience(article, contexts, related) {
+    const toolbar = $('[data-reader-toolbar]');
+    if (!toolbar) return;
+
+    const root = document.documentElement;
+    const body = document.body;
+    const articleCopy = $('.article-copy');
+    const timeEl = $('[data-reading-time]');
+    const percentEl = $('[data-reading-percent]');
+    const speakButton = $('[data-reader-speak]');
+    const focusButton = $('[data-reader-focus]');
+    const widthButton = $('[data-reader-width]');
+
+    const applyReaderPreferences = () => {
+      root.style.setProperty('--reader-scale', String(settings.readerScale || 1));
+      body.classList.toggle('reader-wide', !!settings.readerWide);
+      widthButton?.classList.toggle('active', !!settings.readerWide);
+    };
+
+    applyReaderPreferences();
+
+    const words = (articleCopy?.innerText || '').trim().split(/\s+/).filter(Boolean).length;
+    if (timeEl) timeEl.textContent = Math.max(1, Math.ceil(words / 220)) + ' min read';
+
+    $$('[data-reader-size]', toolbar).forEach(button => {
+      button.addEventListener('click', () => {
+        const direction = button.dataset.readerSize === 'up' ? 0.05 : -0.05;
+        settings.readerScale = Math.min(1.25, Math.max(0.9, Number((settings.readerScale + direction).toFixed(2))));
+        saveSettings();
+        applyReaderPreferences();
+        toast('Reading size updated');
+      });
+    });
+
+    widthButton?.addEventListener('click', () => {
+      settings.readerWide = !settings.readerWide;
+      saveSettings();
+      applyReaderPreferences();
+    });
+
+    focusButton?.addEventListener('click', () => {
+      body.classList.toggle('focus-reading');
+      focusButton.classList.toggle('active', body.classList.contains('focus-reading'));
+      focusButton.textContent = body.classList.contains('focus-reading') ? 'Exit focus' : 'Focus';
+      setTimeout(() => window.ScrollTrigger?.refresh(), 250);
+    });
+
+    speakButton?.addEventListener('click', () => {
+      if (!('speechSynthesis' in window)) {
+        toast('Listening is not supported by this browser');
+        return;
+      }
+
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+        speechUtterance = null;
+        speakButton.classList.remove('active');
+        speakButton.textContent = 'Listen';
+        return;
+      }
+
+      const contextText = (contexts || []).slice(0, 4).map(item => item.snippet || item.title).join('. ');
+      speechUtterance = new SpeechSynthesisUtterance([article.title, $('.standfirst')?.innerText || '', contextText].filter(Boolean).join('. '));
+      speechUtterance.rate = 0.96;
+      speechUtterance.pitch = 1;
+      speechUtterance.onend = () => {
+        speakButton.classList.remove('active');
+        speakButton.textContent = 'Listen';
+      };
+      speakButton.classList.add('active');
+      speakButton.textContent = 'Stop';
+      speechSynthesis.speak(speechUtterance);
+    });
+
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      const value = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+      $('[data-reading-progress]')?.style.setProperty('transform', 'scaleX(' + value + ')');
+      if (percentEl) percentEl.textContent = Math.round(value * 100) + '%';
+    };
+    addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  }
+
   async function loadStandard(force = false) {
     renderSkeleton();
     setStatus('Connecting…', 'loading');
@@ -308,13 +518,14 @@
       renderGrid(articles.slice(PAGE === 'home' ? 4 : 1));
       renderMetrics(articles);
       updateTicker(articles);
+      refreshMotion(document);
       setStatus(`Live · ${relativeTime(new Date().toISOString())}`, 'live');
       $('[data-last-update]')?.replaceChildren(document.createTextNode(`Updated ${new Intl.DateTimeFormat(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date())}`));
     } catch (error) {
       console.warn(error);
       setStatus('Live feed unavailable', 'error');
       const grid = $('[data-news-grid]');
-      if (grid) grid.innerHTML = `<div class="feed-error"><h2>Couldn’t reach the live news network</h2><p>PulsePress is a static website and fetches news directly in your browser. Check your connection, then retry.</p><button data-manual-refresh type="button">Retry live feed</button></div>`;
+      if (grid) grid.innerHTML = `<div class="feed-error"><h2>We couldn’t refresh the latest stories</h2><p>Check your connection and try again. Your saved stories are still available.</p><button data-manual-refresh type="button">Try again</button></div>`;
     }
   }
 
@@ -363,6 +574,7 @@
       renderGrid(articles);
       renderMetrics(articles);
       updateTicker(articles);
+      refreshMotion(document);
       $('[data-search-heading]')?.replaceChildren(document.createTextNode(`Results for “${query}”`));
       setStatus(`${articles.length} live results`, 'live');
     } catch {
@@ -395,7 +607,7 @@
       hero.hidden = false;
       hero.onerror = () => { hero.hidden = true; };
     }
-    $('[data-article-brief]').textContent = `This live story was detected from ${article.domain}${article.country ? ` in ${article.country}` : ''}. PulsePress keeps the coverage inside the site by building a live dossier from current reporting around the same topic.`;
+    $('[data-article-brief]').textContent = `Coverage from ${article.domain}${article.country ? ` in ${article.country}` : ''}, expanded with related reporting so you can see the wider picture without losing your place.`;
 
     setStatus('Expanding story context…', 'loading');
     const [related, contexts] = await Promise.all([
@@ -417,8 +629,9 @@
     const ageHours = Math.max(0, Math.round((Date.now() - new Date(article.publishedAt)) / 3600000));
     $('[data-story-momentum]').textContent = related.length >= 12 ? 'High' : related.length >= 5 ? 'Building' : 'Focused';
     $('[data-story-age]').textContent = ageHours < 1 ? 'Under 1h' : `${ageHours}h`;
-    setStatus('Dossier live', 'live');
-    activateReveals();
+    setStatus('Story ready', 'live');
+    setupReaderExperience(article, contexts, related);
+    refreshMotion(shell);
 
     $('[data-article-save]').addEventListener('click', () => {
       const nowSaved = toggleSaved(article);
@@ -427,11 +640,7 @@
       toast(nowSaved ? 'Story saved' : 'Story removed');
     });
 
-    const progress = $('[data-reading-progress]');
-    addEventListener('scroll', () => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      if (progress) progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
-    }, { passive: true });
+
   }
 
   function setupSearchForm() {
@@ -482,6 +691,7 @@
   }
 
   function setupGlobal() {
+    initMotionEngine();
     bindClicks();
     bindTilt();
     setupSettings();
@@ -513,7 +723,7 @@
     else if (PAGE === 'search') await loadSearch();
     else await loadStandard();
     scheduleRefresh();
-    activateReveals();
+    refreshMotion(document);
   }
 
   init();
