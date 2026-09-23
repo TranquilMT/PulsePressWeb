@@ -2,7 +2,7 @@ name: Update PulsePress live news
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7,22,37,52 * * * *'
+    - cron: '3,13,23,33,43,53 * * * *'
   push:
     branches: [main]
     paths-ignore: ['data/**']
@@ -11,7 +11,7 @@ permissions:
   pages: write
   id-token: write
 concurrency:
-  group: pulsepress-newsroom-v10
+  group: pulsepress-newsroom-v10-2
   cancel-in-progress: false
 jobs:
   update-news:
