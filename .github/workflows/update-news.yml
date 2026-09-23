@@ -10,7 +10,7 @@ permissions:
   contents: write
 concurrency:
   group: pulsepress-newsroom-v10-2
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   update-news:
     runs-on: ubuntu-latest
