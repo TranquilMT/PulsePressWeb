@@ -10,6 +10,7 @@
   function dedupe(items) {const seen=new Set();return items.filter(r=>{const k=r.title.toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ');if(seen.has(k))return false;seen.add(k);return true;});}
   function sortNewest(items) {return [...items].sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt));}
   function sortTop(items) {return [...items].sort((a,b)=>(b.topScore||0)-(a.topScore||0)||Date.parse(b.publishedAt)-Date.parse(a.publishedAt));}
+  function sortTrending(items) {return [...items].sort((a,b)=>(b.trendScore||b.topScore||0)-(a.trendScore||a.topScore||0)||Date.parse(b.publishedAt)-Date.parse(a.publishedAt));}
   async function snapshot(name, force=false) {
     if (!/^(all|weekly-gaming|home|world|local|tech|gaming|country-[a-z-]+)$/.test(name)) throw new Error('Unknown edition');
     const cached=memory.get(name);
@@ -48,10 +49,27 @@
   async function fetchRelated(article,maxrecords=12){
     try{
       const rows=(await snapshot('all')).articles, tokens=words(article.title);
-      return rows.map(r=>({r,n:[...words(r.title)].filter(w=>tokens.has(w)).length})).filter(x=>x.r.url!==article.url&&x.n>=3).sort((a,b)=>b.n-a.n).slice(0,maxrecords).map(x=>x.r);
+      return rows.map(r=>{
+        const rt=words(r.title), common=[...rt].filter(w=>tokens.has(w)).length;
+        const overlap=common/Math.max(1,Math.min(tokens.size,rt.size));
+        const laneBoost=r.lane===article.lane?0.35:0;
+        const countryBoost=r.country&&article.country&&r.country===article.country?0.2:0;
+        return {r,score:common*2+overlap+laneBoost+countryBoost,common,overlap};
+      }).filter(x=>x.r.url!==article.url&&(x.common>=3||(x.common>=2&&x.overlap>=0.42))).sort((a,b)=>b.score-a.score||(b.r.trendScore||0)-(a.r.trendScore||0)).slice(0,maxrecords).map(x=>x.r);
     }catch{return [];}
   }
-  async function fetchContext(article){return article.summary?[{title:article.title,snippet:article.summary,url:article.url,domain:article.publisher||article.domain,publishedAt:article.publishedAt}]:[];}
+  async function fetchContext(article){
+    const base=article.summary?[{title:article.title,snippet:article.summary,url:article.url,domain:article.publisher||article.domain,publishedAt:article.publishedAt}]:[];
+    try{
+      const related=await fetchRelated(article,8);
+      for(const item of related){
+        if(!item.summary)continue;
+        base.push({title:item.title,snippet:item.summary,url:item.url,domain:item.publisher||item.domain,publishedAt:item.publishedAt});
+        if(base.length>=5)break;
+      }
+    }catch{}
+    return base;
+  }
   async function findArticle(id,edition='home') {const rows=(await snapshot(edition)).articles;return rows.find(r=>r.id===id) || (await snapshot('all')).articles.find(r=>r.id===id);}
-  window.PulseNews={QUERIES,COUNTRIES,fetchAll:async(force=false)=>(await snapshot('all',force)).articles,fetchWeekly:()=>snapshot('weekly-gaming'),fetchSources:async()=>{const r=await fetch('data/sources.json',{cache:'no-store'});if(!r.ok)throw new Error('Sources unavailable');return r.json();},fetchArticles,fetchHome,fetchBriefing,fetchRelated,fetchContext,findArticle,dedupe,sortNewest,sortTop,keywordQuery:t=>[...words(t)].slice(0,4).join(' '),getMeta:()=>lastMeta};
+  window.PulseNews={QUERIES,COUNTRIES,fetchAll:async(force=false)=>(await snapshot('all',force)).articles,fetchWeekly:()=>snapshot('weekly-gaming'),fetchSources:async()=>{const r=await fetch('data/sources.json',{cache:'no-store'});if(!r.ok)throw new Error('Sources unavailable');return r.json();},fetchArticles,fetchHome,fetchBriefing,fetchRelated,fetchContext,findArticle,dedupe,sortNewest,sortTop,sortTrending,keywordQuery:t=>[...words(t)].slice(0,4).join(' '),getMeta:()=>lastMeta};
 })();
