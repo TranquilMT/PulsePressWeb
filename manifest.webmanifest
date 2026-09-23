@@ -1,0 +1,9 @@
+{
+  "name": "PulsePress World + Local News",
+  "short_name": "PulsePress",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4efe5",
+  "theme_color": "#11110f",
+  "description": "A live multi-page static news website for world, Malta, technology and gaming coverage."
+}
