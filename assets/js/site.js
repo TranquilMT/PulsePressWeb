@@ -53,7 +53,7 @@
   }
 
   function setHistory(items) {
-    localStorage.setItem(STORAGE_HISTORY, JSON.stringify(items.slice(0, 120)));
+    try { localStorage.setItem(STORAGE_HISTORY, JSON.stringify(items.slice(0, 120))); } catch {}
   }
 
   function getFollowedTopics() {
@@ -65,7 +65,7 @@
     const current = getFollowedTopics();
     const exists = current.includes(topic);
     const next = exists ? current.filter(item => item !== topic) : [...current, topic];
-    localStorage.setItem(STORAGE_FOLLOWS, JSON.stringify(next));
+    try { localStorage.setItem(STORAGE_FOLLOWS, JSON.stringify(next)); } catch {}
     return !exists;
   }
 
@@ -123,7 +123,7 @@
   }
 
   function setSaved(items) {
-    localStorage.setItem(STORAGE_SAVED, JSON.stringify(items));
+    try { localStorage.setItem(STORAGE_SAVED, JSON.stringify(items)); } catch {}
     updateSavedBadges();
   }
 
@@ -377,7 +377,7 @@
   function openArticle(article) {
     if (!article) return;
     recordRead(article);
-    localStorage.setItem(STORAGE_CURRENT, JSON.stringify(article));
+    try { localStorage.setItem(STORAGE_CURRENT, JSON.stringify(article)); } catch {}
     document.body.classList.add('page-leaving');
     setTimeout(() => { window.location.href = 'article.html'; }, settings.motion ? 180 : 0);
   }
@@ -1011,5 +1011,14 @@
     refreshMotion(document);
   }
 
-  init();
+  window.PulseEnhance = () => {
+    try { initMotionEngine(); } catch {}
+    try { if (articles.length) renderQuickPulse(articles); } catch {}
+    try { refreshMotion(document); } catch {}
+  };
+
+  init().catch(() => {
+    document.body.classList.add('page-ready');
+    setStatus('Ready', 'live');
+  });
 })();
