@@ -44,6 +44,14 @@ SOURCES = [
  ('Nintendo Life','https://www.nintendolife.com/feeds/news','gaming',''),
  ('PlayStation Blog','https://blog.playstation.com/feed/','gaming',''),
  ('Xbox Wire','https://news.xbox.com/en-us/feed/','gaming',''),
+ ('VGC','https://www.videogameschronicle.com/feed/','gaming',''),
+ ('GamesRadar+','https://www.gamesradar.com/rss/','gaming',''),
+ ('Kotaku','https://kotaku.com/rss','gaming',''),
+ ('VG247','https://www.vg247.com/feed','gaming',''),
+ ('Engadget','https://www.engadget.com/rss.xml','tech',''),
+ ("Tom's Hardware",'https://www.tomshardware.com/feeds/all','tech',''),
+ ('9to5Google','https://9to5google.com/feed/','tech',''),
+ ('MacRumors','https://feeds.macrumors.com/MacRumors-All','tech',''),
 ]
 for key, section in {'uk':'uk-news','france':'world/france','usa':'us-news','germany':'world/germany','italy':'world/italy','spain':'world/spain','ireland':'world/ireland','australia':'australia-news','canada':'world/canada','india':'world/india','japan':'world/japan','ukraine':'world/ukraine','china':'world/china','south-africa':'world/southafrica'}.items():
  SOURCES.append(('The Guardian',f'https://www.theguardian.com/{section}/rss','world',key))
@@ -53,8 +61,22 @@ class Text(HTMLParser):
  def handle_starttag(self,tag,attrs):
   a=dict(attrs)
   if tag in ('script','style'): self.skip+=1
-  if tag=='img' and a.get('src'): self.images.append(a['src'])
-  if tag=='meta': self.meta[a.get('property',a.get('name',''))]=a.get('content','')
+  if tag=='img':
+   for key in ('src','data-src','data-lazy-src','data-original'):
+    if a.get(key): self.images.append(a[key])
+   if a.get('srcset'):
+    choices=[]
+    for bit in a['srcset'].split(','):
+     part=bit.strip().split()
+     if part: choices.append(part[0])
+    self.images.extend(reversed(choices))
+  if tag=='source' and a.get('srcset'):
+   for bit in a['srcset'].split(','):
+    part=bit.strip().split()
+    if part: self.images.append(part[0])
+  if tag=='meta':
+   key=(a.get('property') or a.get('name') or '').strip().lower()
+   if key: self.meta[key]=a.get('content','')
  def handle_endtag(self,tag):
   if tag in ('script','style'): self.skip=max(0,self.skip-1)
  def handle_data(self,data):
@@ -153,15 +175,26 @@ def rank(rows):
    if common>=3 and common/max(1,min(len(tokens[i]),len(tokens[j])))>=.55: related.add(s['domain'])
   age=max(0,(NOW-dt.datetime.fromisoformat(r['publishedAt'])).total_seconds()/3600)
   r['coverageSources']=1+len(related)
-  r['topScore']=round(80/(1+age/12)+min(35,len(related)*12)+20/(1+r.get('feedRank',50)/5),2)
+  prominence=20/(1+r.get('feedRank',50)/5)
+  freshness=80/(1+age/12)
+  coverage=min(42,len(related)*12)
+  r['topScore']=round(freshness+coverage+prominence,2)
+  text=(r.get('title','')+' '+r.get('summary','')).lower()
+  serious=bool(re.search(r'\\b(earthquake|tsunami|wildfire|evacuat|explosion|shooting|mass casualty|landslide|hurricane|typhoon|tornado|major flood|terror attack|missile strike|air strike|drone strike|building collapse|train crash|plane crash|emergency declared|state of emergency)\\b',text,re.I))
+  severe=bool(re.search(r'\\b(killed|dead|deaths|fatal|casualties|missing|injured|hospitali[sz]ed|destroyed|collapsed)\\b',text,re.I))
+  r['alertLevel']='breaking' if age<=6 and serious and (r['coverageSources']>=2 or severe) else ('developing' if age<=18 and serious else '')
+  r['trendScore']=round(r['topScore']+min(55,r['coverageSources']*11)+max(0,28-age*1.8)+(14 if r['alertLevel']=='breaking' else 6 if r['alertLevel']=='developing' else 0),2)
  return sorted(rows,key=lambda r:r['topScore'],reverse=True)
 
 def enrich(row):
  if row.get('image') and row.get('summary'): return
  try:
   p=Text(); p.feed(get(row['url'],600000))
-  if not row.get('image'): row['image']=safe_url(p.meta.get('og:image') or p.meta.get('twitter:image'),row['url'])
-  if not row.get('summary'): row['summary']=clean(p.meta.get('og:description') or p.meta.get('description'))
+  if not row.get('image'):
+   row['image']=safe_url(p.meta.get('og:image:secure_url') or p.meta.get('og:image') or p.meta.get('twitter:image') or p.meta.get('twitter:image:src'),row['url'])
+   if not row['image']:
+    row['image']=next((safe_url(u,row['url']) for u in p.images if safe_url(u,row['url'])), '')
+  if not row.get('summary'): row['summary']=clean(p.meta.get('og:description') or p.meta.get('twitter:description') or p.meta.get('description'))
  except Exception: pass
 
 def main():
@@ -185,7 +218,7 @@ def main():
  all_rows=rank(dedupe([r for rows in buckets.values() for r in rows]))
  lookup={r['url']:r for r in all_rows}
  # Metadata enrichment is bounded; feed images remain the preferred source.
- candidates=[r for r in all_rows if (not r.get('image') or not r.get('summary')) and not r.get('viaIndex')][:60]
+ candidates=[r for r in all_rows if (not r.get('image') or not r.get('summary')) and not r.get('viaIndex')][:140]
  with cf.ThreadPoolExecutor(max_workers=12) as pool: list(pool.map(enrich,candidates))
  for key,rows in buckets.items():
   rows=rank(dedupe([{**lookup.get(r['url'],r),'country':r.get('country',''),'countryCode':r.get('countryCode','')} for r in rows]))[:300]
