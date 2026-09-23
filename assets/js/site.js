@@ -77,18 +77,35 @@
     const root=$('[data-sources]');
     try {
       const sources=await PulseNews.fetchSources();
+      let activeCategory='All';
+      let filters=$('[data-source-filters]');
+      if(!filters){
+        filters=document.createElement('div');
+        filters.className='source-filters';
+        filters.dataset.sourceFilters='1';
+        root.before(filters);
+      }
+      const categories=['All',...new Set(sources.map(s=>s.category).filter(Boolean))];
       function render(){
         const term=($('[data-source-search]')?.value||'').toLowerCase();
         const followed=followedSources();
-        root.innerHTML=sources.filter(s=>(s.name+' '+s.category).toLowerCase().includes(term)).map(s=>'<article class="source-card"><span class="eyebrow">'+escapeHTML(s.category)+'</span><h2>'+escapeHTML(s.name)+'</h2><p>'+escapeHTML(s.description)+'</p><small>'+s.count+' current stories'+(s.available?'':' · Feed temporarily unavailable')+'</small><div><button data-follow-source="'+escapeHTML(s.id)+'" aria-pressed="'+followed.includes(s.id)+'">'+(followed.includes(s.id)?'✓ Following':'+ Follow')+'</button><a href="'+escapeHTML(s.url)+'" target="_blank" rel="noopener">Visit publisher ↗</a></div></article>').join('');
-        $('[data-follow-count]').textContent=followed.length+' sources followed';
+        filters.innerHTML=categories.map(category=>'<button type="button" data-source-category="'+escapeHTML(category)+'" class="'+(activeCategory===category?'active':'')+'">'+escapeHTML(category)+'</button>').join('');
+        const visible=sources.filter(s=>{
+          const matchesTerm=(s.name+' '+s.category+' '+s.description).toLowerCase().includes(term);
+          const matchesCategory=activeCategory==='All'||s.category===activeCategory;
+          return matchesTerm&&matchesCategory;
+        }).sort((a,b)=>Number(followed.includes(b.id))-Number(followed.includes(a.id))||Number(b.available)-Number(a.available)||(b.count||0)-(a.count||0)||a.name.localeCompare(b.name));
+        root.innerHTML=visible.map(s=>'<article class="source-card '+(followed.includes(s.id)?'is-followed ':'')+(s.available?'':'is-unavailable')+'"><div class="source-card-top"><span class="eyebrow">'+escapeHTML(s.category)+'</span><span class="source-health">'+(s.available?'Live feed':'Temporarily unavailable')+'</span></div><h2>'+escapeHTML(s.name)+'</h2><p>'+escapeHTML(s.description)+'</p><small>'+s.count+' current stories</small><div><button data-follow-source="'+escapeHTML(s.id)+'" aria-pressed="'+followed.includes(s.id)+'">'+(followed.includes(s.id)?'✓ Following':'+ Follow')+'</button><a href="'+escapeHTML(s.url)+'" target="_blank" rel="noopener">Visit publisher ↗</a></div></article>').join('')||'<div class="empty-library"><span>⌕</span><h2>No publishers found</h2><p>Try another name or category.</p></div>';
+        $('[data-follow-count]').textContent=followed.length+' source'+(followed.length===1?'':'s')+' followed';
       }
       render();
       $('[data-source-search]').addEventListener('input',render);
+      filters.addEventListener('click',e=>{const btn=e.target.closest('[data-source-category]');if(!btn)return;activeCategory=btn.dataset.sourceCategory||'All';render();});
       root.addEventListener('click',e=>{const btn=e.target.closest('[data-follow-source]');if(!btn)return;const id=btn.dataset.followSource,current=followedSources();try{localStorage.setItem('pulsepress:sources',JSON.stringify(current.includes(id)?current.filter(x=>x!==id):[...current,id]));render();}catch{toast('Your browser could not save this preference');}});
       setStatus('Choose your news sources','live');
     }catch{root.innerHTML='<div class="feed-error"><h2>Sources couldn’t load</h2><p>Please refresh and try again.</p></div>';}
   }
+
   async function loadWeekly(){try{const data=await PulseNews.fetchWeekly();const root=$('[data-weekly-gaming]');root.innerHTML='<div class="bulletin-heading"><div><span class="eyebrow">The last seven days</span><h2>This week in gaming</h2></div><span>'+escapeHTML(data.periodLabel||'Weekly highlights')+'</span></div><p>Major releases, game updates and the stories making headlines. Selected by coverage and publisher prominence.</p><div class="weekly-grid">'+data.articles.slice(0,6).map(a=>'<a class="weekly-story" href="article.html?id='+encodeURIComponent(a.id)+'&edition=gaming">'+(a.image?'<img src="'+escapeHTML(a.image)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'<small>'+escapeHTML(a.publisher||a.domain)+'</small><h3>'+escapeHTML(a.title)+'</h3><p>'+escapeHTML(a.summary||'Read the publisher’s coverage.')+'</p></a>').join('')+'</div>';}catch{}}
 
   let refreshTimer = 0;
