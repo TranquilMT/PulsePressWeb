@@ -32,15 +32,22 @@
   function visibleArticles(items) {
     let rows = feedMode === 'following' ? items.filter(a => followedSources().includes(sourceKey(a))) : items;
     if (feedMode === 'updates') rows = rows.filter(a => /patch|update|hotfix|season|dlc|expansion|roadmap/i.test(a.title));
-    return sortMode === 'newest' ? PulseNews.sortNewest(rows) : sortMode === 'coverage' ? [...rows].sort((a,b)=>(b.coverageSources||1)-(a.coverageSources||1)||(b.topScore||0)-(a.topScore||0)) : PulseNews.sortTop(rows);
+    return sortMode === 'newest' ? PulseNews.sortNewest(rows) : sortMode === 'coverage' ? [...rows].sort((a,b)=>(b.coverageSources||1)-(a.coverageSources||1)||(b.topScore||0)-(a.topScore||0)) : sortMode === 'trending' ? PulseNews.sortTrending(rows) : PulseNews.sortTop(rows);
   }
   function renderBulletin(items) {
     const root = $('[data-top-bulletin]'); if (!root) return;
-    const top = PulseNews.sortTop(items).slice(0,5);
-    const breaking = items.filter(a => /\bbreaking\b/i.test(a.title) && /war|attack|earthquake|flood|fire|storm|evacuat|emergency|shooting|explosion/i.test(a.title+' '+a.summary) && Date.now()-Date.parse(a.publishedAt)<6*3600000).slice(0,2);
-    const developing = ['home','world','local'].includes(PAGE) ? PulseNews.sortNewest(items).filter(a=>/attack|earthquake|flood|evacuat|emergency|shooting|explosion|killed|missile|drone strike/i.test(a.title) && !/anniversary|years ago|doesn.t|disprove|\bfilm\b/i.test(a.title) && Date.now()-Date.parse(a.publishedAt)<24*3600000).slice(0,3) : [];
-    root.innerHTML = (breaking.length ? '<div class="breaking-list"><b>BREAKING</b>'+breaking.map(a=>'<button data-url="'+escapeHTML(a.url)+'">'+escapeHTML(a.title)+'</button>').join('')+'</div>' : '') + '<div class="bulletin-heading"><h2>'+escapeHTML(selectedCountry ? PulseNews.COUNTRIES[selectedCountry]+' headlines' : 'Top news bulletin')+'</h2><span>Ranked by coverage &amp; freshness</span></div><div class="bulletin-grid">'+top.map((a,i)=>'<button class="bulletin-item" data-url="'+escapeHTML(a.url)+'"><span class="bulletin-rank">'+String(i+1).padStart(2,'0')+'</span><span><small>'+escapeHTML(a.publisher||a.domain)+' · '+relativeTime(a.publishedAt)+'</small><strong>'+escapeHTML(a.title)+'</strong></span></button>').join('')+'</div>'+(developing.length?'<div class="developing-list"><b>Developing stories</b>'+developing.map(a=>'<button data-url="'+escapeHTML(a.url)+'">'+escapeHTML(a.title)+' <small>· '+escapeHTML(a.publisher||a.domain)+'</small></button>').join('')+'</div>':'');
+    const ranked = PulseNews.sortTrending(items);
+    const breaking = ranked.filter(a => a.alertLevel === 'breaking').slice(0, 3);
+    const developing = ['home','world','local'].includes(PAGE) ? ranked.filter(a => a.alertLevel === 'developing').slice(0, 4) : [];
+    const top = ranked.filter(a => !breaking.some(b => b.url === a.url)).slice(0, 5);
+    const heading = selectedCountry ? PulseNews.COUNTRIES[selectedCountry] + ' headlines' : 'Top news bulletin';
+    root.innerHTML =
+      (breaking.length ? '<div class="breaking-list"><b><i></i> BREAKING</b>' + breaking.map(a => '<button data-url="' + escapeHTML(a.url) + '"><span>' + escapeHTML(a.title) + '</span><small>' + escapeHTML(a.publisher || a.domain) + ' · ' + escapeHTML(relativeTime(a.publishedAt)) + '</small></button>').join('') + '</div>' : '') +
+      '<div class="bulletin-heading"><h2>' + escapeHTML(heading) + '</h2><span>Momentum · coverage · freshness</span></div>' +
+      '<div class="bulletin-grid">' + top.map((a,i) => '<button class="bulletin-item" data-url="' + escapeHTML(a.url) + '"><span class="bulletin-rank">' + String(i+1).padStart(2,'0') + '</span><span><small>' + escapeHTML(a.publisher || a.domain) + ' · ' + escapeHTML(relativeTime(a.publishedAt)) + (a.coverageSources > 1 ? ' · ' + a.coverageSources + ' sources' : '') + '</small><strong>' + escapeHTML(a.title) + '</strong></span></button>').join('') + '</div>' +
+      (developing.length ? '<div class="developing-list"><b>Developing now</b>' + developing.map(a => '<button data-url="' + escapeHTML(a.url) + '"><span>' + escapeHTML(a.title) + '</span><small>' + escapeHTML(a.publisher || a.domain) + ' · ' + escapeHTML(relativeTime(a.publishedAt)) + '</small></button>').join('') + '</div>' : '');
   }
+
   function updateEditionStatus() {
     const meta=PulseNews.getMeta(), stamp=meta.updatedAt;
     const stale=meta.stale || !stamp || Date.now()-Date.parse(stamp)>45*60000;
@@ -57,7 +64,7 @@
     if(nav&&!nav.querySelector('[href="sources.html"]'))nav.insertAdjacentHTML('beforeend','<a href="sources.html">Sources</a>');
     if(!['home','world','local','tech','gaming'].includes(PAGE))return;
     const main=$('main'); const box=document.createElement('section');box.className='edition-controls';
-    box.innerHTML='<div class="country-shortcuts"><a href="world.html?country=uk">United Kingdom</a><a href="world.html?country=france">France</a><a href="local.html">Malta</a><a href="world.html">All countries</a></div><div class="edition-options">'+(['home','world'].includes(PAGE)?'<label>Country<select data-country-select><option value="">All countries</option>'+Object.entries(PulseNews.COUNTRIES).map(([k,v])=>'<option value="'+k+'" '+(selectedCountry===k?'selected':'')+'>'+v+'</option>').join('')+'</select></label>':'')+'<label>Order<select data-sort-select><option value="top">Top stories</option><option value="newest">Newest first</option><option value="coverage">Most covered</option></select></label><label>Reading feed<select data-feed-select><option value="all">All sources</option><option value="following">Following</option>'+(PAGE==='gaming'?'<option value="updates">Game updates &amp; patches</option>':'')+'</select></label><a class="manage-sources" href="sources.html">Follow news sources →</a></div><p class="edition-note">Publisher feeds refresh throughout the day. Top stories use coverage and freshness; publisher traffic totals are not available.</p>';
+    box.innerHTML='<div class="country-shortcuts"><a href="world.html?country=uk">United Kingdom</a><a href="world.html?country=france">France</a><a href="local.html">Malta</a><a href="world.html?country=usa">United States</a><a href="world.html?country=germany">Germany</a><a href="world.html">All countries</a></div><div class="edition-options">'+(['home','world'].includes(PAGE)?'<label>Country<select data-country-select><option value="">All countries</option>'+Object.entries(PulseNews.COUNTRIES).map(([k,v])=>'<option value="'+k+'" '+(selectedCountry===k?'selected':'')+'>'+v+'</option>').join('')+'</select></label>':'')+'<label>Order<select data-sort-select><option value="top">Top stories</option><option value="newest">Newest first</option><option value="coverage">Most covered</option><option value="trending">Trending now</option></select></label><label>Reading feed<select data-feed-select><option value="all">All sources</option><option value="following">Following</option>'+(PAGE==='gaming'?'<option value="updates">Game updates &amp; patches</option>':'')+'</select></label><a class="manage-sources" href="sources.html">Follow news sources →</a></div><p class="edition-note">Publisher feeds refresh throughout the day. Top stories use coverage and freshness; publisher traffic totals are not available.</p>';
     main.prepend(box);
     box.querySelector('[data-country-select]')?.addEventListener('change',e=>{location.href='world.html'+(e.target.value?'?country='+encodeURIComponent(e.target.value):'');});
     box.querySelector('[data-sort-select]').addEventListener('change',e=>{sortMode=e.target.value;renderEdition();});
@@ -174,7 +181,7 @@
     const followed = getFollowedTopics();
     const text = (article.title + ' ' + (article.lane || '')).toLowerCase();
     const interestBoost = followed.some(topic => text.includes(topic.toLowerCase())) ? 24 : 0;
-    return freshness + interestBoost + (article.image ? 8 : 0);
+    return freshness + interestBoost + (article.image ? 8 : 0) + Math.min(70, (article.trendScore || 0) * 0.35) + Math.min(30, (article.coverageSources || 1) * 5);
   }
 
   function filteredArticles(items) {
@@ -239,8 +246,10 @@
   }
 
   function card(article, index = 0, compact = false) {
-    const pulse = Math.max(18, 100 - Math.floor((Date.now() - new Date(article.publishedAt).getTime()) / 3600000) * 5);
-    return `<article class="news-card reveal ${compact ? 'news-card-compact' : ''}" data-url="${escapeHTML(article.url)}" style="--delay:${Math.min(index,8) * 45}ms">
+    const ageHours = Math.max(0, (Date.now() - new Date(article.publishedAt).getTime()) / 3600000);
+    const trend = !article.alertLevel && (article.coverageSources || 1) >= 3 && ageHours <= 18;
+    const signal = article.alertLevel === 'breaking' ? '<span class="story-alert breaking">Breaking</span>' : article.alertLevel === 'developing' ? '<span class="story-alert developing">Developing</span>' : trend ? '<span class="story-alert trending">Trending</span>' : '';
+    return `<article class="news-card reveal ${compact ? 'news-card-compact' : ''} ${article.alertLevel ? 'has-alert' : ''}" data-url="${escapeHTML(article.url)}" style="--delay:${Math.min(index,8) * 45}ms">
       ${imageMarkup(article)}
       <div class="news-card-body">
         <div class="meta-line">
@@ -248,10 +257,12 @@
           <span>${escapeHTML(article.publisher || article.domain)}</span>
           <span>•</span>
           <time>${escapeHTML(relativeTime(article.publishedAt))}</time>
+          ${signal}
         </div>
         <h3><a class="story-link" href="article.html?id=${encodeURIComponent(article.id || '')}&edition=${encodeURIComponent(article.countryCode ? 'country-'+article.countryCode : (article.lane || 'home').toLowerCase())}">${escapeHTML(article.title)}</a></h3>${article.summary ? `<p class="story-summary">${escapeHTML(article.summary)}</p>` : ''}
         <div class="card-footer">
           <span class="story-category">${escapeHTML(article.country || article.lane || 'News')}</span>
+          ${article.coverageSources > 1 ? '<span class="coverage-chip">' + article.coverageSources + ' sources</span>' : ''}
           <button class="save-button ${isSaved(article) ? 'saved' : ''}" type="button" aria-label="Save story" data-save-url="${escapeHTML(article.url)}">${isSaved(article) ? '★' : '☆'}</button>
         </div>
       </div>
@@ -279,7 +290,7 @@
   function updateTicker(items) {
     const track = $('[data-ticker-track]');
     if (!track || !items.length) return;
-    const content = PulseNews.sortTop(items).slice(0, 10).map(item => `<button type="button" data-url="${escapeHTML(item.url)}">${escapeHTML(item.title)} <b>◆</b></button>`).join('');
+    const content = PulseNews.sortTrending(items).slice(0, 10).map(item => `<button type="button" data-url="${escapeHTML(item.url)}">${escapeHTML(item.title)} <b>◆</b></button>`).join('');
     track.innerHTML = content + content;
   }
 
@@ -880,7 +891,7 @@
     setStatus('Expanding story context…', 'loading');
     const [related, contexts] = await Promise.all([
       PulseNews.fetchRelated(article, 18),
-      Promise.resolve([]),
+      PulseNews.fetchContext(article),
     ]);
     articles = [article, ...related];
 
