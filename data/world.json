@@ -1,5 +1,476 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-09-23T18:25:11.862Z",
   "desk": "world",
-  "articles": []
+  "articles": [
+    {
+      "title": "Iranian president arrives in New York as Trump weighs cutting a deal or driving Iran \"into hell\"",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOZGRLV0xqY1AyaEVCb1I0bnRJcm5hVnkzRmZWUDhtR1cxdHdBbTJwTFllNkdhejlhWGx2b3ktdGhVcXdlam1iM2d0TDJPMHN4azB1RWI2TklLVENrdHlSVE5yNHpsWFVlSWpaWk9NbGtGMlZNTW1iLW5DWF9UM2tkc3RpaXRhRFpQbkFsWkw5VXZxQU1a?oc=5",
+      "image": "",
+      "domain": "cbsnews.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T06:33:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "World leaders address climate crisis before UN meet amid record-breaking El Niño",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOY3ZXUFotdXFXdFR3cjJwX0dfX1JaaUFaTmJySWdFQzd0QlZCWG5rNWx4eDBpSEc4SW9TU2tKMHRPRENqRFNpbUJOdW5hQkNibWhXek1kak1hZjlINWd0d1F1UUxKZ0tsVWgyZWlKTDUxSzRqYkkyVV9XYXpLT0pGTjh2aEhnZTdvb3JHRDVDUm11dw?oc=5",
+      "image": "",
+      "domain": "The Guardian",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T23:39:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Trump’s ambassador to U.N. says there’s no timeline on Iran war’s end",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPaF9UUGtpRDNQdHhZOW1MSHdDQzlSN1JmeXg2RERyN2JrNHpIV1VyMk5iQi04dktsSlh3aTQyc0V3MU00bHJ5Sk5Ha1k2Q1VpUGVoc0lZRExqVWkwbU9RY0llcDdZMGVaUGxyU0JVNGI3d0tNRWdjczBSbkRmcDhtYklJRWo3a3ZhUVVfZUR5cUQ5djhqQjhERE9xcXFQQ20zNEtlbw?oc=5",
+      "image": "",
+      "domain": "The Washington Post",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T02:47:31.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "New World screwworm cases climb to 50, with latest found in New Mexico horse",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOQnRrSjZoU2FKakM2WXRTSDNuTEV1M0YzRjlFVFI4WnRCemYxVldLa3lRSDFEbmZXQ3g4RFVZeW92SW4xRC1tRzBTZC1pVnJucVVrRFJUdS02NnpTV0oyRU1hVXZVVEtLWkh1Wk8xZnNXZUUwZF9qS19iRmRqUmRPZ01PdmZlTGltQXpZeXdvUWNEV2FWaHdHTml3aHdKVlRPdXl5Tjc0dTlZY2wzRnNaQW5CMmRzNmJMVnVocl9TOGlYNTViLXNR0gHPAUFVX3lxTE85YU9LQ24yblJmT0FaWUI5TUgyYlJ2amZHMnRCa2x6d09oSUVhQ0JUYTdGdDNvR0U5M1ZGOWpfRjJfTU1xZmwtcjlPVEhCZDZ5MzJFYVJyRDV4T1FIdUhCZ0dQQmxacVRqSlVMNm51by1hT2R1VXl1WXNCYVVGcktQVDNJS3pSYTdDQnJLZkw0ZFVJeW5fSVpLaVNVaThKSkVVWUJ5X0ljYW9EUUI0ZGNsOVowWVp4N3V5bFQ5RVVNVzJPa2V4Zkhsc2F6XzhyMA?oc=5",
+      "image": "",
+      "domain": "Houston Public Media",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T19:00:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Watch as Adam Vinatieri Sets Guinness World Record for Highest Altitude American Football Field Goal",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOLWh2OG5fRXlxQkZWb0dRQ2RKY05pNThUZ2hxUlk1eGptRHNPVU9JS1E2a1k2c3hOeVhzOXhSVFpvcnVZd09PTFQwXzctQ2NfX2NjLWNHaU9RTFpucHI4X2lSU2VIb1pFSkpJZ0xoOGlUWFN3TUZKREV5LTJ1ZmkyYlREa2FVY2lZOVg5LXRFQmRGcGE1NmtJbzdHUlF4dWx0NEs3SkkwZ1pJNW5xeWxuaWdDQ3FxVzk3LVpDTTlJZw?oc=5",
+      "image": "",
+      "domain": "New England Patriots",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T13:44:05.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "House speaker declares Iran nuclear issue \"taken care of\"",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQMXp0eWtpUmdlTkZzTzBhcTRLYkpaSE1vWEFIY09xR3JjcFhYRVhoMlVjcmJYVWdROU9WZENBNEt5NXVncjBmaXA4R1FVRExBOGNVSlVxV0FZYzl1Q3RnNGVrdEpncWFqNVZBQ2gzZnYwbF9Sa1g2Z2R4Y2Q1RHpVbTNB?oc=5",
+      "image": "",
+      "domain": "cbsnews.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T07:52:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "This truth emerges as political situations change fast: Maps show us our world, but not neutrally",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNVUFXUGtiVnlabm1jR3ZqR0VlYWNMckVmODdlSG5fU1JrSlpBdUlMX1VtdUk3d2ZXbkNydTI3ZG1rMTdPajcxUlk2TENSdktvVmZQamw4VUNpMDdlNEhONHNfRHhzMTFfT2Jvd2EyaERKODhXLURYa21pNHpVRnU5Y1Q3NndpcjF3Z1A5WWlOa2JCQnlMU2p4WWIxY2hwVDFnWGRla3Z3Sm5QMlVLM3BVbTN0X3g3endSUDk4NDM3eUdjeERSZnBXVDFmOWluVU9aMXBBS3FBbERiZw?oc=5",
+      "image": "",
+      "domain": "KSAT",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-20T12:29:19.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Where Illinois schools ranked on US News & World Report's list of 2027 Best Colleges",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNVy1jdl8tc05UZGt2bnRIbkJ2SUFiR3gtSjdtT2ZUbVZoak5DdnllX1NaV3VuTlZmRkpZX0lGaWVXcGZfMDM2Q3QwRFhNN1ZYLXNQdkRoa2duV3ZwNkQ5bzZrbWZlbDllNlFjQWlrbWx4bWUzS2ZtYjF4UzB2NmpsN2lUNFFxaEtmVXgyczdnYTRTcjV3REgxeXpkRnIyV2dDSlpRbC1Ea0pCeTZ6bk1DUVA5b1V6YnNhRVYzR0FXYnR2UWN2SVlZ0gHPAUFVX3lxTE1tV1hIZnY4d3QtdWw0THVGNC1uRnl3cHBDRmMzOEZWUERaOGVCUWE3eEhMLXgzdEhNQ2dySFpLbC1LZHF0d1IyalBydVN1ZS1LS211VEhoZlRqUElXZHNOUS1veEFmZTh2QVNTYV9GV29ZWk40UlZ0RjVIVGM1WWh1RF9sdXZaY2JMTVdmamJuSUlWQzJ3RmFIM3J5bnBFZnMxM09ZMUtQZWpSSTh3QVk3eUhGREt0MDRKcnBiX2RjZzNFa0YwQ0pIMFA4dXVSSQ?oc=5",
+      "image": "",
+      "domain": "NBC 5 Chicago",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T15:52:45.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Federal Reserve rate hike reflects new world of sticky inflation and faster growth",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPdkJ1aGZOVHowUUNJZmxGNFR5RFgzMGZEbkFVQ0lMdUs4TlFhenV3WmZPRjZnREFXVzJRWVNiVVp2V3M2X0dia3JKUWRFcmJVdDlGWm0zem5fbk9MdnpVWThwT3IyVDAwVjNOQ1JzeEJFR1RORVR4ZjVsSkFWVDV5NU1GY0hmajdHMmZtaDJxSjJwSXMzaWowbU9HMlFaak1KR0HSAacBQVVfeXFMUFc0UzNFTTFSX2NTaWVHT1pncHJoMDdCS0x1czIxbFJHeUszT3ZSelhvX2RmeXk1SjVYM3NlNTZoZjRpN2Rhb245bG8wX3BwQVBjR0VvNm45UDE2dGRKN2ZQTmZwbEJ2d1pwZHVVRE4zZW1nMnZIbnZMMGktYWxuT0F0MmNhdmxMTUpTQzNjcjVrelczWnZERVQ5SEFGMGI1NnlLTmtNVkE?oc=5",
+      "image": "",
+      "domain": "ABC News - Breaking News, Latest News and Videos",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-20T14:04:49.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "New study shows when we invest in HBCU's, Black students succeed",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB1RHFod1B2ZG5lNmIzQXREVUpkMHB5ZUVtaG9nM3VYLWNDbmE3QVBEQkxjRlMyZlFTR2dVSzZMd0hlal9XcXo5MWx5dXNidGRTV0hMQjJ6NmZQWTVLbUdlTzVZdDRtSlhQVnhsS2dtcUtrbEJZNWfSAXtBVV95cUxOVnBwcHA2V2hLVWhfVWR2d1FaamNYeWs4eHBCV0RUZW1HV2xFZktUbkd5NGFEWjQzTVhSbVRoaG9SX0tOTW9LYmhOSTB5MFpHVENjQ0VhWWpoa01SdDdhaUx0NE5QbTljWXB2N2JzaUZWYTJwX094Zk5NRHM?oc=5",
+      "image": "",
+      "domain": "LiveNOW from FOX",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T14:54:14.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Video. Latest news bulletin | September 17th, 2026 – Midday",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPNWU1MmphQU9ESFhILTJjbEVnREszejFyNDZZeERqS3VjWlNEcHdGLVo0VjNwS3p6NkNaSDVYU3U2MnJoSV9pZm1ITGF0X3hIQ3dqa29nRmEybHRyemVnT05jMkpRd1dhME9NazVab1dYZ3FkRlJGVlR2MmpfcnN6bHdYQ0tpWlZFd3dsWUdDdzFUeTA?oc=5",
+      "image": "",
+      "domain": "euronews.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T10:00:16.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "The highest field goal in the world: Patriots legend Adam Vinatieri sets a GUINNESS WORLD RECORDS™ title at 3,454 meters on the Jungfraujoch – Top of Europe",
+      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxOamxDWm40OVN4YVBUMGhCTHpnQ0gySnBNeEF3dXdfa2FHN0xDM29abUM5clJKTEV3cWtoZGoxRWVpVkxqUUZmYjBROG9RYlBIMWdRd1dlZy0zbkJJdGtoUWYyaDJXRng5RjNRbUoxaFU2Q0xnY2YzZzc0dGJWLTBITHZHaHBxYmEzUnhkVTBoZmljY1N3WHFOWUhUNS1hMl9ZdldqMVlrSldFZTY1VWRLNlVaTTVQeEdGb1VHTXptandMa3c5U2pCeWFkWFctRkJrMjdfa05nWnRMNERoVHpGRWxyWV9WeTR2cHZGMW9PRU1jbWgzOUZjczRrek1XZ1QzbFpveWRmMXJhNEQ2aUtFMEpB?oc=5",
+      "image": "",
+      "domain": "New England Patriots",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T19:36:59.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Denmark and Greenland say US military agreement will not compromise Arctic territory’s sovereignty",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNY2x4NEdIWjBSQkdfMm5aa3VRdzZDYkN1N0JOTEVxVXhjcEtyc1JxbWl2VFZ6ajBrbXg2SWc3d1pfWDQzNnBjcnhvVF9ZR1NYSUQ1blR5M0hYaUhHUmZPNld3R3hDYWZmOHEtYXQwNF9ZZG9zb08wZWtiMk95U3VCRXFSU2VVZFA5NE85QXZ4NDVhTFk0STFlMnRBa0gwOW1yS2RzZkRZQ2U2S3lyNmc?oc=5",
+      "image": "",
+      "domain": "The Guardian",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-19T22:08:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Breaking News, World News and Video from Al Jazeera",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQU1VaWkhHUDJjanRuazhWd3hMeERfeDRlVWg2ZUM2SnNHajFuQ3hyTXBBUmNoRk0xZ1VNaXBjVFBRUnpyTEVpMjhZS0MtVHZIaHFDZjBYSkRGZVY0cVNSbE9FcXJ6TmpSUjhRN3Njd1FJMEdsRmxJakxRVHNyWGtueDA0MTE2eDJxbHpjelhYNUhpMjFhN2Z5VVQ3NzM?oc=5",
+      "image": "",
+      "domain": "Al Jazeera",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T09:41:23.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Top Democrat places hold on Trump administration’s plan to sell heavy bombs to Israel",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxQR2RyU1p6cEZuWkZPTVFPRUlGY3h3RjBlZzI2blE1UHlXbV8xZkVrRkdpTXVoMl9RZTBiX2h4a2JrQ2JGbExqNW42SUN1WTFWcDI0OTBRdjRwWDZ1ZmU1SmtJUGJTZHJqdW9Ba1VBU3dEbWlqT0hzLVc2dElRdmhuUTlDNzBpdF9iQVN0alpPWTE3cnp1WTRZNUxXQUg2OXJuV3MzTFpIaUZKZk8wdURoY0lwcWZpeHVpUjB6U3BhZ0ZjZnBwREMw?oc=5",
+      "image": "",
+      "domain": "KSAT",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-16T20:46:55.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "BREAKING NEWS: Takaichi, Trump \"frankly\" discuss International Criminal Court: Japan",
+      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE91TFc5QWlfZ09ZLXdfWW0tM0lCMFZieU1PZE9SMm5oNXhnOUttZmtoYXJxMl9vNGNhWW1kZ3ZBTjJBX1ZxeFdHNFNJSXIyTlhQS1R5SXlYb24wZw?oc=5",
+      "image": "",
+      "domain": "english.kyodonews.net",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T20:14:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "FIFA World Cup 2026: Latest News, Photo and Video",
+      "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5iSHdUXzE0cVh4UXFVUldtdE1QY3hxal9yZkhVWFBqcGNfVW02VEhpZ0h3YktEeUEtOG9ZeHZQMFVpenlBSnpJRE1FSklOaVBHdEE?oc=5",
+      "image": "",
+      "domain": "NBC News",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T01:12:23.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Global temperatures hit record highs as El Niño strengthens: Report",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOUHVuUE9RZU1kdkZVNEkyZUlyWWgzVTlZQUtzU2JEeGN5Q2h6QlJQMGtNWW9kRDNEMWJ0NlZ3RWdMbEt1LUx4RURWY0ttNFM1dEp6dEhXZjVqTWZYWk5lX3FoTjNNZ0Z0cDVIWWJCdjFrRVRYN1VfaU9iQnJtdHI5VDE1YUlfNEtZaU9TMGxuM1V6Z2xiZ3VNN3o5eTE4bndBYTJhQ2h3bDNqZmhW0gGyAUFVX3lxTE1mTXFqUFpnb0Y0dENvdEhIMUJQczR1eC1vYWFWUmRFOWllQVpVQTlwR1lJbEdWZ3JkdXoyQWhvUTRCZ0FNaG04bHJDTVpLemRXemowdjl5M0k4REVOZDRyeG8zNkx5WElhSFlWN0xOcTVpMHFvODV1eVB6Y3RMelg1WnhxTF9Ndzl4WS1ZbVBZb0N2SlZ0eG5YZnhPd25iOThza05td19pXzdOeWhKanZhZmc?oc=5",
+      "image": "",
+      "domain": "ABC News - Breaking News, Latest News and Videos",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T03:59:23.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "The latest headlines - as Burnham addresses UNGA in New York and meets with Trump - Latest From ITV News",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQMDFHTWR6V2pON2RoMlVvY211MklTamRKTkh0cmNTRmRYdklzcTdCOXZHYlM4MHZzS0llYXVGZDAzbUsyZ2k0UXZsblk0bkxjRE1UVHpraS1kaGJwSnpLa1VsQldZbmVJa1pMOTRpR0lzZmpxTzlpc1R1MDd1MGozY1ZQRno4NVVCWk94MHJKNXJSbmhYMV9yVmVuNG4wcV9zeHdKM1RWbjVZejlTVXU4ZmNPWHBXY0ZlMEE?oc=5",
+      "image": "",
+      "domain": "ITVX",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T06:24:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Local 10 World News @6:30 PM",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOZm9SczdDei1CRWdvNnQxYkxkdUpBa0EwWVk5TXd2cng4Z2NjRUhxcThWeWJ4TkNBRmwydlk2MVl6MHBmTVQ2R3RvWDVOc29jUVlvSDRBQW4yYnNhelJ5cXg1X1hwUzVnWHdWSDZOdUxSSXR3WWhpcDJQMUVNZFVUSTdLVmo4QQ?oc=5",
+      "image": "",
+      "domain": "WPLG Local 10",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-20T23:10:25.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Worsening El Nino threatens Asia with drought, potentially raising food prices globally",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQQ0V0VjJVYmxicVZ1Y2o4VkRNeFlrcElraUllVC1LTm9pX3NLLUFaWmgwQ2VMRXlFeGhqQ2pybEhBSm9OeWpwMDVfdmZTSWRVc0dlcnM4UVR6amhfdXJ5cnRLanBmcXRzWDVpUWdoZEltNm9nMFpVa3k3SWw1c1E3NkExOHNDTGFMOHNRYTJYVnRWQThUWG4wb19xSVQ5MVFyNlBsVkVtY09LTDl0bm1IVWtzMG3SAboBQVVfeXFMUGo0QjJEa1BoY1djdmxTeVhSdzQ5YlZvYnhEQUtQMUFGNmhCeThTMWV1MFFZMzltZHIxbm5LU0x2SlBCOWNCTzdjZzdSVTNrMzYyTHJScWxLU2NXZG9UQWhfNnI4VWpDcHdadWZ5SFhoWjdPN0xjVWdDSktyV2ZpN1NvOG1PQy1EbmdjRnZJQ2FKYm8zaVJzUF9ITS1seXRnYXlPR3RKYy1GWm9TSUpZUzhraHVQYVBWLWN3?oc=5",
+      "image": "",
+      "domain": "ABC News - Breaking News, Latest News and Videos",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T07:37:26.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "US defeats Australia 2-0 in 2nd World Cup win, securing spot in knockout round",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPSXBTR1FFbWpiY0NHdTVrbUJWMThud1VCeUdjdUxxMkNya3FSWFR3eVZ5VzhxQzh3dENoclVqRGZBRVgwU01OcS1CNEJPeF95cXhocWN4c25VX2Vya3RvemNxWUh3cE1Fay1tMDdJS3ZtYzhOa0Q2d202b1ZhaFZnOGJkdkUxWXFsM1FidnVVTHBMNzjSAZgBQVVfeXFMT3owMXU3ejVNb3AxWkItVllZMkZJNDZUdGhMT1YtcGt1WlVrcDJnQkZ0bzN1T3N5WkppLXdPVXpvazN1NUE1ZnoyenRka0lZT0szQ00za1FsZ1FJWDdZS1owU2JuVkR1SnRrWjFmNlV6SHJSeXFDcV9GcmMtUVlaLVlTdXU4NVotdThxNzd1UGV3bG4xYjBpYXk?oc=5",
+      "image": "",
+      "domain": "ABC News - Breaking News, Latest News and Videos",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T06:16:19.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "ABC World News Tonight with David Muir Full Broadcast - Sept. 22, 2026",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxQMnFBaC0zaVJCSGs3bUJMSHM5bXVWZkxWNVZxQVpZU3RqV2hxZzRTaFQxc243M0NOZ19vUGoxdV93ZFVrWXhrRHF5dDdwSnZ1SG5RQ0NiaEJ4SXJRQmFZLUlwelVyUDQ5LWZZSWpaRnF4XzNjQU9JTHFaQTFfNXVEUF9UVXhreUdtc0pmS0N6dkhXY3hKd2E4SERGb1FFVDRsek9acGlxUFVTdG5EWnBDUVhSYVlwa0VuYVdicElyX0xZTEMxTlBhQlM1V3dpbzdPUkREWUI1dFNPelZ3dHRwZFBVYjQ5TGI3S0hueGVkZW9WWmRJTV9SXzJhQUhrQQ?oc=5",
+      "image": "",
+      "domain": "centraloregondaily.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T02:00:13.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Princeton falls from top spot on US News rankings",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPWEM3TnpVaFpPLXVxYmJDalpWNDFWaG9qSlNlUXljVHloQ2k3WlFRaDhxcjh2Sll6OHRTc1AyOF92b3RLcnBOMFZOTlBDQ2hSNmhEUE01SEZwNHF4N00wSVlTdDVyYXY0YTlqYmp2QUptTlZYYzJoWFNoTkp2T2Iyd2ZUbzd2dHFqd2pydEJodmhkcWPSAZgBQVVfeXFMT2RsSzlwb2w4cXI4SVhJd1lZNW9PZFFQbll1X0hwYjFVVEU5MHFEX0Y3d0pmcDlMWWZXTTZwaGlpclAzb25MakhXWTVFLXlGTjVsdkRJT0p2M0F4c3p6ejhPd3RLYTNBdU1QOTNhTGtCZmluNTZqLVdMVE9JNGlwV3ZxWlVPaHZiZE1tRWpJRVJQN3JuLUtiS3o?oc=5",
+      "image": "",
+      "domain": "The Hill",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T14:00:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "The Top 8 World Cup Prizm Manga Sales By Price and Volume",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1BTHJxbTY2bXFlMEVTdnBhbjgxZmlkMGFJR1RJNGh4aXdWc01aQmZEZ0JUd0lEcElqWnpBeDQ3bUFPZkhpYjRsRld5eU5jQzJaV0YyeklUeFNsVUEzU2VaWXFPRVg4bzJSNUF1cE9yWjJrZFpucGdZSWRR?oc=5",
+      "image": "",
+      "domain": "Yahoo Sports",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T13:24:41.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "World of Warcraft: Forever players find rule-breaking new items that defy 22 years of experience with the classic MMO",
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxNLW5jTlZxTzh0ZU9ZaUUycEE0TEcyZnY0TUdWd1BoV1NDSUJsYnNHUUhyamFfaWRuQkE1Tm90TVlvTUljU0FWUkVMQTN6Tl9KWlNpMEM3OTJwN0RqZFdNUFRLV08zQjJGR0FsZHk3VHhIS0JTVXdzUUl1WW1BZXRDNC12bW9rMnlldXBfSGZCUmpWalB2bDR5TXdZNmhQVmdnVW5zZ2ljMG16UDBkSHA3WjJxaWRDaFJlYVZfMHowNmFiUFFkSXZkQkhzOElYXzVISXpQaEFwRmFNT3l0YjNJbkFpLUpVaXJZa0V4QUdsTjgtQXRvYlUwMg?oc=5",
+      "image": "",
+      "domain": "PC Gamer",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T19:50:47.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "The World’s Top Pizzerias Were Just Ranked — and This London Spot Took No. 1",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOaHBDMkhuY1NwMDhjSnE1ZjBGMlpVb2tLUGtSM0N4c2xCVy1Qb1JUc253YnRZUDd4OVB3XzFUVFl2RVZ1UURXcS0zOWE0ZEpOazBjaUlTa0RHV3phVm9ON2xRY1dLdUttWG5FR1JEQzFvQmNBMkpOQ1d4bU1iZlAxLWI5SXh2Q0U4c3dxSVVqd0k2LUhDclZVVnln?oc=5",
+      "image": "",
+      "domain": "Food & Wine",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-20T13:01:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Bayern Munich’s Luis Diaz receives welcome break from international duty",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQdnFMZFB0ZlBENl9hNE9MdEFIalI1a3RHbkk2Ym0zVGlqUUZKenF2MzRrODZncjF4NGdlU011Q2pHXzRncFhqN1A5bzBVTmM3Y0I1dnpyYkVScUVfTmtEeksyeU1uUVNKWVRlTzNJVlZDLWJpRVEyTThpM194cTl3YkduNEphNS1m?oc=5",
+      "image": "",
+      "domain": "Yahoo Sports",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T10:00:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "See the world in vertical: Top photos by AP photojournalists",
+      "url": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPSlhyM3hQRTlzdnZlWmxjb1UzMW1FbFYtTHgwUW5pY2RjTE4tV0xZYmNzdTVQcExHSm5Tc0VCNlF0UkpTcjI0TFVzVDJDYmpnenN0dElxRm0yQUFVUnNKby02YzZFMG9IMFpmaklJVU9QaFp6UWVhRk0yWElmZkJ5czM1Mi0zQjlOV3prekczOG90OU9NU0w4VlY1U1NxdjRRVG1Oa0lJbEtqSDdGTzJNQV8yTDhJYWlyWVN6Uks1LVdDaDBBRmJyc3N4NWNZSnA1R0doOS1jRkYxbl8wanFMeVAwdmVIOTVBTVlRMElsRjl0RTRsdjExdlFhWQ?oc=5",
+      "image": "",
+      "domain": "Mankato Free Press",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T13:06:14.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Thailand insurgency leaves villagers trapped in fear | The Asahi Shimbun: Breaking News, Japan News and Analysis",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5BVC12MVRnb1dUTWlHVWY0NDF4bXlnX0xQMEtfUXZlRHJBNV8zbmdySTlIVkhBOXpHdWlsRUV3VWpJVlhpbWtuVDZHbFNQWHVJaVBIZWEtVVlyZktUeHc?oc=5",
+      "image": "",
+      "domain": "朝日新聞",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T07:00:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Anthropic researcher quits over AI safety concerns | The Asahi Shimbun: Breaking News, Japan News and Analysis",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5NeDJBbTJCWEJnVEdEVnllbFI2S0JtLXZ1cDRTTkhZMi01ZVlfbFVsdVZPbDE2QTNJY3lXSEhsT1pIenNENkgxRDR5QnZ0NnRpSy0zY1plcUZwdUVISXc?oc=5",
+      "image": "",
+      "domain": "朝日新聞",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T07:00:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "The latest headlines - as Greenland security agreement reached following Trump annexation threats",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxPNXBOYWc2R1g2Y04zV3Z4RTV5eWtkakxNQnVFNW12UXJiR1dpbGhNd1Fmd0h2bW03MzlCbUlQM1ViY0VJai1qRUJkSzdhRVRqY1RCdlVwMXczbXI5UGhrMlpSUHhWblVXMDVZTHNZYXZvV1AtVUpuTW9ucUczeFFCUVVhMng5UEdFR2ktOGZKN0doMExJN1U5U2x0S0hxdDFJTGJLbkQtNGN3dDRaRzVtMDJR?oc=5",
+      "image": "",
+      "domain": "ITVX",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-19T22:19:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Why will September international break last three weeks?",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNZXVYWVAyWWgyX29oNE5MSFZVb3ZZTGU0TnBoMzM4NnpkaFhkR0xQMFA2c1dqbG9pUHVZMTJaWk5zSzZ2cWZVaUhUUkUtNXVxM0R5bkxZY3FvWHl6R1oxVUhyZ1gtWDNoWnRJcjZkdnlDRUtpUHVOTHM2ek9vcmktUEl4QnhMQmNGdzJ0V0NtaGE?oc=5",
+      "image": "",
+      "domain": "Yahoo Sports",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T15:30:07.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "LIST: 6 Texas universities named in nation's top 100, according to new report",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOdmxvUzNiTUliVjFJV2hHaXktNnVIM0FKZXpBenk2X05WQUp0bk9wWTJqM0h3Ukc5cTIzZzhCaWFQWk81cTJudXV1V1hxUUl0eFFNREg3UGlyWWpKX1JWVjh2TGdNWHVqaXFOZldzMHU3VW9RVldWcHlhU2pjYVNfUkxzcVNQaDBZTTllaGNxMGEtQ2tSaVVTSENieG9QOXE5cUxENnRLZVQ4YlMxMlNGNk5vcDJXN1hUZTMyR1lR?oc=5",
+      "image": "",
+      "domain": "WFAA",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T16:24:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "BREAKING: Chelsea hit with major injury news ahead of international break",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPZVZrQS1IMjBqRTd2RWRtSzJVeVlWVlVjMV9lTEZiQTZMUlFDdDU4X1hndWY3SGlMNHFWazFtV3FOX211cnprdE5Zbl9sdXBDWTFGaG9JNGtYOUpLaXdiZDNzYzJnZ3NoVVZEcnYwZWZPVG0xT25iREQwcGExNmpuQUE2MXRpbnZ5VFE?oc=5",
+      "image": "",
+      "domain": "Yahoo Sports",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-16T18:40:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "RANKED: The Top Crude Oil Producers in 2025 – Visual Capitalist – See How Countries Rank",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQc043cHk1ZjIxLWc2RVJUX2p1NnRHMmpRamNpNkVJNTBkNjliR1Z4amtCdkdVUzkzUnBRQ2ZpWFhHdGRUUWtybzFieTY2ek9qazdPaG5Ec0d3akx6a24wMlYzaDdnbjZrbmNVdTdZdXZSYlhGTVFUOHJoTGZhQ1RJR2tyaDNGckF0OWM0QW1ta2lVbnFoOFE?oc=5",
+      "image": "",
+      "domain": "EnergyNow.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T12:30:35.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Breaking News: His Majesty King Abdullah II: Distractions will not fly anymore; people across the world are paying attention. The question now is: will we act? (Petra)",
+      "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxQSVFDREJnZkxHT0t3bVhJenhSeXBBb1MyN1ZXXzRtQ3paZHA1ZE9kMlFYOEhJQUh6RU5kMWxRZ2NPal9kbzhaVjhXbkZUUndXT1lNT0Y3SEdMSllCcXM5X0FReGZnSHFTQi1CSmZjQzlZbFQ0cjAxZTlNcDRSZ09wLWNVdzEwUGZNRVhLa1VSLVRlbE1XR09TbjF4cXdrZDBjODNzTm1BWHZlYWRVMWl4b25KWEFaRzZqTmdUOTF1M2NjV1E5UWZiRjc4c2YtVFhURVVrNTlaemdKYzhHOEpCV2tNbmRWMGltMHIzb1ZzU2tQODhkN1Z3WDNZc0FIdF9IZFdmUVY3cUJHS1R0NzlRaV9nZzFjY09hYTJvZmxxQXVCVkk?oc=5",
+      "image": "",
+      "domain": "fananews.com",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T15:55:07.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Ukraine targets Russia with over 1,000 drones, killing 2 as Moscow holds last day of elections",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQcmZhbm8zdlF4ZjhWVFlhRUdQUzBBbkJmZEJRTW1ScDJVcnp2VXNuRUFEaTAyTS1YbUwwSGwzc3hMUUlQcFlQS3NJNGx6Y1pCaTlPek9QUU9MVmhVMzJzNHl5c1k1SkF1YTBzTlJuazVaOG9zX1RCbHpWcmNxdk1hdUJnNHpoWTVJM2FJRjVQLVhlNU43MllpckFwVnpsRU5peTZkQnlFX29YUdIBrwFBVV95cUxNdm1EdnQ4VzFqSFZKMHNUOVdtUm5iUEJMVFBQVG9kM3hzS3NzbWtYTDZ4YmkzWnlUZ1RiTmZ2SmxqSC1YdHZZcXNvdjhvNzE3eDZ2S2xPdmQzVUxMU2ZNTklEdG9uUTVtaEVJdDNFLTczVEt5UVp6RTY1Wk5ISndGU0dPdG9GS2cyeEFnOTJUVmRfbmRSMWZLQzJJUkl5MHA5NVVRVUFRSXlENVdBNUZN?oc=5",
+      "image": "",
+      "domain": "Fox News",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-20T11:49:27.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "RPM International to Acquire Italian Waterproofing Maker Volteco",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNTU9IZkFQclR1S0hGRjFlckZLT19lVEd4c25JMkhpSS1tS2FJdXJRSTFXcGFhelNTN1hYbjVKODlHWkNWY3FWdjZhV3A3cFJKSmR3MFljakh4VmJiUUN3WjZsejNSaE5RQlpwdWVOd080eTBhVS1TT1dFNnQ5cTRCMkl6MmxsNW5DR2FXZDZwVERFdWhRZUhaS1ZoNF9QZjBWZDhmYVlXRUdwa2tLMkE?oc=5",
+      "image": "",
+      "domain": "Coatings World",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-23T16:06:46.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "The latest headlines - as disruption caused by another air traffic outage - Latest From ITV News",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOakhVWENJZVVNNFNwb0Q4YkZEQW9wNjhoaWJqV0hMVVVxcTJuYlJVbzlfYTZTbzZlRElaMGFiSWVDSzh4RnNLaUhsLThQNE5OM3d6ZlN4RXJPNjNITW9CZFJRYlVnbFZqTDdmRmVUcFZCU1dCTHFMUkctWlZRLWtZY3ExUjBjRldkd2c5cFVsWGdTeGl0dnZzaFZCc2EtT21LNkNMQ1RfNEJNMDF6ZUw0?oc=5",
+      "image": "",
+      "domain": "ITVX",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T15:32:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "The latest headlines - as controversial Earl Spencer’s book about Diana goes on sale - Latest From ITV News",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNbFJNWlZCVHFyZTJROENISV9HWlFTWXZPemZlQ29qNTBEOFI0QnZFc3NEUUZpTzl1SUJ3cHRUZHdsc2JTX0tBdFRKcTVFd3JpaHZDcDZxUFVJVEtCYlU4UDl5azVlMXlveExPcnM4S1c5eGs2U3VYbUtrVWNKNEpXNjdNY2NGcUJZeFdseFRQR1dQbE11RlJuZXdWUUtPcUxVOWJFd3ZVQ1BNN3pYbXpMdzR6dzY2X1Z6SjRFN1JYdW14MmhP?oc=5",
+      "image": "",
+      "domain": "ITVX",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T13:00:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "LIVE Updates | Latest India & World News Today: Jaishankar calls for stronger multilateralism at UNGA, Iran delegation arrives in New York",
+      "url": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxPMnRJSGdIRWtnbFl6dy1aRnZmUDhJc0l3NDFDc3VUMmg1cFo3cGtOMXVkaklwRlRTUnJFUzlxVE5vUnNvZnZEYzRLdU9fWlRkNEhhSExLcTdJUXRESW01NmNrOXFSZ1RBUUk4ZkxkdzdPdGphMDFXNWFwNEFQODBlVEthajNPSGd6NjBXR0l3eGhlT1ZYRHliZkFTS2xVT2JsRTFWeVVBalVnUTZsQ0taRUdoelJONFQwX0YwNnFrT2NpYW4tNTNEUEViakJWSWtQS0lJaGMwNEFJR2hIS0RIckFEdWFkRFBkdWpXU2o4a0FWMXJtTDd5SktfZHgtRF91YmRmaGNDX05rVWRlRzdtX2t0T04ydUtJYTY2aUxqbXAxRUd5d3pDcNIBqAJBVV95cUxPMnRJSGdIRWtnbFl6dy1aRnZmUDhJc0l3NDFDc3VUMmg1cFo3cGtOMXVkaklwRlRTUnJFUzlxVE5vUnNvZnZEYzRLdU9fWlRkNEhhSExLcTdJUXRESW01NmNrOXFSZ1RBUUk4ZkxkdzdPdGphMDFXNWFwNEFQODBlVEthajNPSGd6NjBXR0l3eGhlT1ZYRHliZkFTS2xVT2JsRTFWeVVBalVnUTZsQ0taRUdoelJONFQwX0YwNnFrT2NpYW4tNTNEUEViakJWSWtQS0lJaGMwNEFJR2hIS0RIckFEdWFkRFBkdWpXU2o4a0FWMXJtTDd5SktfZHgtRF91YmRmaGNDX05rVWRlRzdtX2t0T04ydUtJYTY2aUxqbXAxRUd5d3pDcA?oc=5",
+      "image": "",
+      "domain": "WION",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-22T02:37:00.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "MLS snubbed again? Opta Analyst’s ranking of the world’s best leagues is raising eyebrows",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNOXAxQktRUE9CZXRYV3ZwSkF3NnRSamN3X1NDQWtFZ3V4SXlsZmt5eWlVMjJvWnRVTE9CWTlMVkNLakJhYl9GOUo0SXBlV3FRNkRDc2NmS1NLd0FCWmZ6dFFoNk1LMG5mZTZ6czY1OTh6S0ZZaE9CaWJRa01nX3p5V0R4YXczSi1rX09EYmZUb0NUTTdSRzNKZnVyY1UxWnI5akVIMzdCWTlMUzZhQ2gtb2xZY0VfNHgxT2hJRW5TONIB0wFBVV95cUxPakFYb3lXLUhfUFJXVngtaFY5d01OZ0NRZG9mNWZTTC1GaWVvWkJaMVR5RXByaXB1Uno0b2pMZzVycHRMR1RnaGRmZ2x2dUlxQXV6Z1ZDMFdyN0FLYWxkWHcxZ1JDQkZFN193R2FQY1lLN3RvekF2Y3p3M1kxOTZBT3U1eWxCU2Q5eklIZ3BiYUdUYjFHU1V5V3NvN1ZEWE9mLWEyQlZIcHJaS1Zkd1lXRWNxWHVTdURRNjVLREo3T1hqSjhOcE80VUFfalRyd2dWMW1Z?oc=5",
+      "image": "",
+      "domain": "Diario AS",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-20T16:45:45.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "LATE NIGHT BREAKING NEWS THE WORLD IS FALLING APART BE READY TO GO",
+      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9RQTk5RGIteW5kWlpFMXY2cW0zU1FPRVVCNkNZZnJkQXhmU3RRQXZldmVqVE5mUDJBZWJESnVJRGljekU0TXVEc2t5X2FkQ3BRTFQzS1BrRFRpam1K?oc=5",
+      "image": "",
+      "domain": "YouTube",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-18T03:44:30.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "World Bank raises India’s growth forecast from 6.3 to 6.6 percent for current financial year",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPTzJsaXdFWEo5UmtPT2tCT25pWkplN0NwYy1iWVlnUWlaal8yb0FURUpjeXJoS0JFR2pxT0FpdnZ4UHM5ZE13a05ueE9fMFQ4dUlUUzJGelJBZGRRRDViZFBJS0NvSkg0YlZ2N0pZUmdGMi1fSlliakpBVXlVcFVxdHJJSkpEMEdOdGFNcGdqaUExVEc5OXhkdlVsbEZhNGpaOWczT2tTaVc2T3ktX3A5S2lWYllkX3F6?oc=5",
+      "image": "",
+      "domain": "News On AIR",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T22:49:57.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "Saskatoon: Latest Video News, Interviews & Analysis",
+      "url": "https://news.google.com/rss/articles/CBMiUEFVX3lxTFBOcTh5RndteTFSWEZCVmUzSkkzX1lqMzJlUGIxWEI2NFpQZHplcjRwV1pDSEc5cUNlWk5Qdzg2NHFsNmVjU2Y3bXdWUVpwWkc0?oc=5",
+      "image": "",
+      "domain": "CTV News",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-21T15:08:53.000Z",
+      "lane": "World"
+    },
+    {
+      "title": "LIVE | Senzo Meyiwa Murder Trial",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE5PTVEwUzBoQlQ3NnA1RFZVS0pUYnRaV3dwM2sxaENyWDQ0aEhuNUNnNUNYcTNOeVJ3TmJIV002SHlrVnRmblNndkg5SjVaTEh1dmZ3MExmeGdzUkQxb3duTFRMTC1OdG03SmI4ZENsUEUyYmRocVg0?oc=5",
+      "image": "",
+      "domain": "SABC News",
+      "country": "",
+      "language": "",
+      "publishedAt": "2026-09-17T06:57:15.000Z",
+      "lane": "World"
+    }
+  ]
 }
