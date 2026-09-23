@@ -8,8 +8,6 @@ on:
     paths-ignore: ['data/**']
 permissions:
   contents: write
-  pages: write
-  id-token: write
 concurrency:
   group: pulsepress-newsroom-v10-2
   cancel-in-progress: false
@@ -17,9 +15,6 @@ jobs:
   update-news:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,15 +35,3 @@ jobs:
             git commit -m 'Refresh publisher editions and weekly gaming highlights'
             git push origin HEAD:main
           fi
-      - name: Prepare public site
-        run: |
-          mkdir -p _site
-          cp *.html *.webmanifest sw.js _site/
-          cp -r assets data _site/
-          touch _site/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-      - name: Publish refreshed news
-        id: deployment
-        uses: actions/deploy-pages@v4
