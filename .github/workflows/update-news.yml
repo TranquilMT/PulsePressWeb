@@ -1,0 +1,48 @@
+name: Update PulsePress live news
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/update-news.mjs'
+      - '.github/workflows/update-news.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pulsepress-newsroom
+  cancel-in-progress: false
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out PulsePress
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Refresh live news snapshots
+        run: node scripts/update-news.mjs
+
+      - name: Publish updated snapshots
+        shell: bash
+        run: |
+          if git diff --quiet -- data/; then
+            echo "No snapshot changes to publish."
+            exit 0
+          fi
+          git config user.name "PulsePress Newsroom"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          git commit -m "Update live news snapshots"
+          git push
