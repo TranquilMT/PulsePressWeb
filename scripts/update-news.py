@@ -52,8 +52,6 @@ SOURCES = [
  ('GamesRadar+','https://www.gamesradar.com/rss/','gaming',''),
  ('Kotaku','https://kotaku.com/rss','gaming',''),
  ('VG247','https://www.vg247.com/feed','gaming',''),
- ('Engadget','https://www.engadget.com/rss.xml','tech',''),
- ("Tom's Hardware",'https://www.tomshardware.com/feeds/all','tech',''),
  ('9to5Google','https://9to5google.com/feed/','tech',''),
  ('MacRumors','https://feeds.macrumors.com/MacRumors-All','tech',''),
 ]
